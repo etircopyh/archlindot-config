@@ -30,7 +30,6 @@ precmd() { print '' }
 #------------------------------
 export BROWSER='chromium'
 export EDITOR='nvim'
-export QT_LOGGING_RULES='*=false'
 
 #------------------------------
 # Aliases
