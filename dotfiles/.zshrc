@@ -62,10 +62,15 @@ alias lla='ls --color=auto --human-readable --group-directories-first -la'
 fpath=(~/.zsh $fpath)
 
 #------------------------------
-#Powerline
+# Powerline
 #------------------------------
 prompt off
 powerline-daemon -q
 POWERLINE_BASH_CONTINUATION=1
 POWERLINE_BASH_SELECT=1
 . /usr/lib/python3.7/site-packages/powerline/bindings/zsh/powerline.zsh
+
+#------------------------------
+# ZSH Autosuggestions
+#------------------------------
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
