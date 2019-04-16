@@ -30,6 +30,7 @@ precmd() { print '' }
 #------------------------------
 export BROWSER='chromium'
 export EDITOR='nvim'
+export QT_LOGGING_RULES='*=false'
 
 #------------------------------
 # Aliases
@@ -39,6 +40,7 @@ alias mkdir='mkdir -p -v'
 alias ping='ping -c 5'
 alias dmesg='dmesg -HL'
 alias yupdate='yay -Syu'
+alias yum='yay -S'
 alias remorphans='yay -Rns $(pacman -Qtdq)'
 alias remcache='yay -Sc'
 alias clr='clear'
