@@ -9,6 +9,7 @@ sys-devices-pci0000:00-0000:00:1f.2-ata1-host0-target0:0:0-0:0:0:0-block-sda-sda
 sys-devices-pci0000:00-0000:00:1f.2-ata1-host0-target0:0:0-0:0:0:0-block-sda-sda3.device loaded active plugged   GOODRAM Microsoft\x20reserved\x20partition                                 
 sys-devices-pci0000:00-0000:00:1f.2-ata1-host0-target0:0:0-0:0:0:0-block-sda-sda4.device loaded active plugged   GOODRAM SYSTEM                                                             
 sys-devices-pci0000:00-0000:00:1f.2-ata1-host0-target0:0:0-0:0:0:0-block-sda-sda5.device loaded active plugged   GOODRAM Linux\x20filesystem                                                
+sys-devices-pci0000:00-0000:00:1f.2-ata1-host0-target0:0:0-0:0:0:0-block-sda-sda6.device loaded active plugged   GOODRAM test                                                               
 sys-devices-pci0000:00-0000:00:1f.2-ata1-host0-target0:0:0-0:0:0:0-block-sda.device      loaded active plugged   GOODRAM                                                                    
 sys-devices-pci0000:00-0000:00:1f.2-ata2-host1-target1:0:0-1:0:0:0-block-sdb-sdb1.device loaded active plugged   TOSHIBA_MQ01ABD032 Microsoft\x20reserved\x20partition                      
 sys-devices-pci0000:00-0000:00:1f.2-ata2-host1-target1:0:0-1:0:0:0-block-sdb-sdb2.device loaded active plugged   TOSHIBA_MQ01ABD032 Basic\x20data\x20partition                              
@@ -71,6 +72,7 @@ wpa_supplicant.service                                                          
 -.slice                                                                                  loaded active active    Root Slice                                                                 
 system-getty.slice                                                                       loaded active active    system-getty.slice                                                         
 system-systemd\x2dbacklight.slice                                                        loaded active active    system-systemd\x2dbacklight.slice                                          
+system-systemd\x2dcoredump.slice                                                         loaded active active    system-systemd\x2dcoredump.slice                                           
 system-systemd\x2dfsck.slice                                                             loaded active active    system-systemd\x2dfsck.slice                                               
 system.slice                                                                             loaded active active    System Slice                                                               
 user-1000.slice                                                                          loaded active active    User Slice of UID 1000                                                     
@@ -115,5 +117,5 @@ LOAD   = Reflects whether the unit definition was properly loaded.
 ACTIVE = The high-level unit activation state, i.e. generalization of SUB.
 SUB    = The low-level unit activation state, values depend on unit type.
 
-111 loaded units listed. Pass --all to see loaded but inactive units, too.
+113 loaded units listed. Pass --all to see loaded but inactive units, too.
 To show all installed unit files use 'systemctl list-unit-files'.

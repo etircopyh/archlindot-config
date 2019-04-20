@@ -22,7 +22,6 @@ autovt@.service                             enabled
 avahi-daemon.service                        disabled       
 avahi-dnsconfd.service                      disabled       
 blk-availability.service                    disabled       
-bluetooth.service                           disabled       
 btrfs-scrub@.service                        static         
 canberra-system-bootup.service              disabled       
 canberra-system-shutdown-reboot.service     disabled       
@@ -315,4 +314,4 @@ shadow.timer                                static
 systemd-tmpfiles-clean.timer                static         
 xfs_scrub_all.timer                         disabled       
 
-315 unit files listed.
+314 unit files listed.
