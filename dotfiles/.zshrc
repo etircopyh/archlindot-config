@@ -19,8 +19,15 @@ bindkey -e
 # The following lines were added by compinstall
 zstyle :compinstall filename '~/.zshrc'
 
-autoload -Uz compinit
+#------------------------------
+# ZSH Autosuggestions
+#------------------------------
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+autoload -U compinit promptinit colors
 compinit
+promptinit
+colors
 # End of lines added by compinstall
 
 precmd() { print '' }
@@ -52,9 +59,17 @@ alias mkdir='mkdir -v'
 alias rcp='rsync -v --progress'
 alias chmod='chmod -c'
 alias chown='chown -c'
+alias installfont='sudo fc-cache -f -v'
 alias ls='ls --color=auto --human-readable --group-directories-first'
 alias ll='ls --color=auto --human-readable --group-directories-first -l'
 alias lla='ls --color=auto --human-readable --group-directories-first -la'
+# Color support
+alias ls='ls --color=auto'
+alias dir='dir --color=auto'
+alias vdir='vdir --color=auto'
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
 
 #------------------------------
 # Git autocomplete
@@ -70,7 +85,3 @@ POWERLINE_BASH_CONTINUATION=1
 POWERLINE_BASH_SELECT=1
 . /usr/lib/python3.7/site-packages/powerline/bindings/zsh/powerline.zsh
 
-#------------------------------
-# ZSH Autosuggestions
-#------------------------------
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
