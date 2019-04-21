@@ -1,0 +1,8 @@
+[Common]
+OutlineCloseButton=false
+ShadowSize=ShadowVeryLarge
+ShadowStrength=153
+
+[Style]
+ToolBarDrawItemSeparator=false
+ViewDrawFocusIndicator=false
