@@ -169,7 +169,7 @@ systemd-poweroff.service                    static
 systemd-quotacheck.service                  static         
 systemd-random-seed.service                 static         
 systemd-reboot.service                      static         
-systemd-remount-fs.service                  static         
+systemd-remount-fs.service                  enabled-runtime
 systemd-resolved.service                    enabled        
 systemd-rfkill.service                      static         
 systemd-suspend-then-hibernate.service      static         
@@ -299,6 +299,7 @@ swap.target                                 static
 sysinit.target                              static         
 system-update-pre.target                    static         
 system-update.target                        static         
+time-set.target                             static         
 time-sync.target                            static         
 timers.target                               static         
 umount.target                               static         
@@ -314,4 +315,4 @@ shadow.timer                                static
 systemd-tmpfiles-clean.timer                static         
 xfs_scrub_all.timer                         disabled       
 
-314 unit files listed.
+315 unit files listed.
