@@ -11,8 +11,7 @@ sys-devices-pci0000:00-0000:00:1f.2-ata1-host0-target0:0:0-0:0:0:0-block-sda-sda
 sys-devices-pci0000:00-0000:00:1f.2-ata1-host0-target0:0:0-0:0:0:0-block-sda-sda5.device loaded active plugged   GOODRAM Linux\x20filesystem                                                
 sys-devices-pci0000:00-0000:00:1f.2-ata1-host0-target0:0:0-0:0:0:0-block-sda-sda6.device loaded active plugged   GOODRAM test                                                               
 sys-devices-pci0000:00-0000:00:1f.2-ata1-host0-target0:0:0-0:0:0:0-block-sda.device      loaded active plugged   GOODRAM                                                                    
-sys-devices-pci0000:00-0000:00:1f.2-ata2-host1-target1:0:0-1:0:0:0-block-sdb-sdb1.device loaded active plugged   TOSHIBA_MQ01ABD032 Microsoft\x20reserved\x20partition                      
-sys-devices-pci0000:00-0000:00:1f.2-ata2-host1-target1:0:0-1:0:0:0-block-sdb-sdb2.device loaded active plugged   TOSHIBA_MQ01ABD032 Basic\x20data\x20partition                              
+sys-devices-pci0000:00-0000:00:1f.2-ata2-host1-target1:0:0-1:0:0:0-block-sdb-sdb1.device loaded active plugged   TOSHIBA_MQ01ABD032 DATA                                                    
 sys-devices-pci0000:00-0000:00:1f.2-ata2-host1-target1:0:0-1:0:0:0-block-sdb.device      loaded active plugged   TOSHIBA_MQ01ABD032                                                         
 sys-devices-platform-serial8250-tty-ttyS0.device                                         loaded active plugged   /sys/devices/platform/serial8250/tty/ttyS0                                 
 sys-devices-platform-serial8250-tty-ttyS1.device                                         loaded active plugged   /sys/devices/platform/serial8250/tty/ttyS1                                 
@@ -22,7 +21,7 @@ sys-devices-virtual-misc-rfkill.device                                          
 sys-module-configfs.device                                                               loaded active plugged   /sys/module/configfs                                                       
 sys-subsystem-net-devices-enp4s0.device                                                  loaded active plugged   AR8151 v2.0 Gigabit Ethernet                                               
 sys-subsystem-net-devices-wlp2s0.device                                                  loaded active plugged   AR9485 Wireless Network Adapter                                            
--.mount                                                                                  loaded active mounted   Root Mount                                                                 
+-.mount                                                                                  loaded active mounted   /                                                                          
 boot.mount                                                                               loaded active mounted   /boot                                                                      
 dev-hugepages.mount                                                                      loaded active mounted   Huge Pages File System                                                     
 dev-mqueue.mount                                                                         loaded active mounted   POSIX Message Queue File System                                            
@@ -38,14 +37,12 @@ cpupower.service                                                                
 dbus.service                                                                             loaded active running   D-Bus System Message Bus                                                   
 dhcpcd.service                                                                           loaded active running   dhcpcd on all interfaces                                                   
 kmod-static-nodes.service                                                                loaded active exited    Create list of required static device nodes for the current kernel         
-ldconfig.service                                                                         loaded active exited    Rebuild Dynamic Linker Cache                                               
 NetworkManager.service                                                                   loaded active running   Network Manager                                                            
 polkit.service                                                                           loaded active running   Authorization Manager                                                      
 rtkit-daemon.service                                                                     loaded active running   RealtimeKit Scheduling Policy Service                                      
 sddm.service                                                                             loaded active running   Simple Desktop Display Manager                                             
 systemd-backlight@backlight:intel_backlight.service                                      loaded active exited    Load/Save Screen Backlight Brightness of backlight:intel_backlight         
 systemd-fsck@dev-disk-by\x2duuid-5EF5\x2d9AA6.service                                    loaded active exited    File System Check on /dev/disk/by-uuid/5EF5-9AA6                           
-systemd-journal-catalog-update.service                                                   loaded active exited    Rebuild Journal Catalog                                                    
 systemd-journal-flush.service                                                            loaded active exited    Flush Journal to Persistent Storage                                        
 systemd-journald.service                                                                 loaded active running   Journal Service                                                            
 systemd-logind.service                                                                   loaded active running   Login Service                                                              
@@ -54,13 +51,11 @@ systemd-random-seed.service                                                     
 systemd-remount-fs.service                                                               loaded active exited    Remount Root and Kernel File Systems                                       
 systemd-resolved.service                                                                 loaded active running   Network Name Resolution                                                    
 systemd-sysctl.service                                                                   loaded active exited    Apply Kernel Variables                                                     
-systemd-sysusers.service                                                                 loaded active exited    Create System Users                                                        
 systemd-timesyncd.service                                                                loaded active running   Network Time Synchronization                                               
 systemd-tmpfiles-setup-dev.service                                                       loaded active exited    Create Static Device Nodes in /dev                                         
 systemd-tmpfiles-setup.service                                                           loaded active exited    Create Volatile Files and Directories                                      
 systemd-udev-trigger.service                                                             loaded active exited    udev Coldplug all Devices                                                  
 systemd-udevd.service                                                                    loaded active running   udev Kernel Device Manager                                                 
-systemd-update-done.service                                                              loaded active exited    Update is Completed                                                        
 systemd-update-utmp.service                                                              loaded active exited    Update UTMP about System Boot/Shutdown                                     
 systemd-user-sessions.service                                                            loaded active exited    Permit User Sessions                                                       
 thermald.service                                                                         loaded active running   Thermal Daemon Service                                                     
@@ -117,5 +112,5 @@ LOAD   = Reflects whether the unit definition was properly loaded.
 ACTIVE = The high-level unit activation state, i.e. generalization of SUB.
 SUB    = The low-level unit activation state, values depend on unit type.
 
-113 loaded units listed. Pass --all to see loaded but inactive units, too.
+108 loaded units listed. Pass --all to see loaded but inactive units, too.
 To show all installed unit files use 'systemctl list-unit-files'.
