@@ -12,7 +12,7 @@ tmp.mount                                   static
 var-lib-machines.mount                      static         
 systemd-ask-password-console.path           static         
 systemd-ask-password-wall.path              static         
-session-2.scope                             transient      
+session-5.scope                             transient      
 accounts-daemon.service                     disabled       
 adb.service                                 disabled       
 alsa-restore.service                        static         
@@ -22,6 +22,7 @@ autovt@.service                             enabled
 avahi-daemon.service                        disabled       
 avahi-dnsconfd.service                      disabled       
 blk-availability.service                    disabled       
+bluetooth.service                           disabled       
 btrfs-scrub@.service                        static         
 canberra-system-bootup.service              disabled       
 canberra-system-shutdown-reboot.service     disabled       
@@ -89,12 +90,16 @@ lvm2-lvmpolld.service                       static
 lvm2-monitor.service                        masked         
 lvm2-pvscan@.service                        static         
 man-db.service                              static         
+mariadb.service                             disabled       
+mariadb@.service                            disabled       
 mdadm-grow-continue@.service                static         
 mdadm-last-resort@.service                  static         
 mdmon@.service                              static         
 mdmonitor.service                           static         
 mkinitcpio-generate-shutdown-ramfs.service  static         
 ModemManager.service                        disabled       
+mysqld.service                              disabled       
+mysqld@.service                             disabled       
 ndctl-monitor.service                       disabled       
 netctl-auto@.service                        disabled       
 netctl-ifplugd@.service                     disabled       
@@ -174,6 +179,7 @@ systemd-resolved.service                    enabled
 systemd-rfkill.service                      static         
 systemd-suspend-then-hibernate.service      static         
 systemd-suspend.service                     static         
+systemd-swap.service                        enabled        
 systemd-sysctl.service                      static         
 systemd-sysusers.service                    static         
 systemd-time-wait-sync.service              disabled       
@@ -239,6 +245,7 @@ systemd-udevd-kernel.socket                 static
 talk.socket                                 disabled       
 telnet.socket                               disabled       
 uuidd.socket                                disabled       
+dev-zram0.swap                              enabled-runtime
 basic.target                                static         
 bluetooth.target                            static         
 boot-complete.target                        static         
@@ -315,4 +322,4 @@ shadow.timer                                static
 systemd-tmpfiles-clean.timer                static         
 xfs_scrub_all.timer                         disabled       
 
-315 unit files listed.
+322 unit files listed.
