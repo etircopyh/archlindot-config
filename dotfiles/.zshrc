@@ -11,13 +11,13 @@
 #  ░ ░                                                
 
 # Lines configured by zsh-newuser-install
-HISTFILE=~/.histfile
-HISTSIZE=1000
-SAVEHIST=1000
+HISTFILE=~/.zsh-history
+HISTSIZE=10000
+SAVEHIST=10000
 bindkey -e
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
-zstyle :compinstall filename '~/.zshrc'
+zstyle :compinstall filename '/home/yumtee/.zshrc'
 
 #------------------------------
 # ZSH Autosuggestions
@@ -88,6 +88,8 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias diff='colordiff'
+alias make='colormake'
+alias gcc='colorgcc'
 
 #------------------------------
 # Git autocomplete
