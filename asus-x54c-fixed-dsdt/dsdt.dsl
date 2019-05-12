@@ -7240,7 +7240,7 @@ DefinitionBlock ("", "DSDT", 1, "_ASUS_", "Notebook", 0x00000001)
                     }
                 }
 
-                Method (_DOD, 0, NotSerialized)  // _DOD: Display Output Devices
+                Method (_DOD, 0, Serialized)  // _DOD: Display Output Devices
                 {
                     NDID = 0x00
                     If ((DIDL != Zero))
@@ -7424,7 +7424,7 @@ DefinitionBlock ("", "DSDT", 1, "_ASUS_", "Notebook", 0x00000001)
                         }
                     }
 
-                    Method (_BCL, 0, NotSerialized)  // _BCL: Brightness Control Levels
+                    Method (_BCL, 0, Serialized)  // _BCL: Brightness Control Levels
                     {
                         If ((\MSOS () >= \OSW8))
                         {
@@ -8345,6 +8345,10 @@ DefinitionBlock ("", "DSDT", 1, "_ASUS_", "Notebook", 0x00000001)
                         {
                             Return (CRS) /* \_SB_.MEM2.CRS_ */
                         }
+                        Return (Buffer (One)
+                        {
+                            0x00
+                        })
                     }
                 }
             }
@@ -9537,7 +9541,7 @@ DefinitionBlock ("", "DSDT", 1, "_ASUS_", "Notebook", 0x00000001)
         Name (OSVT, 0x40)
         Name (OSW7, 0x80)
         Name (OSW8, 0x0100)
-        Method (MCTH, 2, NotSerialized)
+        Method (MCTH, 2, Serialized)
         {
             If ((SizeOf (Arg0) < SizeOf (Arg1)))
             {
@@ -11198,7 +11202,7 @@ DefinitionBlock ("", "DSDT", 1, "_ASUS_", "Notebook", 0x00000001)
             Return (Local0)
         }
 
-        Method (BIF9, 0, NotSerialized)
+        Method (BIF9, 0, Serialized)
         {
             Name (BSTR, Buffer (0x20){})
             Local0 = SMBR (RDBL, BADR, 0x21)
@@ -11553,7 +11557,7 @@ DefinitionBlock ("", "DSDT", 1, "_ASUS_", "Notebook", 0x00000001)
                 0x80000000, 
                 0x80000000
             })
-            Method (TSDD, 0, NotSerialized)
+            Method (TSDD, 0, Serialized)
             {
                 Name (TMPC, 0x00)
                 TMPC = \_SB.PCI0.SBRG.EC0.ECPU
@@ -11568,7 +11572,7 @@ DefinitionBlock ("", "DSDT", 1, "_ASUS_", "Notebook", 0x00000001)
                 Return (Ones)
             }
 
-            Method (PSDD, 0, NotSerialized)
+            Method (PSDD, 0, Serialized)
             {
                 Name (PWRC, 0x00)
                 PWRC = PWRG ()
@@ -11583,7 +11587,7 @@ DefinitionBlock ("", "DSDT", 1, "_ASUS_", "Notebook", 0x00000001)
                 Return (Ones)
             }
 
-            Method (OSDD, 0, NotSerialized)
+            Method (OSDD, 0, Serialized)
             {
                 Name (OSDC, 0x00)
                 OSDC = OSDG ()
@@ -11651,7 +11655,7 @@ DefinitionBlock ("", "DSDT", 1, "_ASUS_", "Notebook", 0x00000001)
                 Return (MBOX) /* \_SB_.PTID.MBOX */
             }
 
-            Method (WPMD, 1, NotSerialized)
+            Method (WPMD, 1, Serialized)
             {
                 If ((SizeOf (Arg0) != 0x1A))
                 {
@@ -11721,7 +11725,7 @@ DefinitionBlock ("", "DSDT", 1, "_ASUS_", "Notebook", 0x00000001)
                 CYCT = 0x00
             }
 
-            Method (RPCS, 0, NotSerialized)
+            Method (RPCS, 0, Serialized)
             {
                 Name (TPCS, 0x00)
                 If ((CYCT > 0x00))
@@ -11737,7 +11741,7 @@ DefinitionBlock ("", "DSDT", 1, "_ASUS_", "Notebook", 0x00000001)
                 Return (TPCS) /* \_SB_.PTID.RPCS.TPCS */
             }
 
-            Method (RPEC, 0, NotSerialized)
+            Method (RPEC, 0, Serialized)
             {
                 Name (TPEC, 0x00)
                 TPEC = ERRN /* \_SB_.PTID.ERRN */
@@ -11810,7 +11814,7 @@ DefinitionBlock ("", "DSDT", 1, "_ASUS_", "Notebook", 0x00000001)
             Return (0x00)
         }
 
-        Method (GVER, 2, NotSerialized)
+        Method (GVER, 2, Serialized)
         {
             OperationRegion (\FGVR, SystemMemory, Arg0, Arg1)
             Field (\FGVR, DWordAcc, NoLock, Preserve)
@@ -11823,7 +11827,7 @@ DefinitionBlock ("", "DSDT", 1, "_ASUS_", "Notebook", 0x00000001)
             Return (0x00)
         }
 
-        Method (MF30, 3, NotSerialized)
+        Method (MF30, 3, Serialized)
         {
             OperationRegion (FM30, SystemMemory, Arg0, 0x08)
             Field (FM30, DWordAcc, NoLock, Preserve)
@@ -11859,7 +11863,7 @@ DefinitionBlock ("", "DSDT", 1, "_ASUS_", "Notebook", 0x00000001)
             Return (0x00)
         }
 
-        Method (G30V, 2, NotSerialized)
+        Method (G30V, 2, Serialized)
         {
             If ((Arg1 < 0x0C))
             {
@@ -11879,7 +11883,7 @@ DefinitionBlock ("", "DSDT", 1, "_ASUS_", "Notebook", 0x00000001)
             Return (0x00)
         }
 
-        Method (EC01, 2, NotSerialized)
+        Method (EC01, 2, Serialized)
         {
             If ((Arg1 < 0x10))
             {
@@ -11907,7 +11911,7 @@ DefinitionBlock ("", "DSDT", 1, "_ASUS_", "Notebook", 0x00000001)
             Return (DerefOf (Local0 [0x00]))
         }
 
-        Method (EC02, 2, NotSerialized)
+        Method (EC02, 2, Serialized)
         {
             If ((Arg1 < 0x30))
             {
@@ -11964,7 +11968,7 @@ DefinitionBlock ("", "DSDT", 1, "_ASUS_", "Notebook", 0x00000001)
 
     Scope (\_SB.ATKD)
     {
-        Method (MF1X, 4, NotSerialized)
+        Method (MF1X, 4, Serialized)
         {
             OperationRegion (FM1X, SystemMemory, Arg0, 0x08)
             Field (FM1X, DWordAcc, NoLock, Preserve)
@@ -12056,7 +12060,7 @@ DefinitionBlock ("", "DSDT", 1, "_ASUS_", "Notebook", 0x00000001)
             Return (Local0)
         }
 
-        Method (G10V, 2, NotSerialized)
+        Method (G10V, 2, Serialized)
         {
             If ((Arg1 < 0x0C))
             {
@@ -12125,7 +12129,7 @@ DefinitionBlock ("", "DSDT", 1, "_ASUS_", "Notebook", 0x00000001)
             Return (Local0)
         }
 
-        Method (G11V, 2, NotSerialized)
+        Method (G11V, 2, Serialized)
         {
             If ((Arg1 < 0x0C))
             {
@@ -12145,7 +12149,7 @@ DefinitionBlock ("", "DSDT", 1, "_ASUS_", "Notebook", 0x00000001)
             Return (0x00)
         }
 
-        Method (GBAT, 2, NotSerialized)
+        Method (GBAT, 2, Serialized)
         {
             If ((Arg1 < 0x0A))
             {
@@ -12165,7 +12169,7 @@ DefinitionBlock ("", "DSDT", 1, "_ASUS_", "Notebook", 0x00000001)
             Return (0x00)
         }
 
-        Method (ASBR, 2, NotSerialized)
+        Method (ASBR, 2, Serialized)
         {
             If ((Arg1 < 0x30))
             {
@@ -12311,7 +12315,7 @@ DefinitionBlock ("", "DSDT", 1, "_ASUS_", "Notebook", 0x00000001)
             Return (0x10)
         }
 
-        Method (BTCR, 2, NotSerialized)
+        Method (BTCR, 2, Serialized)
         {
             If ((Arg1 < 0x09))
             {
@@ -12350,7 +12354,7 @@ DefinitionBlock ("", "DSDT", 1, "_ASUS_", "Notebook", 0x00000001)
             Return (Local0)
         }
 
-        Method (G12V, 2, NotSerialized)
+        Method (G12V, 2, Serialized)
         {
             If ((Arg1 < 0x0C))
             {
@@ -12370,7 +12374,7 @@ DefinitionBlock ("", "DSDT", 1, "_ASUS_", "Notebook", 0x00000001)
             Return (0x00)
         }
 
-        Method (GLDI, 2, NotSerialized)
+        Method (GLDI, 2, Serialized)
         {
             If ((Arg1 < 0x10))
             {
@@ -12392,7 +12396,7 @@ DefinitionBlock ("", "DSDT", 1, "_ASUS_", "Notebook", 0x00000001)
             Return (0x00)
         }
 
-        Method (LDCR, 2, NotSerialized)
+        Method (LDCR, 2, Serialized)
         {
             If ((Arg1 < 0x0A))
             {
@@ -12462,7 +12466,7 @@ DefinitionBlock ("", "DSDT", 1, "_ASUS_", "Notebook", 0x00000001)
             Return (Local0)
         }
 
-        Method (G13V, 2, NotSerialized)
+        Method (G13V, 2, Serialized)
         {
             If ((Arg1 < 0x0C))
             {
@@ -12482,7 +12486,7 @@ DefinitionBlock ("", "DSDT", 1, "_ASUS_", "Notebook", 0x00000001)
             Return (0x00)
         }
 
-        Method (GTSI, 2, NotSerialized)
+        Method (GTSI, 2, Serialized)
         {
             If ((Arg1 < 0x0C))
             {
@@ -12522,7 +12526,7 @@ DefinitionBlock ("", "DSDT", 1, "_ASUS_", "Notebook", 0x00000001)
             Return (0x00)
         }
 
-        Method (GTSV, 2, NotSerialized)
+        Method (GTSV, 2, Serialized)
         {
             If ((Arg1 < 0x0A))
             {
@@ -12572,7 +12576,7 @@ DefinitionBlock ("", "DSDT", 1, "_ASUS_", "Notebook", 0x00000001)
             Return (0x10)
         }
 
-        Method (GVSN, 2, NotSerialized)
+        Method (GVSN, 2, Serialized)
         {
             If ((Arg1 < 0x09))
             {
@@ -12590,7 +12594,7 @@ DefinitionBlock ("", "DSDT", 1, "_ASUS_", "Notebook", 0x00000001)
             Return (0x00)
         }
 
-        Method (GVSV, 2, NotSerialized)
+        Method (GVSV, 2, Serialized)
         {
             If ((Arg1 < 0x0B))
             {
@@ -12613,7 +12617,7 @@ DefinitionBlock ("", "DSDT", 1, "_ASUS_", "Notebook", 0x00000001)
             Return (0x00)
         }
 
-        Method (GFNN, 2, NotSerialized)
+        Method (GFNN, 2, Serialized)
         {
             If ((Arg1 < 0x09))
             {
@@ -12631,7 +12635,7 @@ DefinitionBlock ("", "DSDT", 1, "_ASUS_", "Notebook", 0x00000001)
             Return (0x00)
         }
 
-        Method (GFNS, 2, NotSerialized)
+        Method (GFNS, 2, Serialized)
         {
             If ((Arg1 < 0x0D))
             {
@@ -12656,7 +12660,7 @@ DefinitionBlock ("", "DSDT", 1, "_ASUS_", "Notebook", 0x00000001)
             Return (0x00)
         }
 
-        Method (SFNS, 2, NotSerialized)
+        Method (SFNS, 2, Serialized)
         {
             If ((Arg1 < 0x0A))
             {
@@ -12701,7 +12705,7 @@ DefinitionBlock ("", "DSDT", 1, "_ASUS_", "Notebook", 0x00000001)
             Return (Local0)
         }
 
-        Method (G14V, 2, NotSerialized)
+        Method (G14V, 2, Serialized)
         {
             If ((Arg1 < 0x0C))
             {
@@ -12721,7 +12725,7 @@ DefinitionBlock ("", "DSDT", 1, "_ASUS_", "Notebook", 0x00000001)
             Return (0x00)
         }
 
-        Method (GNBT, 2, NotSerialized)
+        Method (GNBT, 2, Serialized)
         {
             If ((Arg1 < 0x09))
             {
@@ -12739,7 +12743,7 @@ DefinitionBlock ("", "DSDT", 1, "_ASUS_", "Notebook", 0x00000001)
             Return (0x00)
         }
 
-        Method (GBTS, 2, NotSerialized)
+        Method (GBTS, 2, Serialized)
         {
             If ((Arg1 < 0x0A))
             {
@@ -12853,7 +12857,7 @@ DefinitionBlock ("", "DSDT", 1, "_ASUS_", "Notebook", 0x00000001)
             Return (Local0)
         }
 
-        Method (G15V, 2, NotSerialized)
+        Method (G15V, 2, Serialized)
         {
             If ((Arg1 < 0x0C))
             {
@@ -12873,7 +12877,7 @@ DefinitionBlock ("", "DSDT", 1, "_ASUS_", "Notebook", 0x00000001)
             Return (0x00)
         }
 
-        Method (GLDB, 2, NotSerialized)
+        Method (GLDB, 2, Serialized)
         {
             If ((Arg1 < 0x0A))
             {
@@ -12893,7 +12897,7 @@ DefinitionBlock ("", "DSDT", 1, "_ASUS_", "Notebook", 0x00000001)
             Return (0x00)
         }
 
-        Method (SLDB, 2, NotSerialized)
+        Method (SLDB, 2, Serialized)
         {
             If ((Arg1 < 0x0A))
             {
@@ -12928,7 +12932,7 @@ DefinitionBlock ("", "DSDT", 1, "_ASUS_", "Notebook", 0x00000001)
             Return (0x11)
         }
 
-        Method (GDPI, 2, NotSerialized)
+        Method (GDPI, 2, Serialized)
         {
             If ((Arg1 < 0x10))
             {
@@ -12951,7 +12955,7 @@ DefinitionBlock ("", "DSDT", 1, "_ASUS_", "Notebook", 0x00000001)
             Return (0x00)
         }
 
-        Method (SODP, 2, NotSerialized)
+        Method (SODP, 2, Serialized)
         {
             If ((Arg1 < 0x0C))
             {
@@ -12999,7 +13003,7 @@ DefinitionBlock ("", "DSDT", 1, "_ASUS_", "Notebook", 0x00000001)
             Return (Local0)
         }
 
-        Method (G16V, 2, NotSerialized)
+        Method (G16V, 2, Serialized)
         {
             If ((Arg1 < 0x0C))
             {
@@ -13019,7 +13023,7 @@ DefinitionBlock ("", "DSDT", 1, "_ASUS_", "Notebook", 0x00000001)
             Return (0x00)
         }
 
-        Method (SFBD, 2, NotSerialized)
+        Method (SFBD, 2, Serialized)
         {
             If ((Arg1 < 0x0A))
             {
@@ -13081,7 +13085,7 @@ DefinitionBlock ("", "DSDT", 1, "_ASUS_", "Notebook", 0x00000001)
             Return (Local0)
         }
 
-        Method (G17V, 2, NotSerialized)
+        Method (G17V, 2, Serialized)
         {
             If ((Arg1 < 0x0C))
             {
@@ -13101,7 +13105,7 @@ DefinitionBlock ("", "DSDT", 1, "_ASUS_", "Notebook", 0x00000001)
             Return (0x00)
         }
 
-        Method (GMDL, 2, NotSerialized)
+        Method (GMDL, 2, Serialized)
         {
             If ((Arg1 < 0x19))
             {
@@ -13138,7 +13142,7 @@ DefinitionBlock ("", "DSDT", 1, "_ASUS_", "Notebook", 0x00000001)
             Return (0x00)
         }
 
-        Method (GBSI, 2, NotSerialized)
+        Method (GBSI, 2, Serialized)
         {
             If ((Arg1 < 0x19))
             {
@@ -13175,7 +13179,7 @@ DefinitionBlock ("", "DSDT", 1, "_ASUS_", "Notebook", 0x00000001)
             Return (0x00)
         }
 
-        Method (GECI, 2, NotSerialized)
+        Method (GECI, 2, Serialized)
         {
             If ((Arg1 < 0x19))
             {
@@ -13227,7 +13231,7 @@ DefinitionBlock ("", "DSDT", 1, "_ASUS_", "Notebook", 0x00000001)
             Return (Local0)
         }
 
-        Method (G18V, 2, NotSerialized)
+        Method (G18V, 2, Serialized)
         {
             If ((Arg1 < 0x0C))
             {
@@ -13247,7 +13251,7 @@ DefinitionBlock ("", "DSDT", 1, "_ASUS_", "Notebook", 0x00000001)
             Return (0x00)
         }
 
-        Method (GDVI, 2, NotSerialized)
+        Method (GDVI, 2, Serialized)
         {
             If ((Arg1 < 0x18))
             {
@@ -13266,7 +13270,7 @@ DefinitionBlock ("", "DSDT", 1, "_ASUS_", "Notebook", 0x00000001)
             Return (0x00)
         }
 
-        Method (GDVS, 2, NotSerialized)
+        Method (GDVS, 2, Serialized)
         {
             If ((Arg1 < 0x0A))
             {
@@ -13290,7 +13294,7 @@ DefinitionBlock ("", "DSDT", 1, "_ASUS_", "Notebook", 0x00000001)
             Return (0x00)
         }
 
-        Method (SDPW, 2, NotSerialized)
+        Method (SDPW, 2, Serialized)
         {
             If ((Arg1 < 0x0A))
             {
@@ -13340,7 +13344,7 @@ DefinitionBlock ("", "DSDT", 1, "_ASUS_", "Notebook", 0x00000001)
             Return (Local0)
         }
 
-        Method (G19V, 2, NotSerialized)
+        Method (G19V, 2, Serialized)
         {
             If ((Arg1 < 0x0C))
             {
@@ -13366,7 +13370,7 @@ DefinitionBlock ("", "DSDT", 1, "_ASUS_", "Notebook", 0x00000001)
             Return (0x00)
         }
 
-        Method (CSIN, 2, NotSerialized)
+        Method (CSIN, 2, Serialized)
         {
             If ((Arg1 < 0x0A))
             {
@@ -13400,7 +13404,7 @@ DefinitionBlock ("", "DSDT", 1, "_ASUS_", "Notebook", 0x00000001)
 
     Scope (\_SB.ATKD)
     {
-        Method (OFBD, 1, NotSerialized)
+        Method (OFBD, 1, Serialized)
         {
             Name (FBDT, Package (0x25)
             {
@@ -13477,7 +13481,7 @@ DefinitionBlock ("", "DSDT", 1, "_ASUS_", "Notebook", 0x00000001)
             Local1 = Arg1
         }
 
-        Method (MF42, 3, NotSerialized)
+        Method (MF42, 3, Serialized)
         {
             OperationRegion (FM42, SystemMemory, Arg0, 0x08)
             Field (FM42, DWordAcc, NoLock, Preserve)
@@ -13513,7 +13517,7 @@ DefinitionBlock ("", "DSDT", 1, "_ASUS_", "Notebook", 0x00000001)
             Return (0x00)
         }
 
-        Method (SFBO, 2, NotSerialized)
+        Method (SFBO, 2, Serialized)
         {
             OperationRegion (\F421, SystemMemory, Arg0, Arg1)
             Field (\F421, DWordAcc, NoLock, Preserve)
@@ -13525,7 +13529,7 @@ DefinitionBlock ("", "DSDT", 1, "_ASUS_", "Notebook", 0x00000001)
             Return (0x00)
         }
 
-        Method (SAOC, 2, NotSerialized)
+        Method (SAOC, 2, Serialized)
         {
             OperationRegion (\F422, SystemMemory, Arg0, Arg1)
             Field (\F422, DWordAcc, NoLock, Preserve)
@@ -13537,7 +13541,7 @@ DefinitionBlock ("", "DSDT", 1, "_ASUS_", "Notebook", 0x00000001)
             Return (0x00)
         }
 
-        Method (GBST, 2, NotSerialized)
+        Method (GBST, 2, Serialized)
         {
             OperationRegion (\F423, SystemMemory, Arg0, Arg1)
             Field (\F423, DWordAcc, NoLock, Preserve)
@@ -15569,7 +15573,7 @@ DefinitionBlock ("", "DSDT", 1, "_ASUS_", "Notebook", 0x00000001)
         {
             If (ECAV ())
             {
-                Switch (Arg0)
+                Switch (ToInteger (Arg0))
                 {
                     Case (0x00)
                     {
@@ -16578,7 +16582,7 @@ DefinitionBlock ("", "DSDT", 1, "_ASUS_", "Notebook", 0x00000001)
             Return (Local0)
         }
 
-        Method (RBPE, 1, NotSerialized)
+        Method (RBPE, 1, Serialized)
         {
             Acquire (MUTE, 0xFFFF)
             Local0 = (Arg0 + \PEBS)
@@ -16592,7 +16596,7 @@ DefinitionBlock ("", "DSDT", 1, "_ASUS_", "Notebook", 0x00000001)
             Return (XCFG) /* \_SB_.RBPE.XCFG */
         }
 
-        Method (RWPE, 1, NotSerialized)
+        Method (RWPE, 1, Serialized)
         {
             Acquire (MUTE, 0xFFFF)
             Arg0 &= 0xFFFFFFFE
@@ -16607,7 +16611,7 @@ DefinitionBlock ("", "DSDT", 1, "_ASUS_", "Notebook", 0x00000001)
             Return (XCFG) /* \_SB_.RWPE.XCFG */
         }
 
-        Method (RDPE, 1, NotSerialized)
+        Method (RDPE, 1, Serialized)
         {
             Acquire (MUTE, 0xFFFF)
             Arg0 &= 0xFFFFFFFC
@@ -16622,7 +16626,7 @@ DefinitionBlock ("", "DSDT", 1, "_ASUS_", "Notebook", 0x00000001)
             Return (XCFG) /* \_SB_.RDPE.XCFG */
         }
 
-        Method (WBPE, 2, NotSerialized)
+        Method (WBPE, 2, Serialized)
         {
             Acquire (MUTE, 0xFFFF)
             Local0 = (Arg0 + \PEBS)
@@ -16636,7 +16640,7 @@ DefinitionBlock ("", "DSDT", 1, "_ASUS_", "Notebook", 0x00000001)
             Release (MUTE)
         }
 
-        Method (WWPE, 2, NotSerialized)
+        Method (WWPE, 2, Serialized)
         {
             Acquire (MUTE, 0xFFFF)
             Arg0 &= 0xFFFFFFFE
@@ -16651,7 +16655,7 @@ DefinitionBlock ("", "DSDT", 1, "_ASUS_", "Notebook", 0x00000001)
             Release (MUTE)
         }
 
-        Method (WDPE, 2, NotSerialized)
+        Method (WDPE, 2, Serialized)
         {
             Acquire (MUTE, 0xFFFF)
             Arg0 &= 0xFFFFFFFC
@@ -16666,7 +16670,7 @@ DefinitionBlock ("", "DSDT", 1, "_ASUS_", "Notebook", 0x00000001)
             Release (MUTE)
         }
 
-        Method (RWDP, 3, NotSerialized)
+        Method (RWDP, 3, Serialized)
         {
             Acquire (MUTE, 0xFFFF)
             Arg0 &= 0xFFFFFFFC
@@ -17173,7 +17177,7 @@ DefinitionBlock ("", "DSDT", 1, "_ASUS_", "Notebook", 0x00000001)
             }
         }
 
-        Method (_L06, 0, NotSerialized)  // _Lxx: Level-Triggered GPE, xx=0x00-0xFF
+        Method (_L06, 0, Serialized)  // _Lxx: Level-Triggered GPE, xx=0x00-0xFF
         {
             OperationRegion (PCHT, SystemMemory, \_SB.PTAB, 0x1000)
             Field (PCHT, ByteAcc, NoLock, Preserve)
@@ -18536,7 +18540,7 @@ DefinitionBlock ("", "DSDT", 1, "_ASUS_", "Notebook", 0x00000001)
                 DONE = One
             }
 
-            Method (_BCL, 0, NotSerialized)  // _BCL: Brightness Control Levels
+            Method (_BCL, 0, Serialized)  // _BCL: Brightness Control Levels
             {
                 If ((\MSOS () >= \OSW8))
                 {
