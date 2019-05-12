@@ -1,0 +1,9 @@
+[Unit]
+Description=Performance mode for ENERGY_PERF_BIAS
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/x86_energy_perf_policy performance
+
+[Install]
+WantedBy=multi-user.target
