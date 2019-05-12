@@ -36,7 +36,7 @@ precmd() { print '' }
 # Variables
 #------------------------------
 export BROWSER='chromium'
-export EDITOR='nvim'
+export EDITOR='nano'
 
 #------------------------------
 # Aliases
@@ -44,13 +44,16 @@ export EDITOR='nvim'
 alias root='sudo -i'
 alias su='sudo -i'
 alias pacman='sudo pacman'
+alias nano='sudo nano'
 alias mkdir='mkdir -p -v'
 alias ping='ping -c 5'
 alias dmesg='dmesg -HL'
 alias yupdate='yay -Syu'
-alias yum='yay -S'
-alias remorphans='yay -Rns $(pacman -Qtdq)'
-alias remcache='yay -Sc'
+alias yays='yay -S'
+alias yayrns='yay -Rns'
+alias rmorphans='yay -Rns $(pacman -Qtdq)'
+alias rmcache='yay -Sc'
+alias sensors='watch -n 1 "sensors"'
 alias clr='clear'
 alias cp='cp -v'
 alias mv='mv -v'
