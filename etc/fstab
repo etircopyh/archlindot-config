@@ -1,0 +1,11 @@
+# Static information about the filesystems.
+# See fstab(5) for details.
+
+# <file system> <dir> <type> <options> <dump> <pass>
+
+# /dev/sda1 LABEL=ESP
+UUID=0515-412B					/boot		vfat		defaults							0 2
+
+# /dev/sda2 LABEL=SYSTEM
+UUID=04ffce72-8172-4c42-95a4-3ec07a791164	/         	btrfs     	rw,relatime,compress=zstd,ssd,space_cache,subvolid=5,subvol=/	0 1
+
