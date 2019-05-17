@@ -1,0 +1,6 @@
+[Unit]
+Description=Optimize Chromium and Firefox databases
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/profile-cleaner c && /usr/bin/profile-cleaner f
