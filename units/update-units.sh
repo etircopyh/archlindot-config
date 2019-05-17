@@ -1,11 +1,11 @@
 sudo cp -r /usr/lib/systemd/system/apm.service ./
 sudo cp -r /usr/lib/systemd/system/fstrim.service ./
 sudo cp -r /usr/lib/systemd/system/reflector.service ./
-sudo cp -r /usr/lib/systemd/system/systemd-resolved.service ./
-sudo cp -r /usr/lib/systemd/system/systemd-timesyncd.service ./
+sudo cp -r /usr/lib/systemd/system/profile-cleaner.service ./
 sudo cp -r /usr/lib/systemd/system/x86_energy_perf_policy.service ./
 sudo cp -r /usr/lib/systemd/system/fstrim.timer ./
 sudo cp -r /usr/lib/systemd/system/reflector.timer ./
 sudo cp -r /usr/lib/systemd/system/systemd-timesyncd.timer ./
+sudo cp -r /usr/lib/systemd/system/profile-cleaner.timer ./
 sudo systemctl list-units > units.txt
 sudo systemctl list-unit-files > unitfiles.txt
