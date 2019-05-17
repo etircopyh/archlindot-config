@@ -3,8 +3,18 @@
 #
 # Syntax: simple "KEY=VAL" pairs on separate lines
 #
+
+# Intel VAAPI Driver name
 LIBVA_DRIVER_NAME=i965
 
+# Intel VDPAU Driver name
 VDPAU_DRIVER=va_gl
 
+# Qt Logging Info
 QT_LOGGING_RULES=*=false
+
+# VSCode KDE Trash delete
+ELECTRON_TRASH=kioclient5 code
+
+# ZSH Specified Configuration folder
+ZDOTDIR=/home/$USER/zsh-config
