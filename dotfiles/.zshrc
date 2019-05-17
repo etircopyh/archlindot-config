@@ -1,15 +1,3 @@
-# 
-# ▓██   ██▓ █    ██  ███▄ ▄███▓▄▄▄█████▓▓█████ ▓█████ 
-#  ▒██  ██▒ ██  ▓██▒▓██▒▀█▀ ██▒▓  ██▒ ▓▒▓█   ▀ ▓█   ▀ 
-#   ▒██ ██░▓██  ▒██░▓██    ▓██░▒ ▓██░ ▒░▒███   ▒███   
-#   ░ ▐██▓░▓▓█  ░██░▒██    ▒██ ░ ▓██▓ ░ ▒▓█  ▄ ▒▓█  ▄ 
-#   ░ ██▒▓░▒▒█████▓ ▒██▒   ░██▒  ▒██▒ ░ ░▒████▒░▒████▒
-#    ██▒▒▒ ░▒▓▒ ▒ ▒ ░ ▒░   ░  ░  ▒ ░░   ░░ ▒░ ░░░ ▒░ ░
-#  ▓██ ░▒░ ░░▒░ ░ ░ ░  ░      ░    ░     ░ ░  ░ ░ ░  ░
-#  ▒ ▒ ░░   ░░░ ░ ░ ░      ░     ░         ░      ░   
-#  ░ ░        ░            ░               ░  ░   ░  ░
-#  ░ ░                                                
-
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.zsh-history
 HISTSIZE=10000
@@ -24,8 +12,12 @@ zstyle :compinstall filename '/home/yumtee/.zshrc'
 #------------------------------
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-autoload -U compinit promptinit colors
-compinit
+autoload -Uz compinit promptinit colors
+if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
+  compinit;
+else
+  compinit -C;
+fi;
 promptinit
 colors
 # End of lines added by compinstall
@@ -111,4 +103,3 @@ powerline-daemon -q
 POWERLINE_BASH_CONTINUATION=1
 POWERLINE_BASH_SELECT=1
 . /usr/lib/python3.7/site-packages/powerline/bindings/zsh/powerline.zsh
-
