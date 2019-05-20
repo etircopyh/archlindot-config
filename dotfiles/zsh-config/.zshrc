@@ -1,5 +1,5 @@
 # Lines configured by zsh-newuser-install
-HISTFILE=~/.zsh-history
+HISTFILE=~/zsh-config/.zsh-history
 HISTSIZE=10000
 SAVEHIST=10000
 bindkey -e
@@ -8,15 +8,14 @@ bindkey -e
 zstyle :compinstall filename '/home/yumtee/.zshrc'
 
 #------------------------------
-# ZSH Autosuggestions
+# ZSH Autocomplete
 #------------------------------
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 autoload -Uz compinit promptinit colors
 if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
-  compinit;
+	compinit;
 else
-  compinit -C;
+	compinit -C;
 fi;
 promptinit
 colors
@@ -29,14 +28,17 @@ precmd() { print '' }
 #------------------------------
 export BROWSER='chromium'
 export EDITOR='nano'
+# export ZDOTDIR=~/zsh-config
 
 #------------------------------
 # Aliases
 #------------------------------
 alias root='sudo -i'
-alias su='sudo -i'
+#alias su='sudo -i'
 alias pacman='sudo pacman'
 alias nano='sudo nano'
+#alias systemctl='sudo systemctl'
+alias sctl='sudo systemctl'
 alias fanmax='sudo bash -c "echo 255 > /sys/devices/platform/asus-nb-wmi/hwmon/hwmon[[:print:]]*/pwm1"'
 alias fanmin='sudo bash -c "echo 0 > /sys/devices/platform/asus-nb-wmi/hwmon/hwmon[[:print:]]*/pwm1"'
 alias autofan='sudo bash -c "echo 2 > /sys/devices/platform/asus-nb-wmi/hwmon/hwmon[[[:print:]]*/pwm1_enable"'
@@ -94,12 +96,3 @@ alias gcc='colorgcc'
 # Git autocomplete
 #------------------------------
 fpath=(~/.zsh $fpath)
-
-#------------------------------
-# Powerline
-#------------------------------
-prompt off
-powerline-daemon -q
-POWERLINE_BASH_CONTINUATION=1
-POWERLINE_BASH_SELECT=1
-. /usr/lib/python3.7/site-packages/powerline/bindings/zsh/powerline.zsh
