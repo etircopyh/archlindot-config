@@ -4,6 +4,7 @@
 [alias]
   st = status
   unstage = reset HEAD --
+  rmlocalcommit = reset HEAD~
   last = log -1 HEAD
 [color]
   ui = true
