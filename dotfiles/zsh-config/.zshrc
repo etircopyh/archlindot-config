@@ -28,6 +28,7 @@ vcs_info
 # End of lines added by compinstall
 
 precmd() { print '' }
+precmd_functions=( vcs_info )
 
 #------------------------------
 # Variables
