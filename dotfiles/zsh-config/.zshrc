@@ -5,13 +5,18 @@ SAVEHIST=10000
 bindkey -e
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
-zstyle :compinstall filename '/home/yumtee/.zshrc'
+zstyle :compinstall filename '/home/yumtee/zsh-config/.zshrc'
+zstyle ':vcs_info:*' enable git
+zstyle ':vcs_info:*' check-for-changes true
+zstyle ':vcs_info:*' unstagedstr '!'
+zstyle ':vcs_info:*' stagedstr '+'
+zstyle ':vcs_info:git:*' formats 'on %F{112}%b%f'
 
 #------------------------------
 # ZSH Autocomplete
 #------------------------------
 
-autoload -Uz compinit promptinit colors
+autoload -Uz compinit promptinit colors vcs_info
 if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
 	compinit;
 else
@@ -19,6 +24,7 @@ else
 fi;
 promptinit
 colors
+vcs_info
 # End of lines added by compinstall
 
 precmd() { print '' }
@@ -85,14 +91,24 @@ alias nowdate='date +"%d-%m-%Y"'
 #alias ls='ls --color=auto'
 alias dir='dir --color=auto'
 alias vdir='vdir --color=auto'
-alias grep='grep --color=auto'
+alias grep='grep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias diff='colordiff'
 alias make='colormake'
 alias gcc='colorgcc'
 
+
+#------------------------------
+# Prompt setup
+#------------------------------
+prompt off
+
+setopt prompt_subst
+
+PROMPT=$'%F{magenta}%n%f at %F{yellow}%m%f in %F{cyan}%B%~%b%f ${vcs_info_msg_0_} \n%# '
+
 #------------------------------
 # Git autocomplete
 #------------------------------
-fpath=(~/.zsh $fpath)
+fpath=(~/zsh-config/.zsh $fpath)
