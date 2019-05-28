@@ -1,20 +1,37 @@
-# Lines configured by zsh-newuser-install
+#----------------------------------------
+# History settings
+#----------------------------------------
 HISTFILE=~/zsh-config/.zsh-history
 HISTSIZE=10000
 SAVEHIST=10000
+#----------------------------------------
+# Bind method
+#----------------------------------------
 bindkey -e
-# End of lines configured by zsh-newuser-install
-# The following lines were added by compinstall
+#----------------------------------------
+#----------------------------------------
 zstyle :compinstall filename '/home/yumtee/zsh-config/.zshrc'
 zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:*' check-for-changes true
-zstyle ':vcs_info:*' unstagedstr '!'
-zstyle ':vcs_info:*' stagedstr '+'
-zstyle ':vcs_info:git:*' formats 'on %F{112}%b%f'
+zstyle ':vcs_info:*' unstagedstr '%F{yellow}●%f'
+zstyle ':vcs_info:*' stagedstr '%F{112}●%f'
+zstyle ':vcs_info:git:*' formats 'on %F{112} %b%f %m%u%c%E'
+zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
 
-#------------------------------
+#----------------------------------------
+# Custom Git untracked changes hook
+#----------------------------------------
++vi-git-untracked() {
+  if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]] && \
+     git status --porcelain | grep -m 1 '^??' &>/dev/null
+  then
+    hook_com[misc]='%F{1}●%f'
+  fi
+}
+
+#----------------------------------------
 # ZSH Autocomplete
-#------------------------------
+#----------------------------------------
 
 autoload -Uz compinit promptinit colors vcs_info
 if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
@@ -30,16 +47,16 @@ vcs_info
 precmd() { print '' }
 precmd_functions=( vcs_info )
 
-#------------------------------
+#----------------------------------------
 # Variables
-#------------------------------
+#----------------------------------------
 export BROWSER='chromium'
-export EDITOR='nano'
+export EDITOR='micro'
 # export ZDOTDIR=~/zsh-config
 
-#------------------------------
+#----------------------------------------
 # Aliases
-#------------------------------
+#----------------------------------------
 alias root='sudo -i'
 #alias su='sudo -i'
 alias pacman='sudo pacman'
@@ -53,7 +70,6 @@ alias manfan='sudo bash -c "echo 1 > /sys/devices/platform/asus-nb-wmi/hwmon/hwm
 alias mkdir='mkdir -p -v'
 alias ping='ping -c 5'
 alias dmesg='dmesg -HL'
-alias yupdate='yay -Syu'
 alias yays='yay -S'
 alias yayrns='yay -Rns'
 alias rmorphans='yay -Rns $(pacman -Qtdq)'
@@ -100,16 +116,17 @@ alias make='colormake'
 alias gcc='colorgcc'
 
 
-#------------------------------
+#----------------------------------------
 # Prompt setup
-#------------------------------
+#----------------------------------------
 prompt off
 
 setopt prompt_subst
 
-PROMPT=$'%F{magenta}%n%f at %F{yellow}%m%f in %F{cyan}%B%~%b%f ${vcs_info_msg_0_} \n%F{176}λ%f '
+PROMPT=$'%F{magenta}%n%f at %F{yellow}%m%f in %F{cyan}%B%~%b%f ${vcs_info_msg_0_} \n%F{176}λ%f %B%F{241}❯%f%b%E '
+#RPROMPT='%pwd'
 
-#------------------------------
+#----------------------------------------
 # Git autocomplete
-#------------------------------
+#----------------------------------------
 fpath=(~/zsh-config/.zsh $fpath)
