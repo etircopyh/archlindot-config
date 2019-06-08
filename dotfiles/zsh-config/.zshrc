@@ -52,14 +52,12 @@ precmd_functions=( vcs_info )
 #----------------------------------------
 export BROWSER='chromium'
 export EDITOR='micro'
-# export ZDOTDIR=~/zsh-config
 
 #----------------------------------------
 # Temporary Variables
 #----------------------------------------
 export WINEDEBUG=-all
 export WINEPREFIX=~/.local/share/Steam/steamapps/common/Proton\ 4.2/dist/share/default_pfx/
-export GAMEDIR=~/.local/share/Steam/steamapps/common/Proton\ 4.2/dist/share/default_pfx/drive_c/Program\ Files\ \(x86\)/Electronic\ Arts/BioWare/Star\ Wars\ -\ The\ Old\ Republic/
 
 #----------------------------------------
 # Aliases
@@ -68,7 +66,6 @@ alias root='sudo -i'
 #alias su='sudo -i'
 alias pacman='sudo pacman'
 alias nano='sudo nano'
-#alias systemctl='sudo systemctl'
 alias sctl='sudo systemctl'
 alias fanmax='sudo bash -c "echo 255 > /sys/devices/platform/asus-nb-wmi/hwmon/hwmon[[:print:]]*/pwm1"'
 alias fanmin='sudo bash -c "echo 0 > /sys/devices/platform/asus-nb-wmi/hwmon/hwmon[[:print:]]*/pwm1"'
@@ -118,9 +115,9 @@ alias vdir='vdir --color=auto'
 alias grep='grep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
-alias diff='colordiff'
-alias make='colormake'
-alias gcc='colorgcc'
+# alias diff='colordiff'
+# alias make='colormake'
+# alias gcc='colorgcc'
 
 
 #----------------------------------------
@@ -130,7 +127,7 @@ prompt off
 
 setopt prompt_subst
 
-PROMPT=$'%F{magenta}👤%n%f at %F{yellow}💻%m%f in %F{cyan}%B%~%b%f ${vcs_info_msg_0_} \n%F{176}λ%f %B%F{241}❯%f%b%E '
+PROMPT=$'%F{magenta}👤%n%E at %F{yellow}💻%m%E in %F{cyan}%B%~%b%f ${vcs_info_msg_0_} \n%F{176}λ%f %B%F{241}❯%f%b%E '
 RPROMPT='%B🕒%b %F{153}%t%E'
 
 #----------------------------------------
