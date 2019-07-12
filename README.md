@@ -1,1 +1,1 @@
-archiyum-config repo
+archlindot-config repo
