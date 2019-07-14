@@ -1,2 +1,2 @@
-sudo pacman -Qe > pkglist.txt
-sudo pacman -Qtt > orphans.txt
+pacman -Qe > pkglist.txt
+pacman -Qtt > orphans.txt
