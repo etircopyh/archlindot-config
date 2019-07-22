@@ -134,3 +134,8 @@ RPROMPT='%B🕒%b%F{153}%t%E'
 # Git autocomplete
 #----------------------------------------
 fpath=(~/zsh-config/.zsh $fpath)
+
+#----------------------------------------
+# Zsh syntax highlighting
+#----------------------------------------
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
