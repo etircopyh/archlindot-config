@@ -127,8 +127,8 @@ prompt off
 
 setopt prompt_subst
 
-PROMPT=$'%F{magenta}👤%n%E at %F{yellow}💻%m%E in %F{cyan}%B%~%b%f ${vcs_info_msg_0_} \n%F{176}λ%f %B%F{241}❯%f%b%E '
-RPROMPT='%B🕒%b%F{153}%t%E'
+PROMPT=$'%F{magenta}👽%n%f at %F{yellow}💻%m%f in %F{cyan}%B%~%b%f ${vcs_info_msg_0_} \n%F{176}λ%f %B%F{241}❯%f%b%f '
+RPROMPT='%B🕒%b%F{153}%t%f'
 
 #----------------------------------------
 # Git autocomplete
