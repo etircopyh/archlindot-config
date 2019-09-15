@@ -67,6 +67,11 @@ fpath=(~/zsh-config/.zsh $fpath)
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 #----------------------------------------
+# Zsh autosuggestions
+#----------------------------------------
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+#----------------------------------------
 # Sway boot
 #----------------------------------------
 source $ZDOTDIR/.swayboot
