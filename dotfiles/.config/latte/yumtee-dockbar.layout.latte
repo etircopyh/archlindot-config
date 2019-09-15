@@ -6,10 +6,12 @@ popupPosition=0
 
 [Containments][1]
 activityId=
+byPassWM=false
 dockWindowBehavior=true
 enableKWinEdges=false
 formfactor=3
 immutability=1
+isPreferredForShortcuts=false
 lastScreen=-1
 location=5
 onPrimary=true
@@ -18,6 +20,7 @@ raiseOnActivityChange=false
 raiseOnDesktopChange=false
 timerHide=700
 timerShow=200
+viewType=0
 visibility=2
 wallpaperplugin=org.kde.image
 
@@ -33,7 +36,7 @@ DialogHeight=540
 DialogWidth=720
 
 [Containments][1][Applets][114][Configuration][General]
-customButtonImage=chrome-app-list-old
+customButtonImage=/home/yumtee/Downloads/icons/iconfinder_archlinux_386451.png
 favoritesPortedToKAstats=true
 useCustomButtonImage=true
 
@@ -92,20 +95,31 @@ threeColorsWindows=true
 useThemePanel=false
 zoomLevel=5
 
+[Containments][1][Indicator]
+customType=
+enabled=true
+enabledForApplets=true
+padding=0.07999999821186066
+type=org.kde.latte.default
+
 [Containments][79]
 activityId=
+byPassWM=false
 dockWindowBehavior=true
 enableKWinEdges=false
 formfactor=2
 immutability=1
+isPreferredForShortcuts=false
 lastScreen=-1
 location=3
 onPrimary=true
 plugin=org.kde.latte.containment
 raiseOnActivityChange=false
 raiseOnDesktopChange=false
+settingsComplexity=4
 timerHide=700
 timerShow=0
+viewType=1
 visibility=0
 wallpaperplugin=org.kde.image
 
@@ -190,6 +204,10 @@ plugin=org.kde.plasma.pager
 [Containments][79][Applets][115][Configuration]
 PreloadWeight=0
 
+[Containments][79][Applets][115][Configuration][ConfigDialog]
+DialogHeight=540
+DialogWidth=720
+
 [Containments][79][Applets][116]
 immutability=1
 plugin=org.kde.plasma.appmenu
@@ -213,7 +231,7 @@ DialogHeight=540
 DialogWidth=720
 
 [Containments][79][Applets][119][Configuration][General]
-containmentType=Plasma
+containmentType=Latte
 iconFillThickness=false
 iconSize=22
 lengthFirstMargin=4
@@ -254,12 +272,12 @@ immutability=1
 plugin=org.kde.plasma.systemtray
 
 [Containments][79][Applets][83][Configuration]
-PreloadWeight=0
+PreloadWeight=20
 SystrayContainmentId=84
 
 [Containments][79][ConfigDialog]
-DialogHeight=697
-DialogWidth=600
+DialogHeight=662
+DialogWidth=539
 
 [Containments][79][Configuration]
 PreloadWeight=0
@@ -270,7 +288,7 @@ advanced=true
 appletOrder=119;116;121;111;115;83;82
 disablePanelShadowForMaximized=true
 glowOpacity=85
-iconSize=26
+iconSize=20
 panelPosition=10
 panelSize=100
 panelTransparency=45
@@ -282,6 +300,13 @@ splitterPosition=2
 splitterPosition2=4
 titleTooltips=false
 zoomLevel=0
+
+[Containments][79][Indicator]
+customType=
+enabled=true
+enabledForApplets=true
+padding=0.07999999821186066
+type=org.kde.latte.default
 
 [Containments][84]
 PreloadWeight=0
@@ -336,6 +361,20 @@ PreloadWeight=0
 immutability=1
 plugin=org.kde.plasma.battery
 
+[Containments][84][Applets][123]
+immutability=1
+plugin=org.kde.plasma.bluetooth
+
+[Containments][84][Applets][123][Configuration]
+PreloadWeight=35
+
+[Containments][84][Applets][124]
+immutability=1
+plugin=org.kde.plasma.mediacontroller
+
+[Containments][84][Applets][124][Configuration]
+PreloadWeight=42
+
 [Containments][84][Applets][86]
 immutability=1
 plugin=org.kde.plasma.clipboard
@@ -372,14 +411,14 @@ DialogWidth=720
 [Containments][84][General]
 extraItems=org.kde.plasma.battery,org.kde.plasma.clipboard,org.kde.plasma.devicenotifier,org.kde.plasma.mediacontroller,org.kde.plasma.notifications,org.kde.plasma.volume,org.kde.plasma.networkmanagement,org.kde.kdeconnect,org.kde.plasma.keyboardindicator,org.kde.plasma.bluetooth
 knownItems=org.kde.plasma.battery,org.kde.plasma.clipboard,org.kde.plasma.devicenotifier,org.kde.plasma.mediacontroller,org.kde.plasma.notifications,org.kde.plasma.volume,org.kde.plasma.networkmanagement,org.kde.kdeconnect,org.kde.plasma.keyboardindicator,org.kde.plasma.bluetooth
-shownItems=KDE Daemon,TelegramDesktop,flameshot,MellowPlayer,qBittorrent
+shownItems=KDE Daemon,TelegramDesktop,flameshot,MellowPlayer,qBittorrent,Spectral,org.kde.plasma.bluetooth
 
 [LayoutSettings]
 activities=
 background=
 color=blue
 disableBordersForMaximizedWindows=false
-lastUsedActivity=
+lastUsedActivity=a4336e10-b3ec-45cc-a6d7-96c6b5613825
 launchers=
 showInMenu=true
 textColor=fcfcfc
