@@ -12,7 +12,7 @@ order += "ethernet _first_"
 #order += "battery all"
 order += "disk /"
 order += "load"
-#order += "cpu_temperature"
+order += "cpu_temperature 0"
 order += "cpu_usage"
 order += "memory"
 order += "volume master"
@@ -40,10 +40,10 @@ load {
         format = "%1min"
 }
 
-#cpu_temperature {
-#		format = "T: %degrees °C"
-        path = "/sys/devices/platform/coretemp.0/hwmon/hwmon1/temp1_input"
-#}
+cpu_temperature 0 {
+		format = "CPU Temp: %degrees °C"
+		path = "/sys/devices/platform/coretemp.0/hwmon/hwmon2/temp1_input"
+}
 
 cpu_usage {
 		format = "CPU: %usage"
