@@ -4,7 +4,7 @@
 alias root='sudo -i'
 #alias su='sudo -i'
 alias pacman='sudo pacman'
-alias nano='sudo nano'
+#alias nano='sudo nano'
 alias sctl='sudo systemctl'
 alias fanmax='sudo bash -c "echo 255 > /sys/devices/platform/asus-nb-wmi/hwmon/hwmon[[:print:]]*/pwm1"'
 alias fanmin='sudo bash -c "echo 0 > /sys/devices/platform/asus-nb-wmi/hwmon/hwmon[[:print:]]*/pwm1"'
@@ -44,7 +44,7 @@ alias meminfo='free -mlt'
 alias cpuinfo='lscpu'
 # Useful shortcuts
 alias path='echo -e ${PATH//:/\\n}'
-alias now='date +"%T"'
+alias now='date +"%I:%M:%S %p"'
 alias nowtime=now
 alias nowdate='date +"%d-%m-%Y"'
 # Color support
