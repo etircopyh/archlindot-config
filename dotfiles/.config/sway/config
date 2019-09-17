@@ -20,13 +20,13 @@ set $bar_font_size 9
 # Terminal emulator
 set $term alacritty
 # Application launcher
-set $menu dmenu_path | bemenu | xargs swaymsg exec --
+set $menu bemenu-run --fn 'Noto Sans Mono [13]' -p Run: | xargs swaymsg exec --
 # Custom application launcher
-set $launcher exec termite --name="launcher" -e "bash -c 'compgen -c | grep -v fzf | sort -u | fzf --layout=reverse | xargs -r swaymsg -t command exec'"
+set $launcher exec alacritty --class="launcher" -e "bash -c 'compgen -c | grep -v fzf | sort -u | fzf --layout=reverse | xargs -r swaymsg -t command exec'"
 for_window [app_id="^launcher$"] floating enable, border none, opacity 0.8
 # Screenshot
-set $regionshot grim -g \"$(slurp)" - | wl-copy
-set $regionshotfile grim -g \"$(slurp)" Screenshots/$(date +'%Y-%m-%d-%H:%M_regionshot').png
+set $regionshot grim -g \"$(slurp -d)" - | wl-copy
+set $regionshotfile grim -g \"$(slurp -d)" Screenshots/$(date +'%Y-%m-%d-%H:%M_regionshot').png
 set $screenshot grim - | wl-copy
 set $screenshotfile grim Screenshots/$(date +'%Y-%m-%d-%H:%M_screenshot').png
 # Notifications
@@ -265,19 +265,31 @@ bindsym --to-code $mod+r mode "resize"
 # man 5 sway-bar
 bar {
     position top
+    height 20
 	tray_output none
-	status_command i3status
-#    status_command while date +'%Y-%m-%d %l:%M:%S %p'; do sleep 1; done
-    separator_symbol "|"
-    colors {
-        statusline #ffffff
-        background #323232
-        inactive_workspace #32323200 #32323200 #5c5c5c
-    }
+	pango_markup enabled
+	swaybar_command waybar
+#    status_command while date +'%Y-%m-%d %l:%M %p'; do sleep 1; done
+#    separator_symbol "|"
+#	colors {
+#		separator #ffffff
+#		statusline #ffffff
+#		background #323232
+#		focused_separator #ffffff
+#		focused_statusline #ffffff
+#		focused_background #323232
+#		focused_workspace #000000
+#		active_workspace #ffffff
+#		inactive_workspace #32323200 #32323200 #5c5c5c
+#		urgent_workspace #000000
+#		binding_mode #ffffff
+ #   }
 }
 
 # Window rules
 for_window [app_id="imv"] floating enable
+for_window [app_id="vlc"] floating enable
 for_window [app_id="mpv"] sticky enable
+for_window [app_id="spotify"] move to workspace 4
 
 #include ~/.config/sway/config.d/*
