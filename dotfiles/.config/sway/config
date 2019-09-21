@@ -20,19 +20,19 @@ set $bar_font_size 9
 # Terminal emulator
 set $term alacritty
 # Application launcher
-set $menu bemenu-run --fn 'Noto Sans Mono [13]' -p Run: | xargs swaymsg exec --
-# Custom application launcher
-set $launcher exec alacritty --class="launcher" -e "bash -c 'compgen -c | grep -v fzf | sort -u | fzf --layout=reverse | xargs -r swaymsg -t command exec'"
-for_window [app_id="^launcher$"] floating enable, border none, opacity 0.8
+set $menu bemenu-run -p Run: | xargs swaymsg exec --
+# Custom application launcher (needs fzf package)
+#set $launcher exec alacritty --class="launcher" -e "bash -c 'compgen -c | grep -v fzf | sort -u | fzf --layout=reverse | xargs -r swaymsg -t command exec'"
+#for_window [app_id="^launcher$"] floating enable, border none, opacity 0.8
+#bindsym --to-code $mod+Shift+d exec $launcher
 # Screenshot
 set $regionshot grim -g \"$(slurp -d)" - | wl-copy
 set $regionshotfile grim -g \"$(slurp -d)" Screenshots/$(date +'%Y-%m-%d-%H:%M_regionshot').png
 set $screenshot grim - | wl-copy
 set $screenshotfile grim Screenshots/$(date +'%Y-%m-%d-%H:%M_screenshot').png
+
 # Notifications
 set $notify notify-send -t 3000
-
-bindsym --to-code $mod+Shift+d exec $launcher
 
 # Tiling
 default_orientation auto
@@ -56,7 +56,8 @@ font pango:$font_family $font_size
 output LVDS-1 {
 	res 1366x768@60.022999Hz
 	pos 0,0
-	bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+	bg ~/.config/sway/wallpapers/ARCH.png fill
+#	bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 	subpixel none
 }
 
@@ -269,8 +270,8 @@ bar {
 	tray_output none
 	pango_markup enabled
 	swaybar_command waybar
-#    status_command while date +'%Y-%m-%d %l:%M %p'; do sleep 1; done
-#    separator_symbol "|"
+#	status_command while date +'%Y-%m-%d %l:%M %p'; do sleep 1; done
+#	separator_symbol "|"
 #	colors {
 #		separator #ffffff
 #		statusline #ffffff
@@ -283,13 +284,12 @@ bar {
 #		inactive_workspace #32323200 #32323200 #5c5c5c
 #		urgent_workspace #000000
 #		binding_mode #ffffff
- #   }
+#	}
 }
 
 # Window rules
 for_window [app_id="imv"] floating enable
-for_window [app_id="vlc"] floating enable
-for_window [app_id="mpv"] sticky enable
+for_window [app_id="mpv"] floating enable
 for_window [app_id="spotify"] move to workspace 4
 
-#include ~/.config/sway/config.d/*
+include ~/.config/sway/config.d/*
