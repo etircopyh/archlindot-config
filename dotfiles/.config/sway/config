@@ -269,13 +269,14 @@ bar {
     height 20
 	tray_output none
 	pango_markup enabled
-	swaybar_command waybar
-#	status_command while date +'%Y-%m-%d %l:%M %p'; do sleep 1; done
+#	swaybar_command waybar
+#	status_command while sh ~/.config/sway/swaybar.sh; do sleep 1; done
+	status_command i3blocks
 #	separator_symbol "|"
-#	colors {
+	colors {
 #		separator #ffffff
 #		statusline #ffffff
-#		background #323232
+		background #2e3131
 #		focused_separator #ffffff
 #		focused_statusline #ffffff
 #		focused_background #323232
@@ -284,12 +285,17 @@ bar {
 #		inactive_workspace #32323200 #32323200 #5c5c5c
 #		urgent_workspace #000000
 #		binding_mode #ffffff
-#	}
+	}
 }
 
+# Binary tree window layout
+#exec /home/deviarch/.config/sway/layout.py
+
 # Window rules
+for_window [app_id="firefox"] move to workspace 2
+for_window [app_id="telegramdesktop"] move to workspace 4
 for_window [app_id="imv"] floating enable
 for_window [app_id="mpv"] floating enable
-for_window [app_id="spotify"] move to workspace 4
+for_window [app_id="spotify"] move to workspace 5
 
 include ~/.config/sway/config.d/*
