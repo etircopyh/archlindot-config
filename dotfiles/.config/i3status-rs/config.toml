@@ -1,4 +1,9 @@
 [[block]]
+block = "time"				# Date / Time block
+format = "%a %F %I:%M %p"
+interval = 60
+
+[[block]]
 block = "bluetooth"			# BT block
 #mac = "00:00:46:03:37:01"	# Laptop
 mac = "FC:A8:9A:A2:12:9A"	# Earphones
@@ -11,24 +16,29 @@ format = "{barchart}{utilization}% {frequency}Ghz"
 [[block]]
 block = "disk_space"		# Disk space usage block
 path = "/"
-alias = "root"
+alias = "ROOT"
 info_type = "available"
 unit = "GB"
 interval = 30
 
 #[[block]]
 #block = "keyboard_layout"	# Keyboard layout block
-#driver = "setxkbmap"		# Driver = setxkbmap / localebus
+#driver = "localebus"		# Driver = setxkbmap / localebus
 #interval = 10
 
 #[[block]]
-#block = "music"			# Music control block
+#block = "music"				# Music control block
 #player = "playerctl"
+#buttons = ["play", "next"]
 
 [[block]]
 block = "net"				# Network block
 device = "enp4s0"
-ip = false
+ip = true
+speed_up = false
+speed_down = false
+graph_up = false
+graph_down = false
 interval = 5
 
 [[block]]
@@ -39,11 +49,6 @@ interval = 300
 block = "sound"				# Volume control block
 step_width = 5				# Volume step
 driver = "auto"				# Driver = auto / pulseaudio / alsa
-
-[[block]]
-block = "time"				# Date / Time block
-format = "%a %d.%m %I:%M %p"
-interval = 60
 
 [[block]]
 block = "memory"			# Memory / Swap usage block
@@ -57,3 +62,17 @@ warning_mem = 80
 warning_swap = 80
 critical_mem = 95
 critical_swap = 95
+
+[[block]]
+block = "backlight"
+device = "intel_backlight"
+
+#[[block]]
+#block = "temperature"
+#collapsed = false
+#interval = 10
+#format = "{min}° min, {max}° max, {average}° avg"
+#chip = "coretemp-isa-0000"	# Chip name in sensors -u
+
+#[[block]]
+#block = "uptime"			# System uptime block
