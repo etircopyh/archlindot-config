@@ -1,17 +1,17 @@
 * {
     border: none;
     border-radius: 0;
-    font-family: Noto Sans Display, Roboto, Helvetica, Arial, sans-serif;
+    font-family: Noto Sans Display;
     font-size: 13px;
     min-height: 0;
 }
 
 window#waybar {
-    background-color: rgba(43, 48, 59, 0.5);
-    border-bottom: 3px solid rgba(100, 114, 125, 0.5);
-    color: #ffffff;
-    transition-property: background-color;
-    transition-duration: .5s;
+	background-color: rgba(46, 49, 49, 0.9);
+	border-bottom: 3px solid rgba(100, 114, 125, 0.5);
+	color: #ffffff;
+	transition-property: background-color;
+	transition-duration: .5s;
 }
 
 window#waybar.hidden {
@@ -47,7 +47,8 @@ window#waybar.chromium {
 #workspaces button:hover {
     background: rgba(0, 0, 0, 0.2);
     box-shadow: inherit;
-    border-bottom: 3px solid #ffffff;
+    text-shadow: inherit;
+    border-bottom: 3px solid gray;
 }
 
 #workspaces button.focused {
@@ -57,6 +58,13 @@ window#waybar.chromium {
 
 #workspaces button.urgent {
     background-color: #eb4d4b;
+}
+
+#workspaces button.5 {
+    padding: 0 5px;
+    background-color: transparent;
+    color: rgb(102, 220, 105);
+    border-bottom: 3px solid #000000;
 }
 
 #mode {
@@ -82,12 +90,13 @@ window#waybar.chromium {
 }
 
 #clock {
-    background-color: #64727D;
+    background-color: rgba(46, 49, 49, 0.9);
+    border-bottom: 3px solid #64727D;
 }
 
 #battery {
-    background-color: #ffffff;
-    color: #000000;
+    background-color: rgba(46, 49, 49, 0.9);
+    border-bottom: 3px solid #ffffff;
 }
 
 #battery.charging {
@@ -117,20 +126,23 @@ label:focus {
 }
 
 #cpu {
-    background-color: #2ecc71;
-    color: #000000;
+    background-color: rgba(46, 49, 49, 0.9);
+    border-bottom: 3px solid #2ecc71;
 }
 
 #memory {
-    background-color: #9b59b6;
+    background-color: rgba(46, 49, 49, 0.9);
+    border-bottom: 3px solid #9b59b6;
 }
 
 #backlight {
-    background-color: #90b1b1;
+    background-color: rgba(46, 49, 49, 0.9);
+    border-bottom: 3px solid #90b1b1;
 }
 
 #network {
-    background-color: #2980b9;
+    background-color: rgba(46, 49, 49, 0.9);
+    border-bottom: 3px solid #2980b9;
 }
 
 #network.disconnected {
@@ -138,8 +150,8 @@ label:focus {
 }
 
 #pulseaudio {
-    background-color: #f1c40f;
-    color: #000000;
+    background-color: rgba(46, 49, 49, 0.9);
+    border-bottom: 3px solid #f1c40f;
 }
 
 #pulseaudio.muted {
@@ -161,8 +173,14 @@ label:focus {
     background-color: #ffa000;
 }
 
+#custom-power {
+	padding: 0 4px;
+	border-bottom: 3px solid #b20000;
+}
+
 #temperature {
-    background-color: #f0932b;
+    background-color: rgba(46, 49, 49, 0.9);
+    border-bottom: 3px solid #f0932b;
 }
 
 #temperature.critical {
