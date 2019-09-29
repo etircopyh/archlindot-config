@@ -269,10 +269,10 @@ bar {
     height 20
 	tray_output none
 	pango_markup enabled
-#	swaybar_command waybar
+	swaybar_command waybar
 #	status_command while sh ~/.config/sway/swaybar.sh; do sleep 1; done
 #	status_command i3blocks
-	status_command i3status-rs ~/.config/i3status-rs/config.toml
+#	status_command i3status-rs ~/.config/i3status-rs/config.toml
 #	separator_symbol "|"
 	colors {
 #		separator #ffffff
@@ -299,6 +299,5 @@ for_window [app_id="mpv"] floating enable
 for_window [app_id="code"] move to workspace 3
 for_window [app_id="telegramdesktop"] move to workspace 4
 for_window [app_id="spotify"] move to workspace 5
-for_window [app_id="minetest"] xwayland enable
 
 include ~/.config/sway/config.d/*
