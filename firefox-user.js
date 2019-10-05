@@ -130,8 +130,8 @@ user_pref("dom.webaudio.enabled", false); // Disable WebAudio API
 // RFP (Resist Fingerprinting)
 // user_pref("privacy.resistFingerprinting", true); // Tor Uplift project that makes Firefox more resistant to browser fingerprinting (can cause breakage)
 user_pref("privacy.resistFingerprinting.block_mozAddonManager", true); // Disable mozAddonManager Web API
-user_pref("privacy.resistFingerprinting.letterboxing", true); // Enable RFP letterboxing
-// user_pref("privacy.resistFingerprinting.letterboxing.dimensions", ""); // Not safe to use
+// user_pref("privacy.resistFingerprinting.letterboxing", true); // Enable RFP letterboxing (quite upsetting thing)
+// user_pref("privacy.resistFingerprinting.letterboxing.dimensions", ""); // Is only meant for testing, and I recommend you DO NOT USE it
 user_pref("browser.startup.blankWindow", false); // Disable showing about:blank as soon as possible during startup
 
 // RFP Alternatives
