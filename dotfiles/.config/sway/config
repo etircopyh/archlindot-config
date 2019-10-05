@@ -200,6 +200,9 @@ output LVDS-1 {
     # Toggle the current focus between tiling and floating mode
     bindsym $mod+Shift+space floating toggle
 
+    # Toggle the current focus between tiling and sticky mode
+    bindsym $mod+Mod1+space sticky toggle
+
     # Swap focus between the tiling area and the floating area
     bindsym $mod+space focus mode_toggle
 
@@ -296,6 +299,7 @@ bar {
 for_window [app_id="firefox"] move to workspace 2
 for_window [app_id="imv"] floating enable
 for_window [app_id="mpv"] floating enable
+for_window [app_id="firefox" title=""] floating enable, sticky enable
 for_window [app_id="code"] move to workspace 3
 for_window [app_id="telegramdesktop"] move to workspace 4
 for_window [app_id="MellowPlayer"] move to workspace 5
