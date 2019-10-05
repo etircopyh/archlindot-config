@@ -298,6 +298,6 @@ for_window [app_id="imv"] floating enable
 for_window [app_id="mpv"] floating enable
 for_window [app_id="code"] move to workspace 3
 for_window [app_id="telegramdesktop"] move to workspace 4
-for_window [app_id="spotify"] move to workspace 5
+for_window [app_id="MellowPlayer"] move to workspace 5
 
 include ~/.config/sway/config.d/*
