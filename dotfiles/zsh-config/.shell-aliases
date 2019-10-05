@@ -3,7 +3,8 @@
 #----------------------------------------
 alias root='sudo -i'
 #alias su='sudo -i'
-alias pacman='sudo pacman'
+alias sudo='sudo '
+#alias pacman='sudo pacman'
 #alias nano='sudo nano'
 alias sctl='sudo systemctl'
 alias fanmax='sudo bash -c "echo 255 > /sys/devices/platform/asus-nb-wmi/hwmon/hwmon[[:print:]]*/pwm1"'
