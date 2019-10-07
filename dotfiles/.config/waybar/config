@@ -4,7 +4,7 @@
     "height": 20, // Waybar height (to be removed for auto height)
     "width": 1366, // Waybar width
     // Choose the order of the modules
-    "modules-left": ["sway/workspaces", "sway/mode", "custom/media"],
+    "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-center": ["clock"],
     "modules-right": ["custom/kbdlayout", "pulseaudio", "network", "cpu", "memory", "temperature", "backlight", "custom/power"],
     // Modules configuration
@@ -81,7 +81,8 @@
     },
     "memory": {
     	"interval": 30,
-        "format": "{}% "
+        "format": "{}% ",
+        "tooltip":false
     },
     "temperature": {
         // "thermal-zone": 2,
@@ -153,7 +154,8 @@
     	"exec": "cmus-remote -C \"format_print '%a - %t'\"", // artist - title
     	"exec-if": "pgrep cmus",
     	"on-click": "cmus-remote -u",                        //toggle pause
-    	"escape": true
+    	"escape": true,
+    	"tooltip": false
     },
     "custom/power": {
     "format": "",
@@ -164,12 +166,13 @@
         "format": "{} ",
         "exec": "sh ~/.config/sway/scripts/kbd_layout.sh",
         "interval": 1,
-        "escape": false
+        "tooltip": false
     },
     "custom/media": {
         "format": "{icon} {}",
         "return-type": "json",
         "max-length": 40,
+        "tooltip": false,
         "format-icons": {
             "spotify": "",
             "default": "🎜"
