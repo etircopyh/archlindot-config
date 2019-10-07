@@ -57,7 +57,7 @@ alias rmcache='yay -Sc'
 alias fontcache='fc-cache -fvr && sudo fc-cache -fvrs'
 alias fontcache32='fc-cache-32 -fvr && sudo fc-cache-32 -fvrs'
 # Misc
-alias mount='mount | column -t'
+alias mnt='mount | column -t'
 alias clr='clear'
 alias cp='cp -v'
 alias ln='ln -v'
