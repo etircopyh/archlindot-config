@@ -178,6 +178,11 @@ label:focus {
 	border-bottom: 3px solid #b20000;
 }
 
+#custom-kbdlayout {
+	padding: 0 4px;
+	border-bottom: 3px solid #b21363;
+}
+
 #temperature {
     background-color: rgba(46, 49, 49, 0.9);
     border-bottom: 3px solid #f0932b;
