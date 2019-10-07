@@ -13,8 +13,6 @@ bindkey -e
 zstyle :compinstall filename '~/zsh-config/.zshrc'
 #----------------------------------------
 
-precmd() { print '' }
-
 #----------------------------------------
 # Git settings
 #----------------------------------------
@@ -52,6 +50,8 @@ source $ZDOTDIR/.shell-aliases
 prompt off
 
 setopt prompt_subst
+
+precmd() { print '' }
 
 PROMPT=$'%F{magenta}👽%n%f at %F{yellow}💻%m%f in %F{cyan}%B%~%b%f ${vcs_info_msg_0_} \n%F{176}λ%f %B%F{241}❯%f%b%f '
 RPROMPT='%B🕒%b%F{153}%t%f'
