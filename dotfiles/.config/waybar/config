@@ -6,7 +6,7 @@
     // Choose the order of the modules
     "modules-left": ["sway/workspaces", "sway/mode", "custom/media"],
     "modules-center": ["clock"],
-    "modules-right": ["pulseaudio", "network", "cpu", "memory", "temperature", "backlight", "custom/power"],
+    "modules-right": ["custom/kbdlayout", "pulseaudio", "network", "cpu", "memory", "temperature", "backlight", "custom/power"],
     // Modules configuration
     "sway/workspaces": {
         "disable-scroll": true,
@@ -28,7 +28,7 @@
     },
     "sway/window": {
     	"format": "{}",
-    	"tooltip": true
+    	"tooltip": false
     },
     "mpd": {
         "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ",
@@ -153,7 +153,15 @@
     	"escape": true
     },
     "custom/power": {
-    "format": "",    "on-click": "swaynag -t warning -m 'Power Menu Options' -b 'Logout' 'swaymsg exit' -b 'Suspend' 'swaymsg exec systemctl suspend' -b 'shutdown' 'shutdown now'"
+    "format": "",
+    "tooltip": false,
+    "on-click": "swaynag -t warning -m 'Power Menu Options' -b 'Logout' 'swaymsg exit' -b 'Suspend' 'swaymsg exec systemctl suspend' -b 'shutdown' 'shutdown now'"
+    },
+    "custom/kbdlayout": {
+        "format": "{} ",
+        "exec": "sh ~/.config/sway/kbd_layout.sh",
+        "interval": 1,
+        "escape": true
     },
     "custom/media": {
         "format": "{icon} {}",
