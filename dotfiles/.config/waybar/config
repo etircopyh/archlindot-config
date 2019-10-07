@@ -122,10 +122,12 @@
         "format-disconnected": "Disconnected ",
         "format-alt": "{ifname}: {ipaddr}/{cidr} {bandwidthDownBits}",
         "tooltip": false,
-        "interval": 60
+        "interval": 60,
+        "on-click-right": "sh ~/.config/sway/scripts/iwd-connection-switch.sh"
     },
     "pulseaudio": {
-        "scroll-step": 1, // %, can be a float
+        "scroll-step": 5, // %, can be a float
+        "tooltip": false,
         "format": "{volume}% {icon}",
         "format-bluetooth": "{volume}% {icon}",
         "format-bluetooth-muted": " {icon}",
@@ -141,7 +143,8 @@
             "car": "",
             "default": ["", "", ""]
         },
-        "on-click": "pavucontrol-qt"
+        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+        "on-click-right": "pavucontrol-qt"
     },
     "custom/cmus": {
     	"format": "♪ {}",
@@ -159,9 +162,9 @@
     },
     "custom/kbdlayout": {
         "format": "{} ",
-        "exec": "sh ~/.config/sway/kbd_layout.sh",
+        "exec": "sh ~/.config/sway/scripts/kbd_layout.sh",
         "interval": 1,
-        "escape": true
+        "escape": false
     },
     "custom/media": {
         "format": "{icon} {}",

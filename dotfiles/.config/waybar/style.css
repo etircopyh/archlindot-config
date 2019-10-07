@@ -45,15 +45,15 @@ window#waybar.chromium {
 
 /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
 #workspaces button:hover {
-    background: rgba(0, 0, 0, 0.2);
+    background: transparent;
     box-shadow: inherit;
     text-shadow: inherit;
     border-bottom: 3px solid gray;
 }
 
 #workspaces button.focused {
-    background-color: #64727D;
-    border-bottom: 3px solid #ffffff;
+    background-color: transparent;
+    border-bottom: 3px solid lime;
 }
 
 #workspaces button.urgent {
