@@ -2,6 +2,9 @@
 #
 # man 5 sway
 
+### Autostart
+exec_always makoctl reload
+
 ### Variables
 #
 # Logo key.
@@ -26,7 +29,7 @@ set $menu bemenu-run -p Run: | xargs swaymsg exec --
 #for_window [app_id="^launcher$"] floating enable, border none, opacity 0.8
 #bindsym --to-code $mod+Shift+d exec $launcher
 # Screenshot
-set $regionshot grim -g \"$(slurp -d)" - | wl-copy
+set $regionshot grim -g \"$(slurp -c '#990000FF' -s '#2F4F4F28' -b '#00000046' -d)" - | wl-copy
 set $regionshotfile grim -g \"$(slurp -d)" Screenshots/$(date +'%Y-%m-%d-%H:%M_regionshot').png
 set $screenshot grim - | wl-copy
 set $screenshotfile grim Screenshots/$(date +'%Y-%m-%d-%H:%M_screenshot').png
@@ -90,6 +93,22 @@ output LVDS-1 {
 	}
 #
 # man 5 sway-input
+
+### Colors
+#
+set $bg #171717
+set $fg #eff1f5
+set $br #ffcc00
+set $ia #232425
+
+
+# class                 border  backgr. text    indicator child_border
+client.focused          $br     $br     $fg     $bg       $br
+client.focused_inactive $bg     $bg     $fg     $bg       $bg
+client.unfocused        $bg     $bg     $fg     $bg       $bg
+#client.urgent          $br     $br     $fg     $bg       $br #currently not implemented
+#client.placeholder     $br     $br     $fg     $bg       $br #currently not implemented
+client.background		$bg
 
 ### Key bindings
 #
@@ -273,7 +292,7 @@ bar {
 	tray_output none
 	pango_markup enabled
 	swaybar_command waybar
-#	status_command while sh ~/.config/sway/swaybar.sh; do sleep 1; done
+#	status_command while sh ~/.config/sway/sway_bar.sh; do sleep 1; done
 #	status_command i3blocks
 #	status_command i3status-rs ~/.config/i3status-rs/config.toml
 #	separator_symbol "|"
@@ -299,7 +318,7 @@ bar {
 for_window [app_id="firefox"] move to workspace 2
 for_window [app_id="imv"] floating enable
 for_window [app_id="mpv"] floating enable
-for_window [app_id="firefox" title=""] floating enable, sticky enable
+#for_window [app_id="firefox" title=""] floating enable, sticky enable, mark Firefox Picture-in-Picture
 for_window [app_id="code"] move to workspace 3
 for_window [app_id="telegramdesktop"] move to workspace 4
 for_window [app_id="MellowPlayer"] move to workspace 5
