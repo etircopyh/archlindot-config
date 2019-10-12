@@ -148,26 +148,35 @@
         "on-click-right": "pavucontrol-qt"
     },
     "custom/cmus": {
-    	"format": "♪ {}",
-    	//"max-length": 15,
-    	"interval": 10,
-    	"exec": "cmus-remote -C \"format_print '%a - %t'\"", // artist - title
-    	"exec-if": "pgrep cmus",
-    	"on-click": "cmus-remote -u",                        //toggle pause
+    	"format": "♪ {}",
+    	//"max-length": 15,
+    	"interval": 10,
+    	"exec": "cmus-remote -C \"format_print '%a - %t'\"", // artist - title
+    	"exec-if": "pgrep cmus",
+    	"on-click": "cmus-remote -u",                        //toggle pause
     	"escape": true,
     	"tooltip": false
     },
-    "custom/power": {
-    "format": "",
-    "tooltip": false,
-    "on-click": "swaynag -t warning -m 'Power Menu Options' -b 'Logout' 'swaymsg exit' -b 'Suspend' 'swaymsg exec systemctl suspend' -b 'shutdown' 'shutdown now'"
+    "custom/power": {
+		"format": "",
+		"on-click": "swaynag -t warning -m 'Power Menu Options' -b ' Logout' 'swaymsg exit' -b ' Suspend' 'swaymsg exec systemctl suspend' -b ' Shutdown' 'shutdown now' -b ' Reboot' 'swaymsg exec systemctl reboot'",
+		"tooltip": false
     },
-    "custom/kbdlayout": {
+    "custom/kbdlayout": {
         "format": "{} ",
         "exec": "sh ~/.config/sway/scripts/kbd_layout.sh",
         "interval": 1,
+        "escape": true,
         "tooltip": false
     },
+    "custom/pacman": {
+		"format": "{}  ",
+		"interval": 3600,                     // every hour
+		"exec": "checkupdates | wc -l",       // # of updates
+		"exec-if": "exit 0",                  // always run; consider advanced run conditions
+		"on-click": "alacritty -e 'sudo pacman -Syu'; pkill -SIGRTMIN+8 waybar", // update system
+		"signal": 8
+	},
     "custom/media": {
         "format": "{icon} {}",
         "return-type": "json",
@@ -182,4 +191,3 @@
         // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
     }
 }
-
