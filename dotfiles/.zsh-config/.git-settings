@@ -27,4 +27,4 @@ precmd_functions=( vcs_info )
 #----------------------------------------
 # Git autocomplete
 #----------------------------------------
-fpath=(~/zsh-config/.zsh $fpath)
+fpath=($ZDOTDIR/.zsh $fpath)

@@ -1,7 +1,7 @@
 #----------------------------------------
 # History settings
 #----------------------------------------
-HISTFILE=~/zsh-config/.zsh-history
+HISTFILE=$ZDOTDIR/.zsh-history
 HISTSIZE=10000
 SAVEHIST=10000
 #----------------------------------------
@@ -10,7 +10,7 @@ SAVEHIST=10000
 bindkey -e
 #----------------------------------------
 #----------------------------------------
-zstyle :compinstall filename '~/zsh-config/.zshrc'
+zstyle :compinstall filename '$ZDOTDIR/.zshrc'
 #----------------------------------------
 
 precmd() { print '' }
