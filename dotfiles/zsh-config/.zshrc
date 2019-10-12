@@ -13,6 +13,8 @@ bindkey -e
 zstyle :compinstall filename '~/zsh-config/.zshrc'
 #----------------------------------------
 
+precmd() { print '' }
+
 #----------------------------------------
 # Git settings
 #----------------------------------------
@@ -24,9 +26,9 @@ source $ZDOTDIR/.git-settings
 
 autoload -Uz compinit promptinit colors vcs_info
 if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
-	compinit;
+    compinit;
 else
-	compinit -C;
+    compinit -C;
 fi;
 promptinit
 colors
@@ -43,23 +45,10 @@ source $ZDOTDIR/.shell-variables
 #----------------------------------------
 source $ZDOTDIR/.shell-aliases
 
-
 #----------------------------------------
 # Prompt setup
 #----------------------------------------
-prompt off
-
-setopt prompt_subst
-
-precmd() { print '' }
-
-PROMPT=$'%F{magenta}👽%n%f at %F{yellow}💻%m%f in %F{cyan}%B%~%b%f ${vcs_info_msg_0_} \n%F{176}λ%f %B%F{241}❯%f%b%f '
-RPROMPT='%B🕒%b%F{153}%t%f'
-
-#----------------------------------------
-# Git autocomplete
-#----------------------------------------
-fpath=(~/zsh-config/.zsh $fpath)
+source $ZDOTDIR/.zsh-prompt
 
 #----------------------------------------
 # Zsh syntax highlighting

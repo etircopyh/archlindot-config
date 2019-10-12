@@ -23,3 +23,8 @@ zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
 # Git hook preload
 #----------------------------------------
 precmd_functions=( vcs_info )
+
+#----------------------------------------
+# Git autocomplete
+#----------------------------------------
+fpath=(~/zsh-config/.zsh $fpath)
