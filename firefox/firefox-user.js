@@ -3,7 +3,6 @@
 /*      >>GENERAL<<        */
     /*      == Browser ==       */
 user_pref("browser.uidensity", 1); // User Interface density
-user_pref("browser.preferences.defaultPerformanceSettings.enabled", false); // Disable Firefox "recommended" performance settings
 // user_pref("browser.bookmarks.max_backups", 2);
 user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons", false); // Disable CFR
 user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features", false); // Disable CFR
@@ -38,6 +37,7 @@ user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true); // Allow
 user_pref("svg.context-properties.content.enabled", true);
 user_pref("browser.tabs.drawInTitlebar", true); // Enable CSD
 user_pref("browser.in-content.dark-mode", true); // Dark Mode
+user_pref("ui.systemUsesDarkTheme", 1);
 user_pref("devtools.theme", "dark"); // DevTools Dark Mode
 // Dark input fields fix (for Plasma DE)
 user_pref("widget.chrome.allow-gtk-dark-theme", true);
@@ -53,6 +53,7 @@ user_pref("plugin.state.java", 0); // Disable Java NPAPI plugin
 user_pref("app.normandy.first_run", false);
 user_pref("app.normandy.enabled", false); // Disable Normandy/Shield
 user_pref("app.normandy.api_url", "");
+user_pref("extensions.checkCompatibility", false); // Disable extensions compatibility checks
 // user_pref("extensions.systemAddon.update.enabled", false); // Disable system add-ons autoupdate
 // user_pref("extensions.systemAddon.update.url", "");
 // user_pref("extensions.screenshots.disabled", true); // Disable Screenshots
@@ -76,13 +77,19 @@ user_pref("media.autoplay.block-event.enabled", true);
 user_pref("media.autoplay.block-webaudio", true);
 // user_pref("media.autoplay.enabled.user-gestures-needed", false);
 user_pref("media.block-autoplay-until-in-foreground", true);
-// user_pref("media.peerconnection.video.vp9_enabled", false); // Disable VP9
 user_pref("media.hls.enabled", true); // Enable HLS
 user_pref("media.peerconnection.enabled", false); //Disable WebRTC
 user_pref("media.peerconnection.ice.default_address_only", true); // Limit WebRTC IP leaks if using WebRTC
 user_pref("media.peerconnection.ice.no_host", true);
+// Disable VP9
+user_pref("media.peerconnection.video.vp9_enabled", false);
+user_pref("media.encoder.webm.enabled", false);
+user_pref("media.mediasource.webm.audio.enabled", false);
+user_pref("media.mediasource.webm.enabled", false);
+user_pref("media.webm.enabled", false);
     /*      == Downloads ==     */
 // user_pref("browser.download.folderList", 2); // Downloads directory
+user_pref("browser.download.saveLinkAsFilenameTimeout", 1000); // 'Save Link as ...' option timeout
 user_pref("browser.download.useDownloadDir", false); // Enforce user interaction for security by always asking where to download
 user_pref("browser.download.manager.addToRecentDocs", false); // Disable adding downloads to the system's "recent documents" list
 user_pref("browser.download.hide_plugins_without_extensions", false); // Disable hiding mime types not associated with a plugin
@@ -106,6 +113,10 @@ user_pref("browser.library.activity-stream.enabled", false); // Disable recent H
 // user_pref("keyword.enabled", false); // Disable location bar using search
 // user_pref("browser.fixup.alternate.enabled", false); // Disable location bar domain guessing
 user_pref("browser.urlbar.trimURLs", false); // Display full URL in address bar
+// URL bar mouse-clicks behavior
+user_pref("browser.urlbar.clickSelectsAll", true);
+user_pref("browser.urlbar.doubleClickSelectsAll", false);
+user_pref("layout.word_select.stop_at_punctuation", true);
 // Disable live search suggestions
 // user_pref("browser.search.suggest.enabled", false);
 // user_pref("browser.urlbar.suggest.searches", false);
@@ -204,6 +215,8 @@ user_pref("webgl.disable-extensions", true);
 user_pref("webgl.disable-fail-if-major-performance-caveat", true);
 user_pref("webgl.msaa-samples", 0);
 user_pref("layers.geometry.d3d11.enabled", false); // Disable usage of D3D11
+user_pref("browser.preferences.defaultPerformanceSettings.enabled", false); // Disable Firefox "recommended" performance settings
+user_pref("dom.ipc.processCount", 10); // Adjust Web Content process limit
     /*      == Cache ==        */
 user_pref("browser.cache.disk.enable", true); // Enable disk cache
 user_pref("browser.cache.disk.capacity", 524288); // Disk cache capacity: -1 = determine dynamically (default), 0 = none, n = memory capacity in kilobytes
@@ -281,17 +294,14 @@ user_pref("network.IDN_show_punycode", true); // Enforce Punycode for Internatio
 user_pref("privacy.userContext.enabled", true); // Enable Container Tabs
 user_pref("privacy.userContext.ui.enabled", true); // Enable Container Tabs setting in preferences
 user_pref("privacy.usercontext.about_newtab_segregation.enabled", true); // Enable a private container for thumbnail loads
-user_pref("privacy.userContext.longPressBehavior", 2); // Set behaviour on "+ Tab" button to display container menu: 0=no menu (default), 1=show when clicked, 2=show on long press
+user_pref("privacy.userContext.longPressBehavior", 2); // Set behavior on "+ Tab" button to display container menu: 0=no menu (default), 1=show when clicked, 2=show on long press
 // Referer
 user_pref("network.http.sendRefererHeader", 2); // Control when images/links send a referer: 0 = never, 1 = send only when links are clicked, 2 = for links and images (default)
-user_pref("network.http.referer.spoofSource", false); // Disable spoofing a referer
+user_pref("network.http.referer.spoofSource", true); // Enable spoofing a referer
 user_pref("network.http.referer.XOriginPolicy", 0); // Send Referer: 0 = in all cases 1 = to same eTLD sites 2 = only when the full hostnames match
 user_pref("network.http.referer.XOriginTrimmingPolicy", 1); // Info to be sent to header: 0 = full url 1 = URL without query string 2 = scheme, host, and port
 // user_pref("network.http.referer.defaultPolicy", 3);
 // user_pref("network.http.referer.defaultPolicy.pbmode", 2);
-// Don't reveal build ID (Value taken from Tor Browser)
-user_pref("general.buildID.override", "20100101");
-user_pref("browser.startup.homepage_override.buildID", "20100101");
 // Security
 user_pref("security.csp.enable", true); // Enable CSP (Content Security Policy)
 user_pref("security.dialog_enable_delay", 700); // Enforce a security delay on some confirmation dialogs such as install, open/save
@@ -318,6 +328,7 @@ user_pref("javascript.options.wasm", false); // Disable WebAssembly
 user_pref("dom.targetBlankNoOpener.enabled", true); // Enable (limited but sufficient) window.opener protection
     /*      == Telemetry >_< ==        */
 user_pref("toolkit.telemetry.unified", false);
+user_pref("toolkit.telemetry.unifiedIsOptIn", false);
 user_pref("toolkit.telemetry.enabled", false);
 user_pref("toolkit.telemetry.server", "");
 user_pref("toolkit.telemetry.infoURL", "");
@@ -407,8 +418,10 @@ user_pref("media.ondevicechange.enabled", false); // Disable MediaDevices change
 user_pref("webgl.enable-debug-renderer-info", false); // Disable WebGL debug info being available to websites
 // user_pref("dom.w3c_pointer_events.enabled", false); // Disable PointerEvents
 // user_pref("ui.use_standins_for_native_colors", true); // Disable exposure of system colors to CSS or canvas
-// user_pref("general.useragent.override", "");
-// user_pref("general.buildID.override", "");
+// Tor-like anti-fingerprint overridings
+// user_pref("general.useragent.override", "Mozilla/5.0 (Windows NT 6.1; rv:52.0) Gecko/20100101 Firefox/52.0");
+user_pref("general.buildID.override", "20100101");
+user_pref("browser.startup.homepage_override.buildID", "20100101");
 // user_pref("general.appname.override", "");
 // user_pref("general.appversion.override", "");
 // user_pref("general.platform.override", "");
