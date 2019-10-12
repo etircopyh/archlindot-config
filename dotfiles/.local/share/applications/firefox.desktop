@@ -1,10 +1,10 @@
 [Desktop Action new-private-window]
-Exec=GTK_USE_PORTAL=1 MOZ_DISABLE_CONTENT_SANDBOX=1 /usr/lib/firefox/firefox --private-window %u
+Exec=MOZ_DISABLE_CONTENT_SANDBOX=1 /usr/lib/firefox/firefox --private-window %u
 Name[en_US]=New Private Window
 Name=New Private Window
 
 [Desktop Action new-window]
-Exec=GTK_USE_PORTAL=1 MOZ_DISABLE_CONTENT_SANDBOX=1 /usr/lib/firefox/firefox --new-window %u
+Exec=MOZ_DISABLE_CONTENT_SANDBOX=1 /usr/lib/firefox/firefox --new-window %u
 Name[en_US]=New Window
 Name=New Window
 
@@ -12,12 +12,12 @@ Name=New Window
 Actions=new-window;new-private-window;
 Categories=Network;WebBrowser;
 Comment=Browse the World Wide Web
-Exec=GTK_USE_PORTAL=1 MOZ_DISABLE_CONTENT_SANDBOX=1 /usr/lib/firefox/firefox %u
+Exec=MOZ_DISABLE_CONTENT_SANDBOX=1 /usr/lib/firefox/firefox %u
 GenericName=Web Browser
 Icon=firefox
 Keywords=Internet;WWW;Browser;Web;Explorer
 MimeType=text/html;text/xml;application/xhtml+xml;x-scheme-handler/http;x-scheme-handler/https;application/x-xpinstall;
-Name=Firefox Developer Edition
+Name=Firefox
 NoDisplay=false
 Path[$e]=
 StartupNotify=true

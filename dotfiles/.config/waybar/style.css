@@ -7,11 +7,11 @@
 }
 
 window#waybar {
-	background-color: rgba(46, 49, 49, 0.9);
-	border-bottom: 3px solid rgba(100, 114, 125, 0.5);
-	color: #ffffff;
-	transition-property: background-color;
-	transition-duration: .5s;
+    background-color: rgba(40, 42, 54, 1.0);
+    border-bottom: 3px solid rgba(100, 114, 125, 0.5);
+    color: #ffffff;
+    transition-property: background-color;
+    transition-duration: .5s;
 }
 
 window#waybar.hidden {
@@ -174,13 +174,13 @@ label:focus {
 }
 
 #custom-power {
-	padding: 0 4px;
-	border-bottom: 3px solid #b20000;
+    padding: 0 4px;
+    border-bottom: 3px solid #b20000;
 }
 
 #custom-kbdlayout {
-	padding: 0 4px;
-	border-bottom: 3px solid #b21363;
+    padding: 0 4px;
+    border-bottom: 3px solid #b21363;
 }
 
 #temperature {

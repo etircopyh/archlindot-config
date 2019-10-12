@@ -70,9 +70,4 @@ ${color black}${diskiograph /dev/sda a0af00 00110f}
 ${alignc}${font DejaVu Sans Mono:size=8}${color white}   ${diskio /dev/sda}
 ${font Entopia:size=12}${color orange}UPDATES ${hr 2}$color
 ${font Iosevka:size=11}Packages to update ${alignr}${offset -8}${execi 3600 checkupdates | wc -l}
-
-
-
-
-
 ]]
