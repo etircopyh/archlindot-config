@@ -1,11 +1,16 @@
 # Static information about the filesystems.
-# See fstab(5) for details.
+# man 5 fstab
 
-# <file system> <dir> <type> <options> <dump> <pass>
-
-# /dev/sda1 LABEL=ESP
-UUID=0515-412B					/boot		vfat		defaults							0 2
+# <file system>								<dir>				<type>		<options>											<dump>	<pass>
 
 # /dev/sda2 LABEL=SYSTEM
-UUID=04ffce72-8172-4c42-95a4-3ec07a791164	/         	btrfs     	rw,relatime,compress=zstd,ssd,space_cache,subvolid=5,subvol=/	0 1
+UUID=04ffce72-8172-4c42-95a4-3ec07a791164	/					btrfs		defaults,compress=zstd								0		1
 
+# /dev/sda1 LABEL=ESP
+UUID=0515-412B								/boot				vfat		defaults											0		2
+
+# /dev/sda5 LABEL=ArchWay
+UUID=e447fce7-5b18-480d-81e3-45efe3700b57	/mnt/archsway		btrfs		defaults,compress=zstd,noauto,x-systemd.automount	0		0
+
+# /dev/sda4 LABEL=EFIARCHEXP
+UUID=783D-F5FE								/mnt/archsway/boot	vfat		defaults,noauto,x-systemd.automount					0		0
