@@ -59,6 +59,7 @@ alias fontcache32='fc-cache-32 -fvr && sudo fc-cache-32 -fvrs'
 # Misc
 alias mnt='mount | column -t'
 alias clr='clear'
+alias cat='bat -p'
 alias cp='cp -v'
 alias ln='ln -v'
 alias mv='mv -v'
