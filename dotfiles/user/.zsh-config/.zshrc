@@ -51,16 +51,23 @@ source $ZDOTDIR/.shell-aliases
 source $ZDOTDIR/.zsh-prompt
 
 #----------------------------------------
-# Zsh syntax highlighting
+# ZSH syntax highlighting
 #----------------------------------------
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 #----------------------------------------
-# Zsh autosuggestions
+# ZSH autosuggestions
 #----------------------------------------
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 #----------------------------------------
+# ZSH history substring search
+#----------------------------------------
+source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+bindkey '^[[1;5A' history-substring-search-up
+bindkey '^[[1;5B' history-substring-search-down
+
+#----------------------------------------
 # Sway boot
 #----------------------------------------
-source $ZDOTDIR/.swayboot
+#source $ZDOTDIR/.swayboot
