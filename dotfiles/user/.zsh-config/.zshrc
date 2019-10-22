@@ -13,8 +13,6 @@ bindkey -e
 zstyle :compinstall filename '$ZDOTDIR/.zshrc'
 #----------------------------------------
 
-precmd() { print '' }
-
 #----------------------------------------
 # Git settings
 #----------------------------------------

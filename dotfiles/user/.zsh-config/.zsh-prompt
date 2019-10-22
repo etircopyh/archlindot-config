@@ -1,6 +1,8 @@
 #----------------------------------------
 # Prompt setup
 #----------------------------------------
+precmd() { print '' }
+
 prompt off
 
 setopt prompt_subst
