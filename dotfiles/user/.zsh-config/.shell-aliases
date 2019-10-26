@@ -1,11 +1,17 @@
 #----------------------------------------
 # Shell aliases
 #----------------------------------------
+# su
 alias root='sudo -i'
 #alias su='sudo -i'
 alias sudo='sudo '
 #alias pacman='sudo pacman'
-#alias nano='sudo nano'
+alias sucp='sudo cp'
+alias sumv='sudo mv'
+alias suln='sudo ln'
+alias surm='sudo rm'
+alias surmdir='sudo rm -rf'
+alias sumkdir='sudo mkdir'
 # systemctl
 alias sctl='sudo systemctl'
 alias sctl-failed='systemctl --failed'
@@ -73,11 +79,6 @@ alias own='sudo chown $USER:$USER'
 alias ls='ls --color=auto --human-readable --group-directories-first'
 alias ll='ls --color=auto --human-readable --group-directories-first -l'
 alias lla='ls --color=auto --human-readable --group-directories-first -la'
-# Power control
-#alias reboot='sudo /sbin/reboot'
-#alias poweroff='sudo /sbin/poweroff'
-#alias halt='sudo /sbin/halt'
-#alias shutdown='sudo /sbin/shutdown'
 # System info
 alias meminfo='free -mlt'
 alias cpuinfo='lscpu'
