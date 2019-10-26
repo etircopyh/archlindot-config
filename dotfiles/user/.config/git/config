@@ -2,7 +2,7 @@
     excludesfile = ~/.config/git/ignore
 [user]
     name = Ivan
-    email = yumteej@gmail.com
+    email = etircopyhdot@gmail.com
 [alias]
     st = status
     ci = commit
