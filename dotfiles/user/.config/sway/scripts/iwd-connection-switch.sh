@@ -1,3 +1,4 @@
+#!/bin/bash
 wiredup=$(ip link | grep 'eth0' | grep -o 'state UP')
 wireddown=$(ip link | grep 'eth0' | grep -o 'state DOWN')
 
