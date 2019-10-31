@@ -3,7 +3,13 @@
 # man 5 sway
 
 ### Autostart
+exec dex -a -s ~/.config/autostart
+exec find ~/.config/autostart-scripts/*.sh | sh -
 exec_always makoctl reload
+exec_always {
+    gsettings set org.gnome.desktop.interface cursor-theme  Breeze_Contrast
+    gsettings set org.gnome.desktop.interface gtk-theme     Breeze-Dark
+}
 
 ### Variables
 #
@@ -22,6 +28,7 @@ set $bar_font_family Noto Sans Display
 set $bar_font_size 9
 # Terminal emulator
 set $term alacritty
+set $browser firefox
 # Application launcher
 set $menu bemenu-run -p Run: \
             --fn 'Noto Sans Mono 9' \
@@ -33,9 +40,10 @@ set $menu bemenu-run -p Run: \
             --scb '#aaccff' --scf '#000000' \
             | xargs swaymsg exec --
 # Custom application launcher (needs fzf package)
-#set $launcher exec alacritty --class="launcher" -e "bash -c 'compgen -c | grep -v fzf | sort -u | fzf --layout=reverse | xargs -r swaymsg -t command exec'"
-#for_window [app_id="^launcher$"] floating enable, border none, opacity 0.8
-#bindsym --to-code $mod+Shift+d exec $launcher
+set $launcher exec alacritty --class='launcher' -e bash -c 'compgen -c | grep -v fzf | sort -u | fzf --layout=reverse | xargs -r swaymsg -t command exec'
+for_window [app_id="^launcher$"] floating enable, border none, opacity 0.8
+bindsym --to-code $mod+Shift+d exec $launcher
+
 # Screenshot
 set $regionshot     grim -g \"$(slurp -c '#990000FF' -s '#2F4F4F28' -b '#00000046' -d)" - | wl-copy
 set $regionshotfile grim -g \"$(slurp -c '#990000FF' -s '#2F4F4F28' -b '#00000046' -d)" Screenshots/$(date +'%Y-%m-%d-%H:%M_regionshot').png
@@ -43,6 +51,11 @@ set $screenshot     grim - | wl-copy
 set $screenshotfile grim Screenshots/$(date +'%Y-%m-%d-%H:%M_screenshot').png
 # Color picker
 set $colorpick grim -g "$(slurp -p)" -t ppm - | convert - -format '%[pixel:p{0,0}]' txt:- | wl-copy
+
+# Custom Bluetooth device prompt
+set $BTconnect exec alacritty --class='BTconnect' -e bash ~/.config/sway/scripts/bluetooth-prompt.sh
+for_window [app_id="^BTconnect$"] floating enable, border none, opacity 0.95, floating_maximum_size 450 x 300
+bindsym --to-code $mod+Shift+b exec $BTconnect
 
 # Notifications
 set $notify notify-send -t 3000
@@ -56,8 +69,10 @@ xwayland enable
 # Title bars
 default_border none
 
+focus_follows_mouse always
+
 # Gaps
-gaps outer 1
+gaps outer 0
 gaps inner 2
 smart_gaps on
 
@@ -70,7 +85,6 @@ output LVDS-1 {
     res 1366x768@60.022999Hz
     pos 0,0
     bg  ~/.config/sway/wallpapers/futuristic-character.jpeg fill
-#   bg  /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
     subpixel none
 }
 
@@ -94,6 +108,12 @@ output LVDS-1 {
         xkb_numlock enabled
     }
 
+    # Mouse configuration
+    input "6447:1814:Avago_USB_LaserStream(TM)_Mouse" {
+        accel_profile flat
+        pointer_accel 0
+    }
+
     # TouchPad configuration
     input "2:7:SynPS/2_Synaptics_TouchPad" {
         dwt enabled
@@ -107,19 +127,19 @@ output LVDS-1 {
 
 ### Colors
 #
-set $bg #171717
+set $bg #282A36
 set $fg #eff1f5
-set $br #ffcc00
+set $br #0E0E25
 set $ia #232425
 
 
-# class                 border  backgr. text    indicator child_border
-client.focused          $br     $br     $fg     $bg       $br
-client.focused_inactive $bg     $bg     $fg     $bg       $bg
-client.unfocused        $bg     $bg     $fg     $bg       $bg
-#client.urgent          $br     $br     $fg     $bg       $br #currently not implemented
-#client.placeholder     $br     $br     $fg     $bg       $br #currently not implemented
-client.background       $bg
+# class                 border  background  text    indicator   child_border
+client.focused          $br     $br         $fg     $bg         $br
+client.focused_inactive $bg     $bg         $fg     $bg         $bg
+client.unfocused        $bg     $bg         $fg     $bg         $bg
+#client.urgent          $br     $br         $fg     $bg         $br
+#client.placeholder     $br     $br         $fg     $bg         $br
+#client.background              $bg
 
 ### Key bindings
 #
@@ -145,10 +165,10 @@ client.background       $bg
     bindsym --to-code $mod+i exec $colorpick
 
     # Make a screenshot
-    bindsym --to-code --release Print               exec $regionshot
-    bindsym --to-code --release $mod+Print          exec $regionshotfile
-    bindsym --to-code --release Shift+Print         exec $screenshot
-    bindsym --to-code --release $mod+Shift+Print    exec $screenshotfile
+    bindsym --release Print               exec $regionshot
+    bindsym --release $mod+Print          exec $regionshotfile
+    bindsym --release Shift+Print         exec $screenshot
+    bindsym --release $mod+Shift+Print    exec $screenshotfile
 
     floating_modifier $mod normal
 
@@ -251,6 +271,9 @@ client.background       $bg
     # Show scratchpad window
     bindsym $mod+minus scratchpad show
 
+# TouchPad toggle
+bindsym XF86TouchpadToggle input "2:7:SynPS/2_Synaptics_TouchPad" events toggle enabled disabled
+
 # Music Control
 bindsym --to-code {
     XF86AudioPrev exec playerctl previous
@@ -306,10 +329,10 @@ bar {
     tray_output     none
     pango_markup    enabled
     swaybar_command waybar
-#	status_command  while sh ~/.config/sway/sway_bar.sh; do sleep 1; done
-#	status_command  i3blocks
-#	status_command  i3status-rs ~/.config/i3status-rs/config.toml
-#	separator_symbol "|"
+#   status_command  while sh ~/.config/sway/sway_bar.sh; do sleep 1; done
+#   status_command  i3blocks
+#   status_command  i3status-rs ~/.config/i3status-rs/config.toml
+#   separator_symbol "|"
     colors {
 #       separator   #ffffff
 #       statusline  #ffffff
@@ -337,4 +360,4 @@ for_window [app_id="code"]              move to workspace 3
 for_window [app_id="telegramdesktop"]   move to workspace 4
 for_window [app_id="MellowPlayer"]      move to workspace 5
 
-include ~/.config/sway/config.d/*
+#include ~/.config/sway/config.d/*
