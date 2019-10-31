@@ -6,7 +6,7 @@
     // Choose the order of the modules
     "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-center": ["clock"],
-    "modules-right": ["custom/kbdlayout", "pulseaudio", "network", "cpu", "memory", "temperature", "backlight", "custom/power"],
+    "modules-right": ["custom/bt","custom/kbdlayout", "pulseaudio", "network", "cpu", "memory", "temperature", "backlight", "custom/power"],
     // Modules configuration
     "sway/workspaces": {
         "disable-scroll": true,
@@ -123,8 +123,7 @@
         "format-disconnected": "Disconnected ",
         "format-alt": "{ifname}: {ipaddr}/{cidr} {bandwidthDownBits}",
         "tooltip": false,
-        "interval": 60,
-        "on-click-right": "sh ~/.config/sway/scripts/iwd-connection-switch.sh"
+        "interval": 60
     },
     "pulseaudio": {
         "scroll-step": 5, // %, can be a float
@@ -167,6 +166,15 @@
         "exec": "sh ~/.config/sway/scripts/kbd_layout.sh",
         "interval": 1,
         "escape": true,
+        "tooltip": false
+    },
+    "custom/bt": {
+        "format": "{} ",
+        "exec": "sh ~/.config/sway/scripts/bluetooth.sh",
+        "interval": 1,
+        "escape": true,
+        "on-click": "bluetoothctl disconnect",
+        "on-click-right": "alacritty --class='BTconnect' -e bash ~/.config/sway/scripts/bluetooth-prompt.sh",
         "tooltip": false
     },
     "custom/pacman": {

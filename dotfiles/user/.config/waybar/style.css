@@ -1,8 +1,8 @@
 * {
     border: none;
     border-radius: 0;
-    font-family: Noto Sans Display;
-    font-size: 13px;
+    font-family: Roboto;
+    font-size: 12px;
     min-height: 0;
 }
 
@@ -181,6 +181,11 @@ label:focus {
 #custom-kbdlayout {
     padding: 0 4px;
     border-bottom: 3px solid #b21363;
+}
+
+#custom-bt {
+    padding: 0 4px;
+    border-bottom: 3px solid #213FC1;
 }
 
 #temperature {
