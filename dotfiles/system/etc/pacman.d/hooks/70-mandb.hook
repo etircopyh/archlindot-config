@@ -1,8 +1,0 @@
-[Trigger]
-Type = Package
-Operation = Upgrade
-
-[Action]
-Description = Updating man-db
-When = PostTransaction
-Exec = systemctl start man-db.service
