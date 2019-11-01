@@ -8,3 +8,5 @@ archlindot-config repo
 - systemd stuff
 - useful scripts
 - wallpapers
+
+- [Firefox Browser tweaks](https://github.com/etircopyh/fox-hax "fox-hax")
