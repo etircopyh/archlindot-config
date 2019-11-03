@@ -18,19 +18,17 @@ zstyle :compinstall filename '$ZDOTDIR/.zshrc'
 #----------------------------------------
 source $ZDOTDIR/.git-settings
 
+
 #----------------------------------------
 # ZSH Autocomplete
 #----------------------------------------
 
-autoload -Uz compinit promptinit colors vcs_info
+autoload -Uz compinit
 if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
     compinit;
 else
     compinit -C;
 fi;
-promptinit
-colors
-vcs_info
 
 
 #----------------------------------------
@@ -38,25 +36,30 @@ vcs_info
 #----------------------------------------
 source $ZDOTDIR/.shell-variables
 
+
 #----------------------------------------
 # Aliases
 #----------------------------------------
 source $ZDOTDIR/.shell-aliases
+
 
 #----------------------------------------
 # Prompt setup
 #----------------------------------------
 source $ZDOTDIR/.zsh-prompt
 
+
 #----------------------------------------
 # ZSH syntax highlighting
 #----------------------------------------
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+
 #----------------------------------------
 # ZSH autosuggestions
 #----------------------------------------
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+
 
 #----------------------------------------
 # ZSH history substring search
@@ -64,6 +67,7 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
 bindkey '^[[1;5A' history-substring-search-up
 bindkey '^[[1;5B' history-substring-search-down
+
 
 #----------------------------------------
 # Sway boot
