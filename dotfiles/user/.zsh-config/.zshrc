@@ -7,7 +7,7 @@ SAVEHIST=10000
 #----------------------------------------
 # Bind method
 #----------------------------------------
-bindkey -e
+bindkey -v
 #----------------------------------------
 #----------------------------------------
 zstyle :compinstall filename '$ZDOTDIR/.zshrc'
@@ -22,13 +22,18 @@ source $ZDOTDIR/.git-settings
 #----------------------------------------
 # ZSH Autocomplete
 #----------------------------------------
-
 autoload -Uz compinit
 if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
     compinit;
 else
     compinit -C;
 fi;
+
+
+#----------------------------------------
+# ZSH time output format
+#----------------------------------------
+TIMEFMT=$'\n> %J\n\nCPU\t%P\nUser\t%*U\nSystem\t%*S\nTotal\t%*E\nMemory\t%Mkb'
 
 
 #----------------------------------------
