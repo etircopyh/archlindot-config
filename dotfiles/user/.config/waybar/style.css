@@ -1,7 +1,7 @@
 * {
     border: none;
     border-radius: 0;
-    font-family: 'SF Compact Display';
+    font-family: SF Compact Display;
     font-size: 13px;
     min-height: 0;
 }
@@ -95,6 +95,8 @@ window#waybar.chromium {
 #clock {
     background-color: rgba(46, 49, 49, 0.9);
     border-bottom: 3px solid #64727D;
+    font-family: Montserrat Alternates;
+    font-weight: bold;
 }
 
 #battery {

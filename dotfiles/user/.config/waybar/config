@@ -165,18 +165,18 @@
     },
     "custom/kbdlayout": {
         "format": "{} ",
-        "exec": "sh ~/.config/sway/scripts/kbd_layout.sh",
+        "exec": "$SHELL ~/.config/sway/scripts/kbd_layout.sh",
         "interval": 1,
         "escape": true,
         "tooltip": false
     },
     "custom/bt": {
         "format": "{} ",
-        "exec": "sh ~/.config/sway/scripts/bluetooth.sh",
+        "exec": "$SHELL ~/.config/sway/scripts/bluetooth.sh",
         "interval": 1,
         "escape": true,
         "on-click": "bluetoothctl disconnect",
-        "on-click-right": "alacritty --class='BTconnect' -e bash ~/.config/sway/scripts/bluetooth-prompt.sh",
+        "on-click-right": "alacritty --title='Bluetooth devices' --class='BTconnect' -e $SHELL ~/.config/sway/scripts/bluetooth-prompt.sh",
         "tooltip": false
     },
     "custom/pacman": {
