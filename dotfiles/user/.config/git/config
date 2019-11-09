@@ -3,6 +3,7 @@
 [user]
     name = Ivan
     email = etircopyhdot@gmail.com
+    signingkey = FCF974B56A98CF81
 [alias]
     st = status
     ci = commit
@@ -18,3 +19,5 @@
     diff = auto
 [credential]
     helper = cache --timeout=7200
+[gpg]
+    program = gpg2
