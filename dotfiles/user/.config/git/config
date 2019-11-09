@@ -18,6 +18,6 @@
     interactive = auto
     diff = auto
 [credential]
-    helper = cache --timeout=7200
+    helper = store
 [gpg]
     program = gpg2
