@@ -1,5 +1,7 @@
 /.git/
 /**/Thumbs.db
 /**/*.DS_Store
-/.idea/
-**/**/.directory
+/**/.idea/
+/**/.directory
+/**/credentials
+/**/.is-git-credentials
