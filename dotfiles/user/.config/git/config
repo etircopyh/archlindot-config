@@ -18,6 +18,7 @@
     interactive = auto
     diff = auto
 [credential]
-    helper = store
+    helper = cache --timeout 14400
+    username = etircopyh
 [gpg]
     program = gpg2
