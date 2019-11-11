@@ -2,7 +2,8 @@
 # Variables
 #----------------------------------------
 export BROWSER='firefox'
-export EDITOR='micro'
+export EDITOR='nvim'
+export VISUAL='nvim'
 
 #----------------------------------------
 # Temporary Variables
