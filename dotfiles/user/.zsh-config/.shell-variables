@@ -1,6 +1,8 @@
 #----------------------------------------
 # Variables
 #----------------------------------------
+export SYSTEM=$(uname -s)
+export ZSHCONFIG=~/.zsh-config
 export BROWSER='firefox'
 export EDITOR='nvim'
 export VISUAL='nvim'
