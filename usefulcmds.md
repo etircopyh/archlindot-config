@@ -5,5 +5,6 @@ systemctl mask systemd-udev-settle.service
 rm /usr/share/dbus-1/services/org.kde.kwalletd.service
 systemctl mask ModemManager.service
 systemctl mask lvm2-*.service
+localectl set-x11-keymap us,ru pc102
 comm -23 <(pacman -Qeq | sort) <(pacman -Qgq base base-devel | sort)
 ```

@@ -5,6 +5,4 @@ if [ "$kbdlayout" = "English (US)" ]; then
     echo US
 elif [ "$kbdlayout" = "Russian" ]; then
     echo RU
-else
-    echo UA
 fi
