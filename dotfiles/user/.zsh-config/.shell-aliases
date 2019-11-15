@@ -94,6 +94,10 @@ alias path='echo -e ${PATH//:/\\n}'
 alias now='date +"%I:%M:%S %p"'
 alias nowtime=now
 alias nowdate='date +"%d-%m-%Y"'
+alias untar='tar -zxvf '
+alias sha='shasum -a 256 '
+alias ping='ping -c 5'
+alias www='python -m SimpleHTTPServer 8000'
 # Color support
 #alias ls='ls --color=auto'
 alias dir='dir --color=auto'
