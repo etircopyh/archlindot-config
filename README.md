@@ -2,7 +2,7 @@
 - Bootloader: [systemd-boot](https://wiki.archlinux.org/index.php/Systemd-boot) / [EFISTUB](https://wiki.archlinux.org/index.php/EFISTUB)
 - WM: [Sway](https://github.com/swaywm/sway)
 - Bar: [Waybar](https://github.com/Alexays/Waybar)
-- Terminal: [Alacritty](https://github.com/jwilm/alacritty)
+- Terminal: [Alacritty](https://github.com/jwilm/alacritty) / Terminal Font: [Hasklig](https://github.com/i-tu/Hasklig)
 - Browser: [Firefox](https://www.mozilla.org/en-US/firefox)
 - Video player: [mpv](https://github.com/mpv-player/mpv)
 - Image viewer: [imv](https://github.com/eXeC64/imv)
