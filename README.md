@@ -19,5 +19,5 @@
 - [Firefox Browser tweaks](https://github.com/etircopyh/fox-hax "fox-hax")
 - [Fonts](http://ix.io/22cH "Font list")
 - [Packages](http://ix.io/22d2)
-- [Wallpapers](https://github.com/etircopyh/archlindot-config/tree/master/wallpapers)
-- [My DSDT firmware fix (ASUS X54C)](https://github.com/etircopyh/archlindot-config/tree/master/asus-x54c-fixed-dsdt)
+- [Wallpapers](https://github.com/etircopyh/archlindot-config/tree/master/extra/wallpapers)
+- [My DSDT firmware fix (ASUS X54C)](https://github.com/etircopyh/archlindot-config/tree/master/extra/asus-x54c-fixed-dsdt)
