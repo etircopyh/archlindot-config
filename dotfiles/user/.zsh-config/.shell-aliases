@@ -65,6 +65,7 @@ alias yayrnsc='yay -Rnsc'
 alias yaygendb='yay -Y --gendb'
 alias rmorphans='yay -Rnsc $(yay -Qtdq)'
 alias rmcache='yay -Sc'
+alias devpkgslist='yay -Qq | grep -Ee "-(bzr|cvs|darcs|git|hg|svn)$"'
 # Font cache refresh
 alias fontcache='fc-cache -fvr && sudo fc-cache -fvrs'
 alias fontcache32='fc-cache-32 -fvr && sudo fc-cache-32 -fvrs'
