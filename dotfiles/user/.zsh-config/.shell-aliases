@@ -45,7 +45,7 @@ alias fanmax='sudo $SHELL -c "echo 255 > /sys/devices/platform/asus-nb-wmi/hwmon
 alias fanmin='sudo $SHELL -c "echo 0 > /sys/devices/platform/asus-nb-wmi/hwmon/hwmon[[:print:]]*/pwm1"'
 alias autofan='sudo $SHELL -c "echo 2 > /sys/devices/platform/asus-nb-wmi/hwmon/hwmon[[[:print:]]*/pwm1_enable"'
 alias manfan='sudo $SHELL -c "echo 1 > /sys/devices/platform/asus-nb-wmi/hwmon/hwmon[[[:print:]]*/pwm1_enable"'
-# yay
+# Packages ( yay / pacman )
 alias yayq='yay -Q'
 alias yayqq='yay -Qq'
 alias yayqo='yay -Qo'
@@ -65,7 +65,9 @@ alias yayrnsc='yay -Rnsc'
 alias yaygendb='yay -Y --gendb'
 alias rmorphans='yay -Rnsc $(yay -Qtdq)'
 alias rmcache='yay -Sc'
-alias devpkgslist='yay -Qq | grep -Ee "-(bzr|cvs|darcs|git|hg|svn)$"'
+alias devpkgslist='pacman -Qq | grep -Ee "-(bzr|cvs|darcs|git|hg|svn)$"'
+alias pkgfzfview='pacman -Qq | fzf --preview "pacman -Qil {}" --layout=reverse --bind "enter:execute(pacman -Qil {} | less)"'
+alias pkgmodconfig='pacman -Qii | awk "/^MODIFIED/ {print $2}"'
 # Font cache refresh
 alias fontcache='fc-cache -fvr && sudo fc-cache -fvrs'
 alias fontcache32='fc-cache-32 -fvr && sudo fc-cache-32 -fvrs'
