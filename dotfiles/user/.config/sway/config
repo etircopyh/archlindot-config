@@ -22,16 +22,32 @@ set $down   j
 set $up     k
 set $right  l
 # Font
-set $font_family Noto Sans Display
+set $font_family SF Compact Display
 set $font_size 9
-set $bar_font_family Noto Sans Display
+set $bar_font_family SF Compact Display
 set $bar_font_size 9
+
+# Calculator
+set $calc io.elementary.calculator
 # Terminal emulator
 set $term alacritty
+# Dropdown terminal
+set $dropdown (pgrep -a $term | grep dropdown) && \
+            (swaymsg "[con_mark=dropdown] scratchpad show" || \
+            swaymsg "[tiling con_mark=dropdown] move container to workspace current,move to scratchpad, scratchpad show") || \
+            exec alacritty --class='dropdown'
+# Browser
 set $browser firefox
+# Screen recorder
+set $screencast wf-recorder -a -f ~/Screencasts/$(date +'%Y-%m-%d-%H:%M_screencast').mp4
+set $regioncast wf-recorder -a -g "$(slurp -c '#990000FF' -s '#2F4F4F28' -b '#00000046' -d)"
+# WebCam
+set $webcam ffmpeg -i /dev/video0 -frames:v 1 -ss 1 ~/Photos/$(date +'%Y-%m-%d-%H:%M_webcam').png
+
+
 # Application launcher
-set $menu bemenu-run -p Run: \
-            --fn 'Noto Sans Mono 9' \
+#set $menu bemenu-run -p Run: \
+            --fn 'SF Mono 9' \
             --tb '#282A36' --tf '#ffffff' \
             --fb '#282A36' --ff '#ffffff' \
             --nb '#002222' --nf '#ffff21' \
@@ -39,23 +55,25 @@ set $menu bemenu-run -p Run: \
             --sb '#000000' --sf '#ffffff' \
             --scb '#aaccff' --scf '#000000' \
             | xargs swaymsg exec --
+
 # Custom application launcher (needs fzf package)
-set $launcher exec alacritty --class='launcher' -e bash -c 'compgen -c | grep -v fzf | sort -u | fzf --layout=reverse | xargs -r swaymsg -t command exec'
-for_window [app_id="^launcher$"] floating enable, border none, opacity 0.8
-bindsym --to-code $mod+Shift+d exec $launcher
+#set $launcher alacritty --class='launcher' -e $SHELL -c 'compgen -c | grep -v fzf | sort -u | fzf --layout=reverse | xargs -r swaymsg -t command exec'
+set $swayfzflauncher alacritty --class='launcher' -e env TERMINAL_COMMAND="alacritty -e" sway-launcher-desktop
+#set $j4-desktop-launcher alacritty --class='launcher' -e j4-dmenu-desktop --no-generic --dmenu=fzf --term='alacritty' | xargs swaymsg exec --
+for_window [app_id="^launcher$"] focus, floating enable, resize set width 400 px height 500 px, border none, opacity 0.9
+#bindsym --to-code $mod+y exec j4-dmenu-desktop --no-generic --dmenu='wofi --dmenu' --term=alacritty
 
 # Screenshot
 set $regionshot     grim -g \"$(slurp -c '#990000FF' -s '#2F4F4F28' -b '#00000046' -d)" - | wl-copy
-set $regionshotfile grim -g \"$(slurp -c '#990000FF' -s '#2F4F4F28' -b '#00000046' -d)" Screenshots/$(date +'%Y-%m-%d-%H:%M_regionshot').png
+set $regionshotfile grim -g \"$(slurp -c '#990000FF' -s '#2F4F4F28' -b '#00000046' -d)" ~/Screenshots/$(date +'%Y-%m-%d-%H:%M_regionshot').png
 set $screenshot     grim - | wl-copy
-set $screenshotfile grim Screenshots/$(date +'%Y-%m-%d-%H:%M_screenshot').png
+set $screenshotfile grim ~/Screenshots/$(date +'%Y-%m-%d-%H:%M_screenshot').png
+
 # Color picker
 set $colorpick grim -g "$(slurp -p)" -t ppm - | convert - -format '%[pixel:p{0,0}]' txt:- | wl-copy
 
-# Custom Bluetooth device prompt
-set $BTconnect exec alacritty --class='BTconnect' -e bash ~/.config/sway/scripts/bluetooth-prompt.sh
-for_window [app_id="^BTconnect$"] floating enable, border none, opacity 0.95, floating_maximum_size 450 x 300
-bindsym --to-code $mod+Shift+b exec $BTconnect
+# Custom Bluetooth device chooser
+set $BTconnect exec alacritty --title='Bluetooth devices' --class='BTconnect' -e $SHELL ~/.config/sway/scripts/bluetooth-prompt.sh
 
 # Notifications
 set $notify notify-send -t 3000
@@ -63,13 +81,16 @@ set $notify notify-send -t 3000
 # Tiling
 default_orientation auto
 
+# swaynag
+swaynag_command swaynag -c ~/.config/sway/swaynag
+
 # XWayland
 xwayland enable
 
 # Title bars
 default_border none
 
-focus_follows_mouse always
+#focus_follows_mouse always
 
 # Gaps
 gaps outer 0
@@ -102,7 +123,7 @@ output LVDS-1 {
 #
     # Keyboard configuration
     input "1:1:AT_Translated_Set_2_keyboard" {
-        xkb_layout  us,ru,ua
+        xkb_layout  us,ru
         xkb_model   pc102
         xkb_options grp:ctrl_shift_toggle
         xkb_numlock enabled
@@ -132,7 +153,6 @@ set $fg #eff1f5
 set $br #0E0E25
 set $ia #232425
 
-
 # class                 border  background  text    indicator   child_border
 client.focused          $br     $br         $fg     $bg         $br
 client.focused_inactive $bg     $bg         $fg     $bg         $bg
@@ -152,23 +172,46 @@ client.unfocused        $bg     $bg         $fg     $bg         $bg
         $mod+Shift+s exec systemctl suspend
     }
 
+    # Custom launch shortcut
+    bindsym XF86Launch1 exec $browser
+    
+    # Bluetooth device chooser
+    bindsym --to-code $mod+Shift+b exec $BTconnect
+
+    # Bluetooth scan
+    bindsym $mod+F2 exec bluetoothctl scan on
+
     # Start a terminal
-    bindsym $mod+Return exec $term
+    bindsym {
+        $mod+Return exec $term
+        $mod+t      exec $term
+        F9          exec $dropdown
+    }
 
     # Kill focused window
     bindsym --to-code $mod+Shift+q kill
 
     # Start your launcher
-    bindsym --to-code $mod+d exec $menu
+#   bindsym --to-code $mod+d exec $menu
+    bindsym --to-code $mod+d exec $j4-desktop-launcher
+    bindsym --to-code $mod+Shift+d exec $swayfzflauncher
 
     # Color pick
     bindsym --to-code $mod+i exec $colorpick
 
     # Make a screenshot
-    bindsym --release Print               exec $regionshot
-    bindsym --release $mod+Print          exec $regionshotfile
-    bindsym --release Shift+Print         exec $screenshot
-    bindsym --release $mod+Shift+Print    exec $screenshotfile
+    bindsym --release {
+        Print               exec $regionshot
+        $mod+Print          exec $regionshotfile
+        Shift+Print         exec $screenshot
+        $mod+Shift+Print    exec $screenshotfile
+    }
+
+    # Record the screen
+    bindsym --release {
+    	$mod+Shift+m        exec $regioncast
+    	$mod+m              exec $screencast
+    }
 
     floating_modifier $mod normal
 
@@ -176,7 +219,7 @@ client.unfocused        $bg     $bg         $fg     $bg         $bg
     bindsym --to-code $mod+Shift+c reload
 
     # Exit sway (logs you out of your session)
-    bindsym --to-code $mod+Shift+e exec swaynag -t warning -m 'Do you really want to exit sway? This will end your session.' -b 'Yes, exit sway' 'swaymsg exit'
+    bindsym --to-code $mod+Shift+e exec swaynag -c ~/.config/sway/swaynag -t warning -m 'Do you really want to exit sway? This will end your session.' -b 'Yes, exit sway' 'swaymsg exit'
 
 #
 # Moving around:
@@ -274,8 +317,14 @@ client.unfocused        $bg     $bg         $fg     $bg         $bg
 # TouchPad toggle
 bindsym XF86TouchpadToggle input "2:7:SynPS/2_Synaptics_TouchPad" events toggle enabled disabled
 
+# WebCam
+bindsym XF86WebCam exec $webcam
+
+# Calculator
+bindsym XF86Calculator exec $calc
+
 # Music Control
-bindsym --to-code {
+bindsym {
     XF86AudioPrev exec playerctl previous
     XF86AudioNext exec playerctl next
     XF86AudioPlay exec playerctl play-pause
@@ -283,14 +332,14 @@ bindsym --to-code {
 }
 
 # PulseAudio Control
-bindsym --to-code {
+bindsym {
     XF86AudioRaiseVolume    exec pactl set-sink-volume  @DEFAULT_SINK@ +5%
     XF86AudioLowerVolume    exec pactl set-sink-volume  @DEFAULT_SINK@ -5%
     XF86AudioMute           exec pactl set-sink-mute    @DEFAULT_SINK@ toggle
 }
 
 # Brightness Control
-bindsym --to-code {
+bindsym {
     XF86MonBrightnessDown   exec brightnessctl set 5%-
     XF86MonBrightnessUp     exec brightnessctl set 5%+
 }
@@ -348,16 +397,31 @@ bar {
     }
 }
 
-# Binary tree window layout
-#exec /home/deviarch/.config/sway/layout.py
 
 # Window rules
 for_window [app_id="imv"]               floating enable
 for_window [app_id="mpv"]               floating enable, sticky enable
-#for_window [app_id="firefox" title=""] floating enable, sticky enable, mark Firefox Picture-in-Picture
+for_window [app_id="pavucontrol-qt"]	floating enable
 for_window [app_id="firefox"]           move to workspace 2
 for_window [app_id="code"]              move to workspace 3
 for_window [app_id="telegramdesktop"]   move to workspace 4
+for_window [app_id="kotatogramdesktop"] move to workspace 4
 for_window [app_id="MellowPlayer"]      move to workspace 5
+# Window types
+for_window [window_role="pop-up"]	floating enable
+for_window [window_role="bubble"]	floating enable
+for_window [window_role="task_dialog"]	floating enable
+for_window [window_role="Preferences"]	floating enable
 
+for_window [window_type="dialog"]	floating enable
+for_window [window_type="menu"]		floating enable
+# Custom windows
+for_window [app_id="^BTconnect$"]       focus, floating enable, resize set width 450 height 300, border normal, opacity 0.95
+for_window [app_id="dropdown"]          focus, floating enable, move to scratchpad, scratchpad show, sticky enable, resize set width 700 px height 400 px, move absolute position 350 px 20 px, opacity 0.95, border pixel 3, mark dropdown
+for_window [app_id="htop(?i)"] floating enable
+for_window [app_id="firefox" title="Picture-in-Picture"]    floating enable, sticky enable, mark Firefox Picture-in-Picture
+
+
+#
+#
 #include ~/.config/sway/config.d/*
