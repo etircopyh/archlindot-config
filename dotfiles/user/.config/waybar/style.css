@@ -7,10 +7,9 @@
 }
 
 window#waybar {
-    background-color: rgba(40, 42, 54, 1.0);
-    border-bottom: 3px solid rgba(100, 114, 125, 0.5);
-    color: #ffffff;
-    transition-property: background-color;
+/*    background-color: rgba(40, 42, 54, 1.0); */
+/*    border-bottom: 3px solid rgba(100, 114, 125, 0.5); */
+
     transition-duration: .5s;
 }
 
@@ -37,23 +36,24 @@ window#waybar.chromium {
 }
 
 #workspaces button {
-    padding: 0 5px;
-    background-color: transparent;
-    color: #ffffff;
-    border-bottom: 3px solid transparent;
+    padding: 0 4px;
+/*    background-color: gray; */
+    color: #90B1B1;
+/*    border-bottom: 3px solid transparent; */
 }
 
 /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
 #workspaces button:hover {
-    background: transparent;
+/*    background: transparent; */
     box-shadow: inherit;
     text-shadow: inherit;
-    border-bottom: 3px solid gray;
+    border-bottom: 1px solid gray;
 }
 
 #workspaces button.focused {
-    background-color: transparent;
-    border-bottom: 3px solid lime;
+/*    background-color: transparent; */
+    background-color: #64727D;
+    border-bottom: 1px solid #ffffff;
 }
 
 #workspaces button.urgent {
@@ -61,15 +61,15 @@ window#waybar.chromium {
 }
 
 #workspaces button.5 {
-    padding: 0 5px;
-    background-color: transparent;
+    padding: 0 1px;
+/*    background-color: transparent; */
     color: rgb(102, 220, 105);
-    border-bottom: 3px solid #000000;
+    border-bottom: 1px solid #000000;
 }
 
 #mode {
     background-color: #64727D;
-    border-bottom: 3px solid #ffffff;
+/*    border-bottom: 3px solid #ffffff; */
 }
 
 #clock,
@@ -87,21 +87,21 @@ window#waybar.chromium {
 #custom-power,
 #custom-bt,
 #custom-kbdlayout {
-    padding: 0 6px;
+    padding: 0 4px;
     margin: 0 2px;
     color: #ffffff;
 }
 
 #clock {
-    background-color: rgba(46, 49, 49, 0.9);
-    border-bottom: 3px solid #64727D;
+/*    background-color: rgba(46, 49, 49, 0.9); */
+    border-bottom: 1px solid #64727D;
     font-family: Montserrat Alternates;
     font-weight: bold;
 }
 
 #battery {
     background-color: rgba(46, 49, 49, 0.9);
-    border-bottom: 3px solid #ffffff;
+    border-bottom: 1px solid #ffffff;
 }
 
 #battery.charging {
@@ -132,22 +132,22 @@ label:focus {
 
 #cpu {
     background-color: rgba(46, 49, 49, 0.9);
-    border-bottom: 3px solid #2ecc71;
+    border-bottom: 1px solid #2ecc71;
 }
 
 #memory {
     background-color: rgba(46, 49, 49, 0.9);
-    border-bottom: 3px solid #9b59b6;
+    border-bottom: 1px solid #9b59b6;
 }
 
 #backlight {
     background-color: rgba(46, 49, 49, 0.9);
-    border-bottom: 3px solid #90b1b1;
+    border-bottom: 1px solid #90b1b1;
 }
 
 #network {
     background-color: rgba(46, 49, 49, 0.9);
-    border-bottom: 3px solid #2980b9;
+    border-bottom: 1px solid #2980b9;
 }
 
 #network.disconnected {
@@ -156,7 +156,7 @@ label:focus {
 
 #pulseaudio {
     background-color: rgba(46, 49, 49, 0.9);
-    border-bottom: 3px solid #f1c40f;
+    border-bottom: 1px solid #f1c40f;
 }
 
 #pulseaudio.muted {
@@ -179,20 +179,20 @@ label:focus {
 }
 
 #custom-power {
-    border-bottom: 3px solid #b20000;
+    border-bottom: 1px solid #b20000;
 }
 
 #custom-kbdlayout {
-    border-bottom: 3px solid #b21363;
+    border-bottom: 1px solid #b21363;
 }
 
 #custom-bt {
-    border-bottom: 3px solid #213FC1;
+    border-bottom: 1px solid #213FC1;
 }
 
 #temperature {
     background-color: rgba(46, 49, 49, 0.9);
-    border-bottom: 3px solid #f0932b;
+    border-bottom: 1px solid #f0932b;
 }
 
 #temperature.critical {
@@ -201,6 +201,7 @@ label:focus {
 
 #tray {
     background-color: #2980b9;
+    border-radius: 4px;
 }
 
 #idle_inhibitor {

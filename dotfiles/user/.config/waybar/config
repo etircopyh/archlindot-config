@@ -4,7 +4,7 @@
     "height": 20, // Waybar height (to be removed for auto height)
     "width": 1366, // Waybar width
     // Choose the order of the modules
-    "modules-left": ["sway/workspaces", "sway/mode"],
+    "modules-left": ["sway/workspaces", "sway/mode", "custom/media"],
     "modules-center": ["clock"],
     "modules-right": ["custom/kbdlayout", "custom/bt", "pulseaudio", "network", "cpu", "memory", "temperature", "backlight", "custom/power"],
     // Modules configuration
@@ -13,11 +13,11 @@
         "all-outputs": true,
         "format": "{icon}",
         "format-icons": {
-            "1": "",
-            "2": "",
-            "3": "",
-            "4": "",
-            "5": "",
+//            "1": "",
+//            "2": "",
+//            "3": "",
+//            "4": "",
+//            "5": "",
             "urgent": "",
             "focused": "",
             "default": ""
@@ -119,8 +119,8 @@
     },
     "network": {
         // "interface": "", // (Optional) To force the use of this interface
-        "format-wifi": "{essid} ({signalStrength}%) ",
-        "format-ethernet": "{ipaddr}/{cidr} ",
+        "format-wifi": "{essid} ",
+        "format-ethernet": "Wired ",
         "format-linked": "{ifname} (No IP) ",
         "format-disconnected": "Disconnected ",
         "format-alt": "{ifname}: {ipaddr}/{cidr} {bandwidthDownBits}",
@@ -197,7 +197,7 @@
             "default": "🎜"
         },
         "escape": true,
-        "exec": "$HOME/.config/waybar/mediaplayer.sh 2> /dev/null" // Script in resources folder
+        "exec": "$SHELL ~/.config/waybar/player.sh 2> /dev/null" // Script in resources folder
         // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
     }
 }
