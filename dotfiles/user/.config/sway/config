@@ -401,7 +401,7 @@ bar {
 # Window rules
 for_window [app_id="imv"]               floating enable
 for_window [app_id="mpv"]               floating enable, sticky enable
-for_window [app_id="pavucontrol-qt"]	floating enable
+for_window [app_id="pavucontrol-qt"]    floating enable
 for_window [app_id="firefox"]           move to workspace 2
 for_window [app_id="code"]              move to workspace 3
 for_window [app_id="telegramdesktop"]   move to workspace 4
