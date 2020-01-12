@@ -1,498 +1,441 @@
 /*
  * Intel ACPI Component Architecture
- * AML/ASL+ Disassembler version 20190509 (64-bit version)
+ * AML/ASL+ Disassembler version 20191213 (64-bit version)
  * Copyright (c) 2000 - 2019 Intel Corporation
  * 
  * Disassembling to symbolic ASL+ operators
  *
- * Disassembly of ssdt1.dat, Sun May 12 20:24:11 2019
+ * Disassembly of ssdt1.dat, Sun Jan 12 17:20:23 2020
  *
  * Original Table Header:
  *     Signature        "SSDT"
- *     Length           0x00000996 (2454)
+ *     Length           0x000003B7 (951)
  *     Revision         0x01
- *     Checksum         0x81
+ *     Checksum         0x25
  *     OEM ID           "PmRef"
- *     OEM Table ID     "CpuPm"
- *     OEM Revision     0x00003000 (12288)
+ *     OEM Table ID     "Cpu0Ist"
+ *     OEM Revision     0x00003001 (12289)
  *     Compiler ID      "INTL"
- *     Compiler Version 0x20091112 (537465106)
+ *     Compiler Version 0x20190509 (538510601)
  */
-DefinitionBlock ("", "SSDT", 1, "PmRef", "CpuPm", 0x00003001)
+DefinitionBlock ("", "SSDT", 1, "PmRef", "Cpu0Ist", 0x00003002)
 {
     External (_PR_.CPU0, DeviceObj)
-    External (_PR_.CPU1, DeviceObj)
-    External (_PR_.CPU2, DeviceObj)
-    External (_PR_.CPU3, DeviceObj)
-    External (_PR_.CPU4, DeviceObj)
-    External (_PR_.CPU5, DeviceObj)
-    External (_PR_.CPU6, DeviceObj)
-    External (_PR_.CPU7, DeviceObj)
-
-    Scope (\)
-    {
-        Name (SSDT, Package (0x0C)
-        {
-            "CPU0IST ", 
-            0x02056018, 
-            0x00000955, 
-            "APIST   ", 
-            0xBADCBA98, 
-            0x00000303, 
-            "CPU0CST ", 
-            0xBADCA798, 
-            0x0000073F, 
-            "APCST   ", 
-            0xBADC9D98, 
-            0x00000119
-        })
-        Name (CFGD, 0x0070F6FF)
-        Name (\PDC0, 0x80000000)
-        Name (\PDC1, 0x80000000)
-        Name (\PDC2, 0x80000000)
-        Name (\PDC3, 0x80000000)
-        Name (\PDC4, 0x80000000)
-        Name (\PDC5, 0x80000000)
-        Name (\PDC6, 0x80000000)
-        Name (\PDC7, 0x80000000)
-        Name (\SDTL, Zero)
-    }
+    External (CFGD, UnknownObj)
+    External (LIMT, IntObj)
+    External (NPSS, IntObj)
+    External (PDC0, UnknownObj)
+    External (TCNT, IntObj)
 
     Scope (\_PR.CPU0)
     {
-        Name (HI0, Zero)
-        Name (HC0, Zero)
-        Method (_PDC, 1, NotSerialized)  // _PDC: Processor Driver Capabilities
+        Method (_PPC, 0, NotSerialized)  // _PPC: Performance Present Capabilities
         {
-            Local0 = CPDC (Arg0)
-            GCAP (Local0)
-            Return (Local0)
+            Return (\LIMT) /* External reference */
         }
 
-        Method (_OSC, 4, NotSerialized)  // _OSC: Operating System Capabilities
+        Method (_PCT, 0, NotSerialized)  // _PCT: Performance Control
         {
-            Local0 = COSC (Arg0, Arg1, Arg2, Arg3)
-            GCAP (Local0)
-            Return (Local0)
-        }
-
-        Method (CPDC, 1, NotSerialized)
-        {
-            CreateDWordField (Arg0, Zero, REVS)
-            CreateDWordField (Arg0, 0x04, SIZE)
-            Local0 = SizeOf (Arg0)
-            Local1 = (Local0 - 0x08)
-            CreateField (Arg0, 0x40, (Local1 * 0x08), TEMP)
-            Name (STS0, Buffer (0x04)
+            If (((CFGD & One) && (PDC0 & One)))
             {
-                 0x00, 0x00, 0x00, 0x00                           // ....
-            })
-            Concatenate (STS0, TEMP, Local2)
-            Return (COSC (ToUUID ("4077a616-290c-47be-9ebd-d87058713953"), REVS, SIZE, Local2))
-        }
-
-        Method (COSC, 4, NotSerialized)
-        {
-            CreateDWordField (Arg3, Zero, STS0)
-            CreateDWordField (Arg3, 0x04, CAP0)
-            CreateDWordField (Arg0, Zero, IID0)
-            CreateDWordField (Arg0, 0x04, IID1)
-            CreateDWordField (Arg0, 0x08, IID2)
-            CreateDWordField (Arg0, 0x0C, IID3)
-            Name (UID0, ToUUID ("4077a616-290c-47be-9ebd-d87058713953"))
-            CreateDWordField (UID0, Zero, EID0)
-            CreateDWordField (UID0, 0x04, EID1)
-            CreateDWordField (UID0, 0x08, EID2)
-            CreateDWordField (UID0, 0x0C, EID3)
-            If (!(((IID0 == EID0) && (IID1 == EID1)) && ((
-                IID2 == EID2) && (IID3 == EID3))))
-            {
-                STS0 = 0x06
-                Return (Arg3)
-            }
-
-            If ((Arg1 != One))
-            {
-                STS0 = 0x0A
-                Return (Arg3)
-            }
-
-            Return (Arg3)
-        }
-
-        Method (GCAP, 1, NotSerialized)
-        {
-            CreateDWordField (Arg0, Zero, STS0)
-            CreateDWordField (Arg0, 0x04, CAP0)
-            If (((STS0 == 0x06) || (STS0 == 0x0A)))
-            {
-                Return (Zero)
-            }
-
-            If ((STS0 & One))
-            {
-                CAP0 &= 0x0BFF
-                Return (Zero)
-            }
-
-            PDC0 = ((PDC0 & 0x7FFFFFFF) | CAP0) /* \_PR_.CPU0.GCAP.CAP0 */
-            If ((CFGD & 0x3E))
-            {
-                If ((((CFGD & 0x0400) && (PDC0 & 0x18)) && !
-                    (SDTL & 0x02)))
+                Return (Package (0x02)
                 {
-                    SDTL |= 0x02
-                    OperationRegion (CST0, SystemMemory, DerefOf (SSDT [0x07]), DerefOf (SSDT [0x08]))
-                    Load (CST0, HC0) /* \_PR_.CPU0.HC0_ */
+                    ResourceTemplate ()
+                    {
+                        Register (FFixedHW, 
+                            0x00,               // Bit Width
+                            0x00,               // Bit Offset
+                            0x0000000000000000, // Address
+                            ,)
+                    }, 
+
+                    ResourceTemplate ()
+                    {
+                        Register (FFixedHW, 
+                            0x00,               // Bit Width
+                            0x00,               // Bit Offset
+                            0x0000000000000000, // Address
+                            ,)
+                    }
+                })
+            }
+
+            Return (Package (0x02)
+            {
+                ResourceTemplate ()
+                {
+                    Register (SystemIO, 
+                        0x10,               // Bit Width
+                        0x00,               // Bit Offset
+                        0x0000000000001000, // Address
+                        ,)
+                }, 
+
+                ResourceTemplate ()
+                {
+                    Register (SystemIO, 
+                        0x08,               // Bit Width
+                        0x00,               // Bit Offset
+                        0x00000000000000B3, // Address
+                        ,)
                 }
-            }
-
-            Return (Zero)
+            })
         }
-    }
 
-    Scope (\_PR.CPU1)
-    {
-        Name (HI1, Zero)
-        Name (HC1, Zero)
-        Method (_PDC, 1, NotSerialized)  // _PDC: Processor Driver Capabilities
+        Method (XPSS, 0, NotSerialized)
         {
-            Local0 = \_PR.CPU0.CPDC (Arg0)
-            GCAP (Local0)
-            Return (Local0)
+            If ((PDC0 & One))
+            {
+                Return (NPSS) /* External reference */
+            }
+
+            Return (SPSS) /* \_PR_.CPU0.SPSS */
         }
 
-        Method (_OSC, 4, NotSerialized)  // _OSC: Operating System Capabilities
+        Name (SPSS, Package (0x0F)
         {
-            Local0 = \_PR.CPU0.COSC (Arg0, Arg1, Arg2, Arg3)
-            GCAP (Local0)
-            Return (Local0)
-        }
+            Package (0x06)
+            {
+                0x0899, 
+                0xAFC8, 
+                0x6E, 
+                0x0A, 
+                0x83, 
+                Zero
+            }, 
 
-        Method (GCAP, 1, NotSerialized)
+            Package (0x06)
+            {
+                0x0898, 
+                0xAFC8, 
+                0x6E, 
+                0x0A, 
+                0x0183, 
+                One
+            }, 
+
+            Package (0x06)
+            {
+                0x07D0, 
+                0x9A9D, 
+                0x6E, 
+                0x0A, 
+                0x0283, 
+                0x02
+            }, 
+
+            Package (0x06)
+            {
+                0x076C, 
+                0x920B, 
+                0x6E, 
+                0x0A, 
+                0x0383, 
+                0x03
+            }, 
+
+            Package (0x06)
+            {
+                0x0708, 
+                0x87F6, 
+                0x6E, 
+                0x0A, 
+                0x0483, 
+                0x04
+            }, 
+
+            Package (0x06)
+            {
+                0x06A4, 
+                0x7FBF, 
+                0x6E, 
+                0x0A, 
+                0x0583, 
+                0x05
+            }, 
+
+            Package (0x06)
+            {
+                0x0640, 
+                0x7613, 
+                0x6E, 
+                0x0A, 
+                0x0683, 
+                0x06
+            }, 
+
+            Package (0x06)
+            {
+                0x05DC, 
+                0x6E34, 
+                0x6E, 
+                0x0A, 
+                0x0783, 
+                0x07
+            }, 
+
+            Package (0x06)
+            {
+                0x0578, 
+                0x64E4, 
+                0x6E, 
+                0x0A, 
+                0x0883, 
+                0x08
+            }, 
+
+            Package (0x06)
+            {
+                0x0514, 
+                0x5D5C, 
+                0x6E, 
+                0x0A, 
+                0x0983, 
+                0x09
+            }, 
+
+            Package (0x06)
+            {
+                0x04B0, 
+                0x546D, 
+                0x6E, 
+                0x0A, 
+                0x0A83, 
+                0x0A
+            }, 
+
+            Package (0x06)
+            {
+                0x044C, 
+                0x4D3F, 
+                0x6E, 
+                0x0A, 
+                0x0B83, 
+                0x0B
+            }, 
+
+            Package (0x06)
+            {
+                0x03E8, 
+                0x44AE, 
+                0x6E, 
+                0x0A, 
+                0x0C83, 
+                0x0C
+            }, 
+
+            Package (0x06)
+            {
+                0x0384, 
+                0x3C4D, 
+                0x6E, 
+                0x0A, 
+                0x0D83, 
+                0x0D
+            }, 
+
+            Package (0x06)
+            {
+                0x0320, 
+                0x359B, 
+                0x6E, 
+                0x0A, 
+                0x0E83, 
+                0x0E
+            }
+        })
+        Name (_PSS, Package (0x0F)  // _PSS: Performance Supported States
         {
-            CreateDWordField (Arg0, Zero, STS1)
-            CreateDWordField (Arg0, 0x04, CAP1)
-            If (((STS1 == 0x06) || (STS1 == 0x0A)))
+            Package (0x06)
             {
-                Return (Zero)
-            }
+                0x0899, 
+                0xAFC8, 
+                0x0A, 
+                0x0A, 
+                0x1F00, 
+                0x1F00
+            }, 
 
-            If ((STS1 & One))
+            Package (0x06)
             {
-                CAP1 &= 0x0BFF
-                Return (Zero)
-            }
+                0x0898, 
+                0xAFC8, 
+                0x0A, 
+                0x0A, 
+                0x1600, 
+                0x1600
+            }, 
 
-            PDC1 = ((PDC1 & 0x7FFFFFFF) | CAP1) /* \_PR_.CPU1.GCAP.CAP1 */
-            If (((PDC0 & 0x09) == 0x09))
+            Package (0x06)
             {
-                APPT ()
-            }
+                0x07D0, 
+                0x9A9D, 
+                0x0A, 
+                0x0A, 
+                0x1400, 
+                0x1400
+            }, 
 
-            If ((PDC0 & 0x18))
+            Package (0x06)
             {
-                APCT ()
+                0x076C, 
+                0x920B, 
+                0x0A, 
+                0x0A, 
+                0x1300, 
+                0x1300
+            }, 
+
+            Package (0x06)
+            {
+                0x0708, 
+                0x87F6, 
+                0x0A, 
+                0x0A, 
+                0x1200, 
+                0x1200
+            }, 
+
+            Package (0x06)
+            {
+                0x06A4, 
+                0x7FBF, 
+                0x0A, 
+                0x0A, 
+                0x1100, 
+                0x1100
+            }, 
+
+            Package (0x06)
+            {
+                0x0640, 
+                0x7613, 
+                0x0A, 
+                0x0A, 
+                0x1000, 
+                0x1000
+            }, 
+
+            Package (0x06)
+            {
+                0x05DC, 
+                0x6E34, 
+                0x0A, 
+                0x0A, 
+                0x0F00, 
+                0x0F00
+            }, 
+
+            Package (0x06)
+            {
+                0x0578, 
+                0x64E4, 
+                0x0A, 
+                0x0A, 
+                0x0E00, 
+                0x0E00
+            }, 
+
+            Package (0x06)
+            {
+                0x0514, 
+                0x5D5C, 
+                0x0A, 
+                0x0A, 
+                0x0D00, 
+                0x0D00
+            }, 
+
+            Package (0x06)
+            {
+                0x04B0, 
+                0x546D, 
+                0x0A, 
+                0x0A, 
+                0x0C00, 
+                0x0C00
+            }, 
+
+            Package (0x06)
+            {
+                0x044C, 
+                0x4D3F, 
+                0x0A, 
+                0x0A, 
+                0x0B00, 
+                0x0B00
+            }, 
+
+            Package (0x06)
+            {
+                0x03E8, 
+                0x44AE, 
+                0x0A, 
+                0x0A, 
+                0x0A00, 
+                0x0A00
+            }, 
+
+            Package (0x06)
+            {
+                0x0384, 
+                0x3C4D, 
+                0x0A, 
+                0x0A, 
+                0x0900, 
+                0x0900
+            }, 
+
+            Package (0x06)
+            {
+                0x0320, 
+                0x359B, 
+                0x0A, 
+                0x0A, 
+                0x0800, 
+                0x0800
             }
-
-            Return (Zero)
-        }
-
-        Method (APCT, 0, NotSerialized)
+        })
+        Name (PSDF, Zero)
+        Method (_PSD, 0, NotSerialized)  // _PSD: Power State Dependencies
         {
-            If (((CFGD & 0x2E) && !(SDTL & 0x20)))
+            If (!PSDF)
             {
-                SDTL |= 0x20
-                OperationRegion (CST1, SystemMemory, DerefOf (SSDT [0x0A]), DerefOf (SSDT [0x0B]))
-                Load (CST1, HC1) /* \_PR_.CPU1.HC1_ */
+                DerefOf (HPSD [Zero]) [0x04] = TCNT /* External reference */
+                DerefOf (SPSD [Zero]) [0x04] = TCNT /* External reference */
+                PSDF = Ones
             }
+
+            If ((PDC0 & 0x0800))
+            {
+                Return (HPSD) /* \_PR_.CPU0.HPSD */
+            }
+
+            Return (SPSD) /* \_PR_.CPU0.SPSD */
         }
 
-        Method (APPT, 0, NotSerialized)
+        Name (HPSD, Package (0x01)
         {
-            If (((CFGD & One) && !(SDTL & 0x10)))
+            Package (0x05)
             {
-                SDTL |= 0x10
-                OperationRegion (IST1, SystemMemory, DerefOf (SSDT [0x04]), DerefOf (SSDT [0x05]))
-                Load (IST1, HI1) /* \_PR_.CPU1.HI1_ */
+                0x05, 
+                Zero, 
+                Zero, 
+                0xFE, 
+                0x80
             }
-        }
-    }
-
-    Scope (\_PR.CPU2)
-    {
-        Method (_PDC, 1, NotSerialized)  // _PDC: Processor Driver Capabilities
+        })
+        Name (SPSD, Package (0x01)
         {
-            Local0 = \_PR.CPU0.CPDC (Arg0)
-            GCAP (Local0)
-            Return (Local0)
-        }
-
-        Method (_OSC, 4, NotSerialized)  // _OSC: Operating System Capabilities
-        {
-            Local0 = \_PR.CPU0.COSC (Arg0, Arg1, Arg2, Arg3)
-            GCAP (Local0)
-            Return (Local0)
-        }
-
-        Method (GCAP, 1, NotSerialized)
-        {
-            CreateDWordField (Arg0, Zero, STS2)
-            CreateDWordField (Arg0, 0x04, CAP2)
-            If (((STS2 == 0x06) || (STS2 == 0x0A)))
+            Package (0x05)
             {
-                Return (Zero)
+                0x05, 
+                Zero, 
+                Zero, 
+                0xFC, 
+                0x80
             }
-
-            If ((STS2 & One))
-            {
-                CAP2 &= 0x0BFF
-                Return (Zero)
-            }
-
-            PDC2 = ((PDC2 & 0x7FFFFFFF) | CAP2) /* \_PR_.CPU2.GCAP.CAP2 */
-            If (((PDC2 & 0x09) == 0x09))
-            {
-                \_PR.CPU1.APPT ()
-            }
-
-            If ((PDC2 & 0x18))
-            {
-                \_PR.CPU1.APCT ()
-            }
-
-            Return (Zero)
-        }
-    }
-
-    Scope (\_PR.CPU3)
-    {
-        Method (_PDC, 1, NotSerialized)  // _PDC: Processor Driver Capabilities
-        {
-            Local0 = \_PR.CPU0.CPDC (Arg0)
-            GCAP (Local0)
-            Return (Local0)
-        }
-
-        Method (_OSC, 4, NotSerialized)  // _OSC: Operating System Capabilities
-        {
-            Local0 = \_PR.CPU0.COSC (Arg0, Arg1, Arg2, Arg3)
-            GCAP (Local0)
-            Return (Local0)
-        }
-
-        Method (GCAP, 1, NotSerialized)
-        {
-            CreateDWordField (Arg0, Zero, STS3)
-            CreateDWordField (Arg0, 0x04, CAP3)
-            If (((STS3 == 0x06) || (STS3 == 0x0A)))
-            {
-                Return (Zero)
-            }
-
-            If ((STS3 & One))
-            {
-                CAP3 &= 0x0BFF
-                Return (Zero)
-            }
-
-            PDC3 = ((PDC3 & 0x7FFFFFFF) | CAP3) /* \_PR_.CPU3.GCAP.CAP3 */
-            If (((PDC3 & 0x09) == 0x09))
-            {
-                \_PR.CPU1.APPT ()
-            }
-
-            If ((PDC3 & 0x18))
-            {
-                \_PR.CPU1.APCT ()
-            }
-
-            Return (Zero)
-        }
-    }
-
-    Scope (\_PR.CPU4)
-    {
-        Method (_PDC, 1, NotSerialized)  // _PDC: Processor Driver Capabilities
-        {
-            Local0 = \_PR.CPU0.CPDC (Arg0)
-            GCAP (Local0)
-            Return (Local0)
-        }
-
-        Method (_OSC, 4, NotSerialized)  // _OSC: Operating System Capabilities
-        {
-            Local0 = \_PR.CPU0.COSC (Arg0, Arg1, Arg2, Arg3)
-            GCAP (Local0)
-            Return (Local0)
-        }
-
-        Method (GCAP, 1, NotSerialized)
-        {
-            CreateDWordField (Arg0, Zero, STS4)
-            CreateDWordField (Arg0, 0x04, CAP4)
-            If (((STS4 == 0x06) || (STS4 == 0x0A)))
-            {
-                Return (Zero)
-            }
-
-            If ((STS4 & One))
-            {
-                CAP4 &= 0x0BFF
-                Return (Zero)
-            }
-
-            PDC4 = ((PDC4 & 0x7FFFFFFF) | CAP4) /* \_PR_.CPU4.GCAP.CAP4 */
-            If (((PDC4 & 0x09) == 0x09))
-            {
-                \_PR.CPU1.APPT ()
-            }
-
-            If ((PDC4 & 0x18))
-            {
-                \_PR.CPU1.APCT ()
-            }
-
-            Return (Zero)
-        }
-    }
-
-    Scope (\_PR.CPU5)
-    {
-        Method (_PDC, 1, NotSerialized)  // _PDC: Processor Driver Capabilities
-        {
-            Local0 = \_PR.CPU0.CPDC (Arg0)
-            GCAP (Local0)
-            Return (Local0)
-        }
-
-        Method (_OSC, 4, NotSerialized)  // _OSC: Operating System Capabilities
-        {
-            Local0 = \_PR.CPU0.COSC (Arg0, Arg1, Arg2, Arg3)
-            GCAP (Local0)
-            Return (Local0)
-        }
-
-        Method (GCAP, 1, NotSerialized)
-        {
-            CreateDWordField (Arg0, Zero, STS5)
-            CreateDWordField (Arg0, 0x04, CAP5)
-            If (((STS5 == 0x06) || (STS5 == 0x0A)))
-            {
-                Return (Zero)
-            }
-
-            If ((STS5 & One))
-            {
-                CAP5 &= 0x0BFF
-                Return (Zero)
-            }
-
-            PDC5 = ((PDC5 & 0x7FFFFFFF) | CAP5) /* \_PR_.CPU5.GCAP.CAP5 */
-            If (((PDC5 & 0x09) == 0x09))
-            {
-                \_PR.CPU1.APPT ()
-            }
-
-            If ((PDC5 & 0x18))
-            {
-                \_PR.CPU1.APCT ()
-            }
-
-            Return (Zero)
-        }
-    }
-
-    Scope (\_PR.CPU6)
-    {
-        Method (_PDC, 1, NotSerialized)  // _PDC: Processor Driver Capabilities
-        {
-            Local0 = \_PR.CPU0.CPDC (Arg0)
-            GCAP (Local0)
-            Return (Local0)
-        }
-
-        Method (_OSC, 4, NotSerialized)  // _OSC: Operating System Capabilities
-        {
-            Local0 = \_PR.CPU0.COSC (Arg0, Arg1, Arg2, Arg3)
-            GCAP (Local0)
-            Return (Local0)
-        }
-
-        Method (GCAP, 1, NotSerialized)
-        {
-            CreateDWordField (Arg0, Zero, STS6)
-            CreateDWordField (Arg0, 0x04, CAP6)
-            If (((STS6 == 0x06) || (STS6 == 0x0A)))
-            {
-                Return (Zero)
-            }
-
-            If ((STS6 & One))
-            {
-                CAP6 &= 0x0BFF
-                Return (Zero)
-            }
-
-            PDC6 = ((PDC6 & 0x7FFFFFFF) | CAP6) /* \_PR_.CPU6.GCAP.CAP6 */
-            If (((PDC6 & 0x09) == 0x09))
-            {
-                \_PR.CPU1.APPT ()
-            }
-
-            If ((PDC6 & 0x18))
-            {
-                \_PR.CPU1.APCT ()
-            }
-
-            Return (Zero)
-        }
-    }
-
-    Scope (\_PR.CPU7)
-    {
-        Method (_PDC, 1, NotSerialized)  // _PDC: Processor Driver Capabilities
-        {
-            Local0 = \_PR.CPU0.CPDC (Arg0)
-            GCAP (Local0)
-            Return (Local0)
-        }
-
-        Method (_OSC, 4, NotSerialized)  // _OSC: Operating System Capabilities
-        {
-            Local0 = \_PR.CPU0.COSC (Arg0, Arg1, Arg2, Arg3)
-            GCAP (Local0)
-            Return (Local0)
-        }
-
-        Method (GCAP, 1, NotSerialized)
-        {
-            CreateDWordField (Arg0, Zero, STS7)
-            CreateDWordField (Arg0, 0x04, CAP7)
-            If (((STS7 == 0x06) || (STS7 == 0x0A)))
-            {
-                Return (Zero)
-            }
-
-            If ((STS7 & One))
-            {
-                CAP7 &= 0x0BFF
-                Return (Zero)
-            }
-
-            PDC7 = ((PDC7 & 0x7FFFFFFF) | CAP7) /* \_PR_.CPU7.GCAP.CAP7 */
-            If (((PDC7 & 0x09) == 0x09))
-            {
-                \_PR.CPU1.APPT ()
-            }
-
-            If ((PDC7 & 0x18))
-            {
-                \_PR.CPU1.APCT ()
-            }
-
-            Return (Zero)
-        }
+        })
     }
 }
 
