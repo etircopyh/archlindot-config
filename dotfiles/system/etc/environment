@@ -1,13 +1,31 @@
+#
 # Global Environment Variables
+#
 
-# Intel VAAPI Driver name
-LIBVA_DRIVER_NAME=i965
+# QT Wayland Disable CSD
+QT_WAYLAND_DISABLE_WINDOWDECORATION=1
 
-# Intel VDPAU Driver name
-VDPAU_DRIVER=va_gl
+# QT DPI
+QT_WAYLAND_FORCE_DPI=physical
 
-# Qt Logging Info
+# Wayland Support Variables
+#GDK_BACKEND=wayland
+ELM_ACCEL=gl
+ELM_DISPLAY=wl
+MOZ_ENABLE_WAYLAND=1
+QT_QPA_PLATFORM=wayland
+CLUTTER_BACKEND=wayland
+SDL_VIDEODRIVER=wayland
+ECORE_EVAS_ENGINE=wayland_egl
+ELM_ENGINE=wayland_egl
+_JAVA_AWT_WM_NONREPARENTING=1
+
+XDG_SESSION_TYPE=wayland
+
+QT_QPA_PLATFORMTHEME=qt5ct
+
 QT_LOGGING_RULES=*=false
 
-# VSCode KDE Trash delete
-ELECTRON_TRASH=kioclient5 code
+XCURSOR_THEME=Breeze_Contrast
+
+LIBVA_DRIVER_NAME=i965
