@@ -1,2 +1,1 @@
-set background=dark
-syntax on
+.config/nvim/init.vim

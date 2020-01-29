@@ -17,20 +17,21 @@ window#waybar.hidden {
     opacity: 0.2;
 }
 
-/*
 window#waybar.empty {
     background-color: transparent;
 }
+
+/*
 window#waybar.solo {
     background-color: #FFFFFF;
 }
 */
 
-window#waybar.termite {
+window#waybar.alacritty {
     background-color: #3F3F3F;
 }
 
-window#waybar.chromium {
+window#waybar.firefox {
     background-color: #000000;
     border: none;
 }
@@ -44,10 +45,12 @@ window#waybar.chromium {
 
 /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
 #workspaces button:hover {
-/*    background: transparent; */
     box-shadow: inherit;
     text-shadow: inherit;
-    border-bottom: 1px solid gray;
+    background-color: #575757;
+    
+    transition-duration: .3s;
+/*    border-bottom: 1px solid #88A6A8; */
 }
 
 #workspaces button.focused {

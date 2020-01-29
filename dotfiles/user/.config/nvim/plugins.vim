@@ -1,10 +1,3 @@
-set runtimepath^=~/.vim runtimepath+=~/.vim/after
-let &packpath = &runtimepath
-source ~/.config/nvim/config.vim
-source ~/.config/nvim/statusline.vim
-
-call plug#begin('~/.vim/plugged')
-
 " Make sure you use single quotes
 " Plug 'junegunn/seoul256.vim'
 " Plug 'junegunn/vim-easy-align'
@@ -27,6 +20,4 @@ call plug#begin('~/.vim/plugged')
 
 " Unmanaged plugin (manually installed and updated)
 " Plug '~/my-prototype-plugin'
-
-call plug#end()
 

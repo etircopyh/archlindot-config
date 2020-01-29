@@ -47,14 +47,14 @@ set $webcam ffmpeg -i /dev/video0 -frames:v 1 -ss 1 ~/Photos/$(date +'%Y-%m-%d-%
 
 # Application launcher
 #set $menu bemenu-run -p Run: \
-            --fn 'SF Mono 9' \
-            --tb '#282A36' --tf '#ffffff' \
-            --fb '#282A36' --ff '#ffffff' \
-            --nb '#002222' --nf '#ffff21' \
-            --hb '#ffffff' --hf '#cc2132' \
-            --sb '#000000' --sf '#ffffff' \
-            --scb '#aaccff' --scf '#000000' \
-            | xargs swaymsg exec --
+#            --fn 'SF Mono 9' \
+#            --tb '#282A36' --tf '#ffffff' \
+#            --fb '#282A36' --ff '#ffffff' \
+#            --nb '#002222' --nf '#ffff21' \
+#            --hb '#ffffff' --hf '#cc2132' \
+#            --sb '#000000' --sf '#ffffff' \
+#            --scb '#aaccff' --scf '#000000' \
+
 
 # Custom application launcher (needs fzf package)
 #set $launcher alacritty --class='launcher' -e $SHELL -c 'compgen -c | grep -v fzf | sort -u | fzf --layout=reverse | xargs -r swaymsg -t command exec'
@@ -174,7 +174,7 @@ client.unfocused        $bg     $bg         $fg     $bg         $bg
 
     # Custom launch shortcut
     bindsym XF86Launch1 exec $browser
-    
+
     # Bluetooth device chooser
     bindsym --to-code $mod+Shift+b exec $BTconnect
 
@@ -408,17 +408,17 @@ for_window [app_id="telegramdesktop"]   move to workspace 4
 for_window [app_id="kotatogramdesktop"] move to workspace 4
 for_window [app_id="MellowPlayer"]      move to workspace 5
 # Window types
-for_window [window_role="pop-up"]	floating enable
-for_window [window_role="bubble"]	floating enable
-for_window [window_role="task_dialog"]	floating enable
-for_window [window_role="Preferences"]	floating enable
+for_window [window_role="pop-up"]       floating enable
+for_window [window_role="bubble"]       floating enable
+for_window [window_role="task_dialog"]  floating enable
+for_window [window_role="Preferences"]  floating enable
 
-for_window [window_type="dialog"]	floating enable
-for_window [window_type="menu"]		floating enable
+for_window [window_type="dialog"]       floating enable
+for_window [window_type="menu"]         floating enable
 # Custom windows
 for_window [app_id="^BTconnect$"]       focus, floating enable, resize set width 450 height 300, border normal, opacity 0.95
 for_window [app_id="dropdown"]          focus, floating enable, move to scratchpad, scratchpad show, sticky enable, resize set width 700 px height 400 px, move absolute position 350 px 20 px, opacity 0.95, border pixel 3, mark dropdown
-for_window [app_id="htop(?i)"] floating enable
+for_window [app_id="htop(?i)"]          floating enable
 for_window [app_id="firefox" title="Picture-in-Picture"]    floating enable, sticky enable, mark Firefox Picture-in-Picture
 
 
