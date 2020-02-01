@@ -1,7 +1,7 @@
 # Mako config
 
 # Font
-font=Noto Sans Display 9
+font=SF Compact Display
 # Notification dimensions
 width=440
 height=140
@@ -9,14 +9,13 @@ padding=10
 margin=15
 # Appearance
 icons=1
-#icon-path=/usr/share/icons/Yaru
 max-icon-size=32
 markup=1
 # Borders
 border-size=5
 border-radius=2
 # Setup
-default-timeout=4000
+default-timeout=6000
 max-visible=3
 # Colors
 border-color=#17202AFF
