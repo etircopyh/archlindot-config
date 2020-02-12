@@ -75,6 +75,13 @@ bindkey '^[[1;5B' history-substring-search-down
 
 
 #----------------------------------------
+# FZF
+#----------------------------------------
+source /usr/share/fzf/completion.zsh
+source /usr/share/fzf/key-bindings.zsh
+
+
+#----------------------------------------
 # Sway boot
 #----------------------------------------
 #source $ZDOTDIR/.swayboot
