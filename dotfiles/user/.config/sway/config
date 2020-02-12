@@ -3,7 +3,7 @@
 # man 5 sway
 
 ### Autostart
-exec dex -a -s ~/.config/autostart
+exec dex -e Sway -a -s ~/.config/autostart
 exec find ~/.config/autostart-scripts/*.sh | sh -
 exec_always makoctl reload
 exec_always {
@@ -39,10 +39,10 @@ set $dropdown (pgrep -a $term | grep dropdown) && \
 # Browser
 set $browser firefox
 # Screen recorder
-set $screencast wf-recorder -a -f ~/Screencasts/$(date +'%Y-%m-%d-%H:%M_screencast').mp4
+set $screencast wf-recorder -a -f ~/Screencasts/$(date +'%Y-%m-%d-%H:%M:%S_screencast').mp4
 set $regioncast wf-recorder -a -g "$(slurp -c '#990000FF' -s '#2F4F4F28' -b '#00000046' -d)"
 # WebCam
-set $webcam ffmpeg -i /dev/video0 -frames:v 1 -ss 1 ~/Photos/$(date +'%Y-%m-%d-%H:%M_webcam').png
+set $webcam ffmpeg -i /dev/video0 -frames:v 1 -ss 1 ~/Photos/$(date +'%Y-%m-%d-%H:%M:%S_webcam').png
 
 
 # Application launcher
@@ -64,10 +64,13 @@ for_window [app_id="^launcher$"] focus, floating enable, resize set width 400 px
 #bindsym --to-code $mod+y exec j4-dmenu-desktop --no-generic --dmenu='wofi --dmenu' --term=alacritty
 
 # Screenshot
-set $regionshot     grim -g \"$(slurp -c '#990000FF' -s '#2F4F4F28' -b '#00000046' -d)" - | wl-copy
-set $regionshotfile grim -g \"$(slurp -c '#990000FF' -s '#2F4F4F28' -b '#00000046' -d)" ~/Screenshots/$(date +'%Y-%m-%d-%H:%M_regionshot').png
+set $regionshot     grim -g \"$(slurp -c '#990000FF' -s '#2F4F4F28' -b '#00000046' -d)" - | wl-copy | > ~/Screenshots/$(date +'%Y-%m-%d-%H:%M:%S_screenshot').png
+set $regionshotfile grim -g \"$(slurp -c '#990000FF' -s '#2F4F4F28' -b '#00000046' -d)" ~/Screenshots/$(date +'%Y-%m-%d-%H:%M:%S_regionshot').png
 set $screenshot     grim - | wl-copy
-set $screenshotfile grim ~/Screenshots/$(date +'%Y-%m-%d-%H:%M_screenshot').png
+set $screenshotfile grim ~/Screenshots/$(date +'%Y-%m-%d-%H:%M:%S_screenshot').png
+set $shotscreen     $SHELL ~/.config/sway/scripts/screenshot.sh
+set $shotregion     $SHELL ~/.config/sway/scripts/regionshot.sh
+set $shotwindow     $SHELL ~/.config/sway/scripts/windowshot.sh
 
 # Color picker
 set $colorpick grim -g "$(slurp -p)" -t ppm - | convert - -format '%[pixel:p{0,0}]' txt:- | wl-copy
@@ -102,12 +105,13 @@ font pango:$font_family $font_size
 
 ### Output configuration
 #
-output LVDS-1 {
-    res 1366x768@60.022999Hz
-    pos 0,0
-    bg  ~/.config/sway/wallpapers/futuristic-character.jpeg fill
-    subpixel none
-}
+    # Laptop screen
+    output LVDS-1 {
+        res 1366x768@60.022999Hz
+        pos 0,0
+        bg  ~/.config/sway/wallpapers/futuristic-character.jpeg fill
+        subpixel none
+    }
 
 
 ### Idle configuration
@@ -124,7 +128,7 @@ output LVDS-1 {
     # Keyboard configuration
     input "1:1:AT_Translated_Set_2_keyboard" {
         xkb_layout  us,ru
-        xkb_model   pc102
+        xkb_model   asus_laptop
         xkb_options grp:ctrl_shift_toggle
         xkb_numlock enabled
     }
@@ -201,10 +205,9 @@ client.unfocused        $bg     $bg         $fg     $bg         $bg
 
     # Make a screenshot
     bindsym --release {
-        Print               exec $regionshot
-        $mod+Print          exec $regionshotfile
-        Shift+Print         exec $screenshot
-        $mod+Shift+Print    exec $screenshotfile
+        Print               exec $shotregion
+        Shift+Print         exec $shotscreen
+        $mod+Print          exec $shotwindow
     }
 
     # Record the screen
@@ -314,35 +317,39 @@ client.unfocused        $bg     $bg         $fg     $bg         $bg
     # Show scratchpad window
     bindsym $mod+minus scratchpad show
 
-# TouchPad toggle
-bindsym XF86TouchpadToggle input "2:7:SynPS/2_Synaptics_TouchPad" events toggle enabled disabled
+#
+# Fn keybindings
+#
 
-# WebCam
-bindsym XF86WebCam exec $webcam
+    # TouchPad toggle
+    bindsym XF86TouchpadToggle input "2:7:SynPS/2_Synaptics_TouchPad" events toggle enabled disabled
 
-# Calculator
-bindsym XF86Calculator exec $calc
+    # WebCam
+    bindsym XF86WebCam exec $webcam
 
-# Music Control
-bindsym {
-    XF86AudioPrev exec playerctl previous
-    XF86AudioNext exec playerctl next
-    XF86AudioPlay exec playerctl play-pause
-    XF86AudioStop exec playerctl stop
-}
+    # Calculator
+    bindsym XF86Calculator exec $calc
 
-# PulseAudio Control
-bindsym {
-    XF86AudioRaiseVolume    exec pactl set-sink-volume  @DEFAULT_SINK@ +5%
-    XF86AudioLowerVolume    exec pactl set-sink-volume  @DEFAULT_SINK@ -5%
-    XF86AudioMute           exec pactl set-sink-mute    @DEFAULT_SINK@ toggle
-}
+    # Music Control
+    bindsym {
+        XF86AudioPrev exec playerctl previous
+        XF86AudioNext exec playerctl next
+        XF86AudioPlay exec playerctl play-pause
+        XF86AudioStop exec playerctl stop
+    }
 
-# Brightness Control
-bindsym {
-    XF86MonBrightnessDown   exec brightnessctl set 5%-
-    XF86MonBrightnessUp     exec brightnessctl set 5%+
-}
+    # PulseAudio Control
+    bindsym {
+        XF86AudioRaiseVolume    exec pactl set-sink-volume  @DEFAULT_SINK@ +5%
+        XF86AudioLowerVolume    exec pactl set-sink-volume  @DEFAULT_SINK@ -5%
+        XF86AudioMute           exec pactl set-sink-mute    @DEFAULT_SINK@ toggle
+    }
+
+    # Brightness Control
+    bindsym {
+        XF86MonBrightnessDown   exec brightnessctl set 5%-
+        XF86MonBrightnessUp     exec brightnessctl set 5%+
+    }
 
 #
 # Resizing containers:
