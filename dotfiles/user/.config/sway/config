@@ -127,22 +127,23 @@ font pango:$font_family $font_size
 #
     # Keyboard configuration
     input "1:1:AT_Translated_Set_2_keyboard" {
-        xkb_layout  us,ru
-        xkb_model   asus_laptop
-        xkb_options grp:ctrl_shift_toggle
-        xkb_numlock enabled
+        xkb_layout          us,ru
+        xkb_model           asus_laptop
+        xkb_options         grp:ctrl_shift_toggle
+        xkb_numlock         enabled
     }
 
     # Mouse configuration
     input "6447:1814:Avago_USB_LaserStream(TM)_Mouse" {
-        accel_profile flat
-        pointer_accel 0
+        accel_profile       flat
+        pointer_accel       0
     }
 
     # TouchPad configuration
     input "2:7:SynPS/2_Synaptics_TouchPad" {
-        dwt enabled
-        tap enabled
+        events              disabled
+        dwt                 enabled
+        tap                 enabled
         natural_scroll      disabled
         middle_emulation    disabled
         scroll_method       two_finger
