@@ -165,9 +165,7 @@
     },
     "custom/kbdlayout": {
         "format": "{} ",
-        "exec": "$SHELL ~/.config/sway/scripts/kbd_layout.sh",
-        "interval": 1,
-        "escape": true,
+        "exec": "$SHELL ~/.config/sway/scripts/kbd.sh",
         "tooltip": false
     },
     "custom/bt": {
