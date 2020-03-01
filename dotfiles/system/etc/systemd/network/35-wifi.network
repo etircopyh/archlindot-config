@@ -3,3 +3,5 @@ Name=wlan0
 
 [Network]
 DHCP=ipv4
+LinkLocalAddressing=no
+IPv6AcceptRA=no
