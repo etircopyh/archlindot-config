@@ -3,9 +3,10 @@
 #----------------------------------------
 export SYSTEM=$(uname -s)
 export ZSHCONFIG=~/.zsh-config
-export BROWSER='firefox'
-export EDITOR='nvim'
-export VISUAL='nvim'
+export BROWSER=firefox
+export EDITOR=nvim
+export VISUAL=$EDITOR
+export SYSTEMD_EDITOR=$EDITOR
 
 #----------------------------------------
 # Temporary Variables
