@@ -1,0 +1,30 @@
+#
+# SwayWM specific variables
+#
+
+# Session XDG specification
+XDG_SESSION_TYPE=wayland
+XDG_SESSION_DESKTOP=sway
+XDG_CURRENT_DESKTOP=sway
+DESKTOP_SESSION=sway
+
+# XKB
+XKB_DEFAULT_LAYOUT=us
+
+# QT Wayland Disable CSD
+QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+
+# QT DPI
+QT_WAYLAND_FORCE_DPI=physical
+
+# Wayland Support Variables
+#GDK_BACKEND=wayland
+ELM_ACCEL=gl
+ELM_DISPLAY=wl
+ELM_ENGINE=wayland_egl
+MOZ_ENABLE_WAYLAND=1
+QT_QPA_PLATFORM=wayland-egl
+CLUTTER_BACKEND=wayland
+SDL_VIDEODRIVER=wayland
+ECORE_EVAS_ENGINE=wayland_egl
+_JAVA_AWT_WM_NONREPARENTING=1
