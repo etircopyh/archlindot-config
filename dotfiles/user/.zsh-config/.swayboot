@@ -2,6 +2,6 @@
 # Sway boot from TTY1
 #----------------------------------------
 
-if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
-    XKB_DEFAULT_LAYOUT=us exec sway 2> ~/.logs/sway.log
+if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]] && [ -f /bin/sway ]; then
+    systemctl --user start sway.service
 fi
