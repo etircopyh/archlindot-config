@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 DEFAULT_LAYOUT="English (US)"
 

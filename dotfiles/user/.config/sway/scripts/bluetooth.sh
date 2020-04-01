@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 connected=$(bluetoothctl info | grep -e 'Connected: yes')
 disconnected=$(bluetoothctl info | grep -e 'Missing device')
 btname=$(bluetoothctl info | grep Name: | awk '{$1=""; print $0}')

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 filename=$(date +'%Y-%m-%d-%H:%M_screencast')
 isscreencastup=$(pgrep -a wf-recorder)
 
