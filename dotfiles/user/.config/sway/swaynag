@@ -3,25 +3,25 @@ font=Montserrat Alternates 13
 
 [warning]
 background=282A36
-border=FFFFFFFF
-border-bottom=464E59
-button-background=9B59B6
-text=#FFFFFF
+border=1B1918
+border-bottom=282A36
+button-background=947CB0
+text=C8f7C5
 border-bottom-size=2
 message-padding=5
 details-border-size=0
-button-border-size=1
-button-gap=3
+button-border-size=3
+button-gap=25
 button-dismiss-gap=2
 button-margin-right=5
 button-padding=3
 
 [error]
-background=B21363
+background=F03434
 border=191919
 border-bottom=464E59
 button-background=9B59B6
-text=FFFFFF
+text=C8f7C5
 border-bottom-size=2
 message-padding=5
 details-border-size=0
