@@ -1,5 +1,6 @@
 [core]
     excludesfile = ~/.config/git/ignore
+	editor = nvim
 [user]
     name = Ivan
     email = etircopyhdot@gmail.com
@@ -22,3 +23,18 @@
     username = etircopyh
 [gpg]
     program = gpg2
+
+[diff]
+    tool = nvimdiff
+    guitool = kompare
+[difftool]
+    prompt = false
+[difftool "nvimdiff"]
+    cmd = nvim -d $LOCAL $REMOTE -c '$wincmd w' -c 'wincmd J'
+
+[merge]
+	tool = nvimdiff
+[mergetool]
+	keepBackup = false
+[mergetool "nvimdiff"]
+	cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
