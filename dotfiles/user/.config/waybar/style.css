@@ -10,6 +10,8 @@ window#waybar {
     background-color: rgba(40, 42, 54, 1.0);
 /*    border-bottom: 3px solid rgba(100, 114, 125, 0.5); */
 
+    color: #ffffff;
+    transition-property: background-color;
     transition-duration: .5s;
 }
 
@@ -28,12 +30,20 @@ window#waybar.solo {
 */
 
 window#waybar.alacritty {
-    background-color: #3F3F3F;
+    background-color: #191919;
 }
 
 window#waybar.firefox {
-    background-color: #000000;
+    background-color: #0C0C0D;
     border: none;
+}
+
+window#waybar.kotatogramdesktop, window#waybar.telegramdesktop {
+    background-color: #221E2A;
+}
+
+window#waybar.code {
+    background-color: #31363B;
 }
 
 #workspaces button {
@@ -203,8 +213,8 @@ label:focus {
 }
 
 #tray {
-    background-color: #2980b9;
-    border-radius: 4px;
+/*    background-color: rgba(46, 49, 49, 0.9); */
+    border-radius: 2px;
 }
 
 #idle_inhibitor {

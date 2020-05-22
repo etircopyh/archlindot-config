@@ -4,20 +4,20 @@
     "height": 20, // Waybar height (to be removed for auto height)
     // "width": 1366, // Waybar width
     // Choose the order of the modules
-    "modules-left": ["sway/workspaces", "sway/mode", "custom/media"],
-    "modules-center": ["clock"],
-    "modules-right": ["custom/kbdlayout", "custom/bt", "pulseaudio", "network", "cpu", "memory", "temperature", "backlight", "custom/power"],
+    "modules-left": [ "sway/workspaces", "sway/mode", "custom/media", "sway/window" ],
+    "modules-center": [ "clock" ],
+    "modules-right": [ "custom/kbdlayout", "custom/bt", "pulseaudio", "network", "cpu", "memory", "temperature", "backlight", "custom/power", "tray" ],
     // Modules configuration
     "sway/workspaces": {
         "disable-scroll": true,
         "all-outputs": true,
         "format": "{icon}",
         "format-icons": {
-//            "1": "",
-//            "2": "",
-//            "3": "",
-//            "4": "",
-//            "5": "",
+    //      "1": "",
+    //      "2": "",
+    //      "3": "",
+    //      "4": "",
+    //      "5": "",
             "urgent": "",
             "focused": "",
             "default": ""
@@ -65,13 +65,14 @@
         }
     },
     "tray": {
-        "icon-size": 21,
+        "icon-size": 20,
         "spacing": 10
     },
     "clock": {
-        "tooltip-format": "{:%Y-%m-%d | %I:%M %p}",
+        // "timezone": "America/New_York",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         "format": "{:%I:%M %p}",
-        "format-alt": "{:%Y-%m-%d %a}",
+        "format-alt": "{:%Y-%m-%d %A}",
         "interval": 60
     },
     "cpu": {
@@ -92,13 +93,13 @@
         "critical-threshold": 80,
         "format-critical": "{temperatureC}°C {icon}",
         "format": "{temperatureC}°C {icon}",
-        "format-icons": ["", "", ""],
+        "format-icons": [ "", "", "" ],
         "interval": 5
     },
     "backlight": {
         "device": "intel_backlight",
         "format": "{percent}% {icon}",
-        "format-icons": ["", ""]
+        "format-icons": [ "", "" ]
     },
     "battery": {
         "states": {
@@ -112,7 +113,7 @@
         "format-alt": "{time} {icon}",
         // "format-good": "", // An empty format will hide the module
         // "format-full": "",
-        "format-icons": ["", "", "", "", ""]
+        "format-icons": [ "", "", "", "", "" ]
     },
     "battery#bat2": {
         "bat": "BAT2"
@@ -138,12 +139,12 @@
         "format-source-muted": "",
         "format-icons": {
             "headphones": "",
-            "handsfree": "",
+            "hands-free": "",
             "headset": "",
             "phone": "",
             "portable": "",
             "car": "",
-            "default": ["", "", ""]
+            "default": [ "", "", "" ]
         },
         "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
         "on-click-right": "pavucontrol-qt"
@@ -195,7 +196,7 @@
             "default": "🎜"
         },
         "escape": true,
-        "exec": "$SHELL ~/.config/waybar/player.sh 2> /dev/null" // Script in resources folder
-        // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+        // "exec": "sh ~/.config/waybar/player.sh 2> /dev/null" // Script in resources folder
+        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Filter player based on name
     }
 }
