@@ -16,13 +16,13 @@ Exec=MOZ_DISABLE_CONTENT_SANDBOX=1 MOZ_ENABLE_WAYLAND=1 /usr/lib/firefox/firefox
 GenericName=Web Browser
 Icon=firefox
 Keywords=Internet;WWW;Browser;Web;Explorer
-MimeType=text/html;text/xml;application/xhtml+xml;x-scheme-handler/http;x-scheme-handler/https;application/x-xpinstall;
+MimeType=text/html;text/xml;application/xhtml+xml;x-scheme-handler/http;x-scheme-handler/https;application/x-xpinstall;application/pdf;application/json;
 Name=Firefox
 NoDisplay=false
 Path[$e]=
 StartupNotify=true
 StartupWMClass=firefox
-Terminal=0
+Terminal=false
 TerminalOptions=
 Type=Application
 Version=1.0
