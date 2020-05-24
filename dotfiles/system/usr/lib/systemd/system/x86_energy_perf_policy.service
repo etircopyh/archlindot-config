@@ -1,5 +1,6 @@
 [Unit]
 Description=Performance mode for ENERGY_PERF_BIAS
+After=graphical.target
 
 [Service]
 Type=oneshot
