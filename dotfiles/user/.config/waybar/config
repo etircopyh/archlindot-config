@@ -195,8 +195,13 @@
             "spotify": "",
             "default": "🎜"
         },
-        "escape": true,
+        "on-click": "playerctl play-pause",
+		"on-scroll-up": "playerctl position 3+",
+		"on-scroll-down": "playerctl position 3-",
+        // "escape": true,
+        "exec": "sh ~/.config/sway/scripts/playerctl.sh 2> /dev/null"
         // "exec": "sh ~/.config/waybar/player.sh 2> /dev/null" // Script in resources folder
-        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Filter player based on name
+        // "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Filter player based on name
+        // "exec": "$HOME/GitRepos/RUST/mpris-barmodule/target/debug/mpris-barmodule 2> /dev/null"
     }
 }
