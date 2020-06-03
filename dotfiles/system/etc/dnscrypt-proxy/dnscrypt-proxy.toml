@@ -29,7 +29,7 @@
 ##
 ## Remove the leading # first to enable this; lines starting with # are ignored.
 
-server_names = [ 'cloudflare', 'google', 'ads-dnswarden-dc1', 'dnswarden-doh2' ]
+server_names = [ 'cloudflare', 'dnscrypt.eu-nl', 'v.dnscrypt.uk-ipv4', 'ads-dnswarden-dc1', 'dnswarden-doh2' ]
 
 
 ## List of local addresses and ports to listen to. Can be IPv4 and/or IPv6.
