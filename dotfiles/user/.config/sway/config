@@ -85,18 +85,11 @@ set $BTconnect exec alacritty --title='Bluetooth devices' --class='BTconnect' -e
 # Notifications
 set $notify notify-send -t 3000
 
-# Tiling
+# Options
 default_orientation auto
-
-# swaynag
 swaynag_command swaynag -c ~/.config/sway/swaynag
-
-# XWayland
 xwayland enable
-
-# Title bars
 default_border none
-
 #focus_follows_mouse always
 
 # Gaps
