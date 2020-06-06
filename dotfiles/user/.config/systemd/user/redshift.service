@@ -1,0 +1,9 @@
+[Unit]
+Description=Redshift - color temp adjustment.
+
+[Service]
+Type=simple
+ExecStart=-%h/.bin/redshift
+
+[Install]
+WantedBy=default.target
