@@ -1,10 +1,42 @@
 #----------------------------------------
 # Shell aliases
 #----------------------------------------
+#
+#
+# Linux utils
+alias clr='clear'
+alias cat='bat -p'
+alias diff='nvim -d'
+#alias diff='diff --color=always'
+alias cp='cp -v'
+alias ln='ln -v'
+alias mv='mv -v'
+alias rm='rm -v'
+alias rmrf='rm -rf'
+alias rmdir='rm -rf'
+alias mkdir='mkdir -pv'
+alias rcp='rsync -v --progress'
+alias chmod='chmod -c'
+alias chown='chown -c'
+alias own='sudo chown $USER:$USER'
+alias grep='rg --color=auto'
+alias fgrep='rg -F --color=auto'
+alias egrep='rg -e --color=auto'
+alias ls='exa --color=auto --group-directories-first'
+alias ll='exa --color=auto --group-directories-first -l'
+alias la='exa --color=auto --group-directories-first -la'
+
+# Regular aliases
+alias oldvim='vim'
+alias vi='$EDITOR'
+alias vim='nvim'
+alias r='ranger'
+alias q=exit
+
 # su
 alias root='sudo -i'
-#alias su='sudo -i'
 alias sudo='sudo '
+alias fuck='sudo !!'
 #alias pacman='sudo pacman'
 alias suvi='sudo $EDITOR'
 alias sucp='sudo cp'
@@ -13,11 +45,9 @@ alias suln='sudo ln'
 alias surm='sudo rm'
 alias surmdir='sudo rm -rf'
 alias sumkdir='sudo mkdir'
-# Regular aliases
-alias oldvim='unalias vim && vim'
-alias vi='$EDITOR'
-alias vim='nvim'
+
 # systemctl
+# source ~/.zsh-config/systemd.zsh
 alias sctl='sudo systemctl'
 alias sctl-failed='systemctl --failed'
 alias sctl-st='systemctl status'
@@ -95,24 +125,12 @@ alias fontcache='fc-cache -fvr && sudo fc-cache -fvrs'
 alias fontcache32='fc-cache-32 -fvr && sudo fc-cache-32 -fvrs'
 # Misc
 alias mnt='mount | column -t'
-alias clr='clear'
-alias cat='bat -p'
-alias cp='cp -v'
-alias ln='ln -v'
-alias mv='mv -v'
-alias rm='rm -v'
-alias rmdir='rmdir -v'
-alias mkdir='mkdir -pv'
-alias rcp='rsync -v --progress'
-alias chmod='chmod -c'
-alias chown='chown -c'
-alias own='sudo chown $USER:$USER'
-alias ls='ls --color=auto --human-readable --group-directories-first'
-alias ll='ls --color=auto --human-readable --group-directories-first -l'
-alias lla='ls --color=auto --human-readable --group-directories-first -la'
+alias unicodeboot='iconv -f ASCII -t UTF-16 options.txt | dd bs=1 skip=2 > optionsunicode.txt'
+
+# ffmpeg
+
 # System info
 alias meminfo='free -mlt'
-alias procmem="sudo ps_mem | awk '{print $7,$8,"—",$9}' | head -n -3 | tail -n +3 | awk '{$1=sprintf("%.1f",$1)}1' | column -t"
 alias cpuinfo='lscpu'
 alias sensors='watch -n 1 "sensors"'
 alias ping='ping -c 5'
@@ -130,6 +148,7 @@ alias nowdate='date +"%d-%m-%Y"'
 alias untar='tar -zxvf '
 alias sha='shasum -a 256 '
 alias ping='ping -c 5'
+alias cursorup='setterm -cursor on >> /etc/issue'
 alias www='python -m SimpleHTTPServer 8000'
 alias ipv4='lsof -Pnl +M -i4'
 alias ipv6='lsof -Pnl +M -i6'
@@ -139,9 +158,6 @@ alias fontlist='fc-list --format="%{family[0]}\n" | sort | uniq'
 #alias ls='ls --color=auto'
 alias dir='dir --color=auto'
 alias vdir='vdir --color=auto'
-alias grep='grep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}'
-alias fgrep='fgrep --color=auto'
-alias egrep='egrep --color=auto'
-alias diff='diff --color=always'
+#alias grep='grep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}'
 # alias make='colormake'
 # alias gcc='colorgcc' 
