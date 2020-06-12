@@ -3,6 +3,7 @@
 # man 5 sway
 
 ### Autostart
+exec systemctl --user start redshift.service
 exec dex -e Sway -a -s ~/.config/autostart
 exec find ~/.config/autostart-scripts/*.sh | sh -
 exec_always makoctl reload
@@ -147,6 +148,7 @@ input $touchpad {
     natural_scroll      disabled
     middle_emulation    disabled
     scroll_method       two_finger
+    scroll_factor       0.8
 }
 #
 # man 5 sway-input
