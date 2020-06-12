@@ -58,7 +58,7 @@ window:
   #title: Alacritty
 
   # Window class (Linux only):
-  #class: Alacritty
+  #class: Terminal
 
 scrolling:
   # Maximum number of lines in the scrollback buffer.
@@ -464,9 +464,10 @@ debug:
 #   - AppKeypad
 #
 key_bindings:
-  - { key: 0x2F,        mods: Control,          action: Paste           }
-  - { key: 0x2E,        mods: Control|Shift,    action: Copy            }
-  - { key: Insert,      mods: Shift,            action: PasteSelection  }
+  - { key: 0x2F,        mods: Control,          action: Paste                }
+  - { key: 0x2E,        mods: Control|Shift,    action: Copy                 }
+  - { key: Insert,      mods: Shift,            action: PasteSelection       }
+  - { key: T,           mods: Control,          action: SpawnNewInstance     }
   #- { key: Key0,     mods: Control,       action: ResetFontSize    }
   #- { key: Equals,   mods: Control,       action: IncreaseFontSize }
   #- { key: Add,      mods: Control,       action: IncreaseFontSize }
