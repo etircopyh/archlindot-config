@@ -127,7 +127,7 @@ output LVDS-1 {
 ### Input configuration
 #
 # Keyboard configuration
-input $keyboard {
+input type:keyboard {
     xkb_layout          us,ru
     xkb_model           asus_laptop
     xkb_options         grp:caps_toggle,grp:switch,altwin:menu_win
@@ -135,13 +135,13 @@ input $keyboard {
 }
 
 # Mouse configuration
-input $mouse {
+input type:pointer {
     accel_profile       flat
     pointer_accel       0
 }
 
 # TouchPad configuration
-input $touchpad {
+input type:touchpad {
     events              disabled
     dwt                 enabled
     tap                 enabled
