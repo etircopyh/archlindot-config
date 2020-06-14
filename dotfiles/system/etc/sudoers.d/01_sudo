@@ -1,0 +1,18 @@
+## sudoers
+##
+## man 5 sudoers
+
+##
+## Default specification
+##
+Defaults passwd_timeout=0
+Defaults passprompt="[sudo] password for %p: "
+
+##
+## User privilege specification
+##
+root    ALL = (ALL) ALL
+
+## Allow members of group wheel to execute any command
+%wheel  ALL = (ALL) ALL
+
