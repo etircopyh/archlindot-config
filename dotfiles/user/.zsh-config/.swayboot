@@ -1,7 +1,8 @@
+#!/bin/sh
 #----------------------------------------
-# Sway boot from TTY1
+# Sway
 #----------------------------------------
 
-if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]] && [ -f /bin/sway ]; then
-    systemctl --user start sway.service
+if [ -z "$DISPLAY" ] && [ "$(tty)" = /dev/tty1 ] && [ -f "$(which sway)" ]; then
+    exec "$HOME"/.bin/sway-run
 fi
