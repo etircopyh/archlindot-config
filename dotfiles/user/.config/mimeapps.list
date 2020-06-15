@@ -1,6 +1,6 @@
 [Default Applications]
 inode/directory=ranger.desktop
-image/svg+xml=firefox.desktop
+image/svg+xml=imv.desktop
 image/webp=imv.desktop
 image/png=imv.desktop
 image/gif=imv.desktop
