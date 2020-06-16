@@ -1,22 +1,22 @@
 /*
  * Intel ACPI Component Architecture
- * AML/ASL+ Disassembler version 20191213 (64-bit version)
- * Copyright (c) 2000 - 2019 Intel Corporation
+ * AML/ASL+ Disassembler version 20200528 (64-bit version)
+ * Copyright (c) 2000 - 2020 Intel Corporation
  * 
  * Disassembling to symbolic ASL+ operators
  *
- * Disassembly of ssdt2.dat, Sun Jan 12 17:22:32 2020
+ * Disassembly of ssdt2.dat, Wed Jun 17 01:55:38 2020
  *
  * Original Table Header:
  *     Signature        "SSDT"
  *     Length           0x000009F8 (2552)
  *     Revision         0x01
- *     Checksum         0x98
+ *     Checksum         0x80
  *     OEM ID           "PmRef"
  *     OEM Table ID     "CpuPm"
- *     OEM Revision     0x00003001 (12289)
+ *     OEM Revision     0x00003002 (12290)
  *     Compiler ID      "INTL"
- *     Compiler Version 0x20190509 (538510601)
+ *     Compiler Version 0x20191213 (538513939)
  */
 DefinitionBlock ("", "SSDT", 1, "PmRef", "CpuPm", 0x00003002)
 {

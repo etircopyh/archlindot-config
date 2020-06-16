@@ -1,22 +1,22 @@
 /*
  * Intel ACPI Component Architecture
- * AML/ASL+ Disassembler version 20191213 (64-bit version)
- * Copyright (c) 2000 - 2019 Intel Corporation
+ * AML/ASL+ Disassembler version 20200528 (64-bit version)
+ * Copyright (c) 2000 - 2020 Intel Corporation
  * 
  * Disassembling to symbolic ASL+ operators
  *
- * Disassembly of dsdt.dat, Sun Jan 12 17:13:56 2020
+ * Disassembly of dsdt.dat, Wed Jun 17 01:53:14 2020
  *
  * Original Table Header:
  *     Signature        "DSDT"
  *     Length           0x000101BF (65983)
  *     Revision         0x01 **** 32-bit table (V1), no 64-bit math support
- *     Checksum         0xA2
+ *     Checksum         0x8A
  *     OEM ID           "_ASUS_"
  *     OEM Table ID     "Notebook"
- *     OEM Revision     0x00000001 (1)
+ *     OEM Revision     0x00000002 (2)
  *     Compiler ID      "INTL"
- *     Compiler Version 0x20190509 (538510601)
+ *     Compiler Version 0x20191213 (538513939)
  */
 DefinitionBlock ("", "DSDT", 1, "_ASUS_", "Notebook", 0x00000002)
 {
