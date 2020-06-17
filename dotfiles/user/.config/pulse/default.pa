@@ -44,7 +44,7 @@ load-module module-switch-on-port-available
 
 ### Automatically load driver modules depending on the hardware available
 .ifexists module-udev-detect.so
-load-module module-udev-detect tsched=0
+load-module module-udev-detect
 .else
 ### Use the static hardware detection module (for systems that lack udev support)
 load-module module-detect
@@ -152,7 +152,7 @@ load-module module-filter-apply
 #
 set-default-sink alsa_output.pci-0000_00_1b.0.analog-stereo
 
-## load ladspa module
+## LADSPA module
 .ifexists module-ladspa-sink.so
 .nofail
 # mono
@@ -162,5 +162,11 @@ load-module module-ladspa-sink sink_name=compressor-stereo plugin=sc4_1882 label
 .fail
 .endif
 
-# set our custom compressor audio as default
+# Set our custom compressor audio as default
 set-default-sink compressor-stereo
+
+### Enable Echo/Noise-Cancellation
+#load-module module-echo-cancel use_master_format=1 aec_method=webrtc aec_args="analog_gain_control=0\ digital_gain_control=1" source_name=echoCancel_source sink_name=echoCancel_sink
+#set-default-source echoCancel_source
+#set-default-sink echoCancel_sink
+
