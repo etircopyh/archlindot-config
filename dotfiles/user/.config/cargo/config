@@ -1,5 +1,26 @@
 [alias]
-b = "build"
-c = "check"
-t = "test"
-r = "run"
+b   = "build"
+c   = "check"
+t   = "test"
+r   = "run"
+rr  = "run --release"
+wt  = ["watch", "-x", "test --quiet"]
+
+[cargo-new]
+name    = "etircopyh"               # name to use in `authors` field
+email   = "etircopyh@gmail.com"     # email address to use in `authors` field
+vcs     = "git"                     # VCS to use ('git', 'hg', 'pijul', 'fossil', 'none')
+
+[http]
+debug           = false             # HTTP debugging
+ssl-version     = "tlsv1.3"         # TLS version to use
+ssl-version.max = "tlsv1.3"         # maximum TLS version
+ssl-version.min = "tlsv1.3"         # minimum TLS version
+timeout         = 30                # timeout for each HTTP request, in seconds
+low-speed-limit = 10                # network timeout threshold (bytes/sec)
+check-revoke    = true              # check for SSL certificate revocation
+multiplexing    = true              # HTTP/2 multiplexing
+
+[term]
+verbose = false                     # whether cargo provides verbose output
+color   = 'auto'                    # whether cargo colorizes output
