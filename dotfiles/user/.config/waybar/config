@@ -11,7 +11,7 @@
     "sway/workspaces": {
         "disable-scroll": true,
         "all-outputs": true,
-        "format": "{icon}",
+        "format": "{name}",
         "format-icons": {
     //      "1": "",
     //      "2": "",
@@ -78,13 +78,13 @@
     "cpu": {
         "format": "{usage}% ",
         "interval": 15,
-	"on-click-right": "alacritty --class='htop-cpu' -e htop -s PERCENT_CPU",
+    "on-click-right": "alacritty --class='htop-cpu' -e htop -s PERCENT_CPU",
         "tooltip": false
     },
     "memory": {
         "interval": 30,
         "format": "{}% ",
-	"on-click-right": "alacritty --class='htop-mem' -e htop -s PERCENT_MEM",
+    "on-click-right": "alacritty --class='htop-mem' -e htop -s PERCENT_MEM",
         "tooltip":false
     },
     "temperature": {
@@ -166,16 +166,24 @@
     },
     "custom/kbdlayout": {
         "format": "{} ",
-        "exec": "$SHELL ~/.config/sway/scripts/kbd.sh",
+        "exec": "$SHELL ~/.config/waybar/modules/kbd.sh",
         "tooltip": false
     },
     "custom/bt": {
-        "format": "{} ",
-        "exec": "$SHELL ~/.config/sway/scripts/bluetooth.sh",
+        "format": "{} {icon}",
+        "format-icons": {
+            "phone": "",
+            "computer": "",
+            "headset": "",
+            "disconnected": "",
+            "default": ""
+        },
+        "return-type": "json",
+        "exec": "$SHELL ~/.config/waybar/modules/bluetooth.sh",
         "interval": 1,
         "escape": true,
         "on-click": "bluetoothctl disconnect",
-        "on-click-right": "alacritty --title='Bluetooth devices' --class='BTconnect' -e $SHELL ~/.config/sway/scripts/bluetooth-prompt.sh",
+        "on-click-right": "alacritty --title='Bluetooth devices' --class='BTconnect' -e $SHELL ~/.config/waybar/modules/bluetooth-prompt.sh",
         "tooltip": false
     },
     "custom/pacman": {
@@ -186,22 +194,30 @@
         "on-click": "alacritty -e 'sudo pacman -Syu'; pkill -SIGRTMIN+8 waybar", // update system
         "signal": 8
     },
+    "custom/github": {
+        "format": "{} ",
+        "return-type": "json",
+        "interval": 60,
+        "exec": "$HOME/.config/waybar/modules/github.sh",
+        "on-click": "xdg-open https://github.com/notifications"
+    },
     "custom/media": {
-        "format": "{icon} {}",
+        "format": "{} {icon}",
         "return-type": "json",
         "max-length": 40,
         "tooltip": false,
         "format-icons": {
             "spotify": "",
-            "default": "🎜"
+            "default": "♪"
         },
         "on-click": "playerctl play-pause",
-		"on-scroll-up": "playerctl position 3+",
-		"on-scroll-down": "playerctl position 3-",
-        // "escape": true,
-        "exec": "sh ~/.config/sway/scripts/playerctl.sh 2> /dev/null"
+        "on-scroll-up": "playerctl position 3+",
+        "on-scroll-down": "playerctl position 3-",
+        "escape": true,
+        // "exec-if": "
+        // "exec": "sh ~/.config/sway/scripts/playerctl.sh 2> /dev/null"
         // "exec": "sh ~/.config/waybar/player.sh 2> /dev/null" // Script in resources folder
-        // "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Filter player based on name
+        "exec": "$HOME/.config/waybar/modules/mediaplayer.py 2> /dev/null" // Filter player based on name
         // "exec": "$HOME/GitRepos/RUST/mpris-barmodule/target/debug/mpris-barmodule 2> /dev/null"
     }
 }
