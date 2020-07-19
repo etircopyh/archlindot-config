@@ -1,0 +1,223 @@
+# New line at the start of the prompt
+add_newline = true
+# Override prompt order
+prompt_order = [
+# System info
+    "username",
+    "hostname",
+    "env_var",
+    "directory",
+
+# Git
+    "git_branch",
+    "git_commit",
+    "git_state",
+    "git_status",
+    "package",
+
+# Programming languages
+    "crystal",
+    "dotnet",
+    "elixir",
+    "elm",
+    "erlang",
+    "golang",
+    "java",
+    "julia",
+    "nim",
+    "nodejs",
+    "ocaml",
+    "php",
+    "purescript",
+    "python",
+    "ruby",
+    "rust",
+    "zig",
+
+# Services
+    "docker_context",
+    "aws",
+    "terraform",
+    "kubernetes",
+    "nix_shell",
+    "conda",
+    "memory_usage",
+    "cmd_duration",
+    "custom",
+    "line_break",
+    "jobs",
+    "time",
+    "character"
+]
+# Timeout for starship to check files under the current directory.
+# scan_timeout = 10
+
+# Git
+[git_branch]
+symbol = " "
+style = "bold #C50A96"
+# truncation_length = 4
+# truncation_symbol = ""
+disabled = false
+
+[git_commit]
+commit_hash_length = 7
+disabled = false
+
+[git_state]
+progress_divider = " of "
+cherry_pick = "🍒 PICKING"
+disabled = false
+
+[git_status]
+prefix = ""
+suffix = ""
+renamed = "»"
+deleted = "✘"
+conflicted = "="
+ahead = "⇡"
+behind = "⇣"
+diverged = "⇕"
+untracked.value = "●"
+untracked.style = "red"
+stashed = "$"
+modified.value = "●"
+modified.style = "yellow"
+staged.value = "●"
+staged.style = "green"
+style = "white"
+staged_count.enabled = false
+staged_count.style = "dimmed green"
+show_sync_count = false
+disabled = false
+
+# Programming languages
+[python]
+symbol = "🐍 "
+pyenv_version_name = true
+pyenv_prefix = "pyenv "
+scan_for_pyfiles = true
+style = "bold #FED74C"
+disabled = false
+
+[haskell]
+symbol = " "
+disabled = true
+
+[golang]
+symbol = "🐹 "
+style = "bold #00ACD7"
+disabled = false
+
+[zig]
+symbol = "⚡️ "
+style = "bold #F7A41D"
+disabled = false
+
+[nim]
+symbol = "👑 "
+style = "bold #EFC743"
+disabled = false
+
+[nodejs]
+symbol = "⬢ "
+style = "bold #77B063"
+disabled = false
+
+[purescript]
+symbol = "<=> "
+style = "bold white"
+disabled = false
+
+[elm]
+symbol = " "
+disabled = false
+
+[ruby]
+symbol = "💎 "
+style = "bold #AD1401"
+disabled = false
+
+[rust]
+symbol = "🦀 "
+style = "bold #DEA584"
+disabled = false
+
+# System info
+[username]
+style_root = "bold red"
+style_user = "bold #98C379"
+show_always = true
+disabled = false
+
+[hostname]
+ssh_only = true
+prefix = "⟪"
+suffix = "⟫"
+trim_at = "."
+disabled = false
+
+[jobs]
+symbol = "+ "
+threshold = 1
+style = "white"
+disabled = false
+
+# Services
+[docker_context]
+symbol = "🐳 "
+style = "bold #2496ED"
+disabled = false
+
+[kubernetes]
+symbol = "☸ "
+style = "bold #326DE6"
+disabled = false
+#[kubernetes.context_aliases]
+#"dev.local.cluster.k8s" = "dev"
+
+[aws]
+symbol = "☁️ "
+displayed_items = "all"
+style = "bold #F58C0F"
+disabled = false
+
+[terraform]
+symbol = "💠 "
+show_version = false
+style = "bold 105"
+disabled = false
+
+[nix_shell]
+use_name = true
+impure_msg = "impure shell"
+pure_msg = "pure shell"
+symbol = "❄️ "
+disabled = false
+
+# Misc
+[character]
+symbol = "❯"
+error_symbol = "❯"
+use_symbol_for_status = true
+style_success = "bold green"
+style_failure = "bold red"
+
+[cmd_duration]
+min_time = 5000
+
+[time]
+use_12hr = true
+format = "🕙[ %I:%M%p ]"
+utc_time_offset = "local"
+#time_range = "10:00:00-14:00:00"
+disabled = true
+
+[package]
+symbol = "📦 "
+style = "bold 208"
+display_private = false
+disabled = true
+
+[line_break]
+disabled = false
