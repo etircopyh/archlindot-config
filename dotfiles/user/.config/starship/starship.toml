@@ -73,10 +73,10 @@ disabled = false
 prefix = ""
 suffix = ""
 renamed = "»"
-deleted = "✘"
+deleted = "✖"
 conflicted = "="
-ahead = "⇡"
-behind = "⇣"
+ahead = "↑"
+behind = "↓"
 diverged = "⇕"
 untracked.value = "●"
 untracked.style = "red"
@@ -93,29 +93,34 @@ disabled = false
 
 # Programming languages
 [python]
-symbol = "🐍 "
+symbol = " "
 pyenv_version_name = true
 pyenv_prefix = "pyenv "
 scan_for_pyfiles = true
 style = "bold #FED74C"
 disabled = false
 
+[php]
+symbol = " "
+style = "bold #707FB4"
+disabled = true
+
 [haskell]
 symbol = " "
 disabled = true
 
 [golang]
-symbol = "🐹 "
+symbol = " "
 style = "bold #00ACD7"
 disabled = false
 
 [zig]
-symbol = "⚡️ "
+symbol = "⚡ "
 style = "bold #F7A41D"
 disabled = false
 
 [nim]
-symbol = "👑 "
+symbol = " "
 style = "bold #EFC743"
 disabled = false
 
@@ -134,12 +139,12 @@ symbol = " "
 disabled = false
 
 [ruby]
-symbol = "💎 "
+symbol = " "
 style = "bold #AD1401"
 disabled = false
 
 [rust]
-symbol = "🦀 "
+symbol = " "
 style = "bold #DEA584"
 disabled = false
 
@@ -165,19 +170,19 @@ disabled = false
 
 # Services
 [docker_context]
-symbol = "🐳 "
+symbol = " "
 style = "bold #2496ED"
 disabled = false
 
 [kubernetes]
-symbol = "☸ "
+symbol = "ﴱ "
 style = "bold #326DE6"
 disabled = false
 #[kubernetes.context_aliases]
 #"dev.local.cluster.k8s" = "dev"
 
 [aws]
-symbol = "☁️ "
+symbol = " "
 displayed_items = "all"
 style = "bold #F58C0F"
 disabled = false
@@ -192,7 +197,7 @@ disabled = false
 use_name = true
 impure_msg = "impure shell"
 pure_msg = "pure shell"
-symbol = "❄️ "
+symbol = " "
 disabled = false
 
 # Misc
@@ -208,7 +213,7 @@ min_time = 5000
 
 [time]
 use_12hr = true
-format = "🕙[ %I:%M%p ]"
+format = "[ %I:%M%p ]"
 utc_time_offset = "local"
 #time_range = "10:00:00-14:00:00"
 disabled = true
