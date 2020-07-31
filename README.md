@@ -11,7 +11,7 @@
 - Image viewer: [imv](https://github.com/eXeC64/imv)
 - Screenshot: [grim](https://github.com/emersion/grim) + [slurp](https://github.com/emersion/slurp)
 - Screencast: [wf-recorder](https://github.com/ammen99/wf-recorder)
-- Network: [systemd-networkd](https://github.com/systemd/systemd/tree/master/src/network) + [iwd](https://git.kernel.org/pub/scm/network/wireless/iwd.git) + [dnscrypt-proxy](https://github.com/DNSCrypt/dnscrypt-proxy)
+- Network: [systemd-networkd](https://github.com/systemd/systemd/tree/master/src/network) + [iwd](https://wiki.archlinux.org/index.php/Iwd) + [dnscrypt-proxy](https://github.com/DNSCrypt/dnscrypt-proxy)
 - [Systemd units](https://github.com/etircopyh/archlindot-config/tree/master/dotfiles/system/usr/lib/systemd/system) (meant to be placed into /usr/lib/systemd/system/)
 - Useful scripts
 
