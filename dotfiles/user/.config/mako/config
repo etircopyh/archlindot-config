@@ -21,4 +21,12 @@ max-visible=3
 border-color=#17202AFF
 progress-color=#581845FF
 text-color=#FFFFFFFF
-background-color=#212F3CFF
+background-color=#686963FF
+
+[hidden]
+format=(and %h more)
+text-color=#777777
+
+[urgency=high]
+background-color=#c00000
+border-color=#ff0000
