@@ -71,7 +71,7 @@ disabled = false
 
 [git_status]
 prefix = ""
-suffix = ""
+suffix = " "
 renamed = "»"
 deleted = "✖"
 conflicted = "="
@@ -80,7 +80,7 @@ behind = "↓"
 diverged = "⇕"
 untracked.value = "●"
 untracked.style = "red"
-stashed = "$"
+stashed = ""
 modified.value = "●"
 modified.style = "yellow"
 staged.value = "●"

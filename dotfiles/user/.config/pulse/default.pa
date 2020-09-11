@@ -137,6 +137,8 @@ load-module module-role-cork
 load-module module-filter-heuristics
 load-module module-filter-apply
 
+load-module module-switch-on-connect
+
 ### Make some devices default
 #set-default-sink output
 #set-default-source input
@@ -148,25 +150,19 @@ load-module module-filter-apply
 #         having no sound on bootup. Use the command to see your audio list.
 #         $ pacmd list-sinks | awk '/index/ || /name:/ || /alsa.card_name/ || /device.description/'
 #
-#         e.g mine is:  set-default-sink alsa_output.pci-0000_00_14.2.analog-stereo 
+#         e.g mine is:  set-default-sink alsa_output.pci-0000_00_14.2.analog-stereo
 #
-set-default-sink alsa_output.pci-0000_00_1b.0.analog-stereo
+# set-default-sink alsa_output.pci-0000_00_1b.0.analog-stereo
 
-## LADSPA module
-.ifexists module-ladspa-sink.so
-.nofail
+## load ladspa module
+# .ifexists module-ladspa-sink.so
+# .nofail
 # mono
 # load-module module-ladspa-sink sink_name=compressor-mono plugin=sc4m_1916 label=sc4m control=1,1.5,401,-30,20,5,12
 # stereo
-load-module module-ladspa-sink sink_name=compressor-stereo plugin=sc4_1882 label=sc4 control=1,1.5,401,-30,20,5,12
-.fail
-.endif
+# load-module module-ladspa-sink sink_name=compressor-stereo plugin=sc4_1882 label=sc4 control=1,1.5,401,-30,20,5,12
+# .fail
+# .endif
 
-# Set our custom compressor audio as default
-set-default-sink compressor-stereo
-
-### Enable Echo/Noise-Cancellation
-#load-module module-echo-cancel use_master_format=1 aec_method=webrtc aec_args="analog_gain_control=0\ digital_gain_control=1" source_name=echoCancel_source sink_name=echoCancel_sink
-#set-default-source echoCancel_source
-#set-default-sink echoCancel_sink
-
+# set our custom compressor audio as default
+# set-default-sink compressor-stereo
