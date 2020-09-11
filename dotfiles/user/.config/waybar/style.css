@@ -1,7 +1,7 @@
 * {
     border: none;
     border-radius: 0;
-    font-family: 'Roboto', 'Font Awesome 5 Free';
+    font-family: 'Roboto', 'Font Awesome 5 Pro';
     font-size: 12px;
     min-height: 0;
 }
@@ -44,7 +44,7 @@ window#waybar.chromium {
 
 window#waybar.kotatogramdesktop,
 window#waybar.telegramdesktop {
-    background-color: #241A11;
+    background-color: #312419;
 }
 
 window#waybar.code {
@@ -75,21 +75,23 @@ window#waybar.discord {
 }
 
 #workspaces button.focused {
-/*    background-color: transparent; */
-    background-color: #64727D;
-    border-bottom: 1px solid #ffffff;
+    font-weight: bold;
+    color: #B21363;
+    background-color: transparent;
+    /* background-color: #64727D; */
+    border-bottom: 1px solid;
 }
 
 #workspaces button.urgent {
     background-color: #eb4d4b;
 }
 
-#workspaces button.5 {
+/* #workspaces button.5 {
     padding: 0 1px;
-/*    background-color: transparent; */
+    background-color: transparent;
     color: rgb(102, 220, 105);
     border-bottom: 1px solid #000000;
-}
+} */
 
 #mode {
     background-color: #64727D;

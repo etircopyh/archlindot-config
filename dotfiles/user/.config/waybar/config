@@ -1,26 +1,29 @@
 {
-    "layer": "bottom", // Waybar at top layer
+    "layer": "top", // Waybar at top layer
     "position": "top", // Waybar position (top|bottom|left|right)
     "height": 20, // Waybar height (to be removed for auto height)
     // "width": 1366, // Waybar width
     // Choose the order of the modules
-    "modules-left": [ "sway/workspaces", "sway/mode", "custom/media", "sway/window" ],
+    "modules-left": [ "sway/workspaces", "sway/mode", "sway/window" ],
     "modules-center": [ "clock" ],
-    "modules-right": [ "custom/kbdlayout", "custom/bt", "pulseaudio", "network", "cpu", "memory", "temperature", "backlight", "custom/power", "tray" ],
+    "modules-right": [ "bluetooth", "custom/kbdlayout", "custom/bt", "pulseaudio", "network", "cpu", "memory", "temperature", "backlight", "custom/power", "tray" ],
     // Modules configuration
     "sway/workspaces": {
         "disable-scroll": true,
         "all-outputs": true,
-        "format": "{name}",
+        "format": "{icon}",
         "format-icons": {
     //      "1": "",
     //      "2": "",
     //      "3": "",
     //      "4": "",
     //      "5": "",
-            "urgent": "",
-            "focused": "",
-            "default": ""
+            "urgent": "􏑜",
+            "focused": "",
+            "default": ""
+    //      "urgent": "",
+    //      "focused": "",
+    //      "default": ""
         }
     },
     "sway/mode": {
@@ -128,6 +131,17 @@
         "tooltip": false,
         "interval": 60
     },
+    "bluetooth": {
+        "format": "{icon}",
+        "format-alt": "bluetooth: {status}",
+        "interval": 30,
+        "format-icons": {
+            "enabled": "",
+            "disabled": ""
+        },
+        "on-click-right": "alacritty --title='Bluetooth devices' --class='BTconnect' -e $SHELL ~/.config/waybar/modules/bluetooth-prompt.sh",
+        "tooltip-format": "{status}"
+    },
     "pulseaudio": {
         "scroll-step": 5, // %, can be a float
         "tooltip": false,
@@ -181,9 +195,9 @@
         "return-type": "json",
         "exec": "$SHELL ~/.config/waybar/modules/bluetooth.sh",
         "interval": 1,
-        "escape": true,
         "on-click": "bluetoothctl disconnect",
         "on-click-right": "alacritty --title='Bluetooth devices' --class='BTconnect' -e $SHELL ~/.config/waybar/modules/bluetooth-prompt.sh",
+        "escape": true,
         "tooltip": false
     },
     "custom/pacman": {
@@ -217,7 +231,7 @@
         // "exec-if": "
         // "exec": "sh ~/.config/sway/scripts/playerctl.sh 2> /dev/null"
         // "exec": "sh ~/.config/waybar/player.sh 2> /dev/null" // Script in resources folder
-        "exec": "$HOME/.config/waybar/modules/mediaplayer.py 2> /dev/null" // Filter player based on name
+        "exec": "python $HOME/.config/waybar/modules/mediaplayer.py 2> /dev/null" // Filter player based on name
         // "exec": "$HOME/GitRepos/RUST/mpris-barmodule/target/debug/mpris-barmodule 2> /dev/null"
     }
 }
