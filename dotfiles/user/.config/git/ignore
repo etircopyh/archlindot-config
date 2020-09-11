@@ -2,6 +2,7 @@
 .git
 
 # Node
+.npm
 node_modules
 npm-debug.log
 package-lock.json
@@ -17,8 +18,9 @@ Thumbs.db
 .idea
 .vscode
 
-# vi
+# vi/vim
 *~
+*.swp
 
 # General
 log/
@@ -28,5 +30,9 @@ log/
 .directory
 
 # Rust Cargo
+.cargo/.package-cache
 .cargo/registry/
 .cargo/git/
+
+# Go
+go/pkg/

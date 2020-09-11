@@ -1,31 +1,67 @@
 [core]
     excludesfile = ~/.config/git/ignore
-	editor = nvim
+    editor = nvim
+    pager = delta
+[interactive]
+    diffFilter = delta --color-only
 [user]
     name = Ivan
     email = etircopyhdot@gmail.com
     signingkey = FCF974B56A98CF81
 [alias]
+    l = log --pretty=oneline -n 50 --graph --abbrev-commit
     st = status
     ci = commit
     cim = commit -m
     unstage = reset HEAD --
     rmlocalcommit = reset HEAD~
     last = log -1 HEAD
+    logt = log --graph --decorate --color=auto --oneline --all
 [color]
     ui = true
     status = auto
     branch = auto
     interactive = auto
     diff = auto
+[pretty]
+    fixes = Fixes: %h (\"%s\")
 [credential]
     helper = cache --timeout 14400
     username = etircopyh
 [gpg]
     program = gpg2
 
+[commit]
+    template = ~/.config/git/message
+    verbose = true
+
+[tag]
+    gpgsign = true
+
 [pull]
-	rebase = false
+    rebase = false
+[push]
+    default = current
+
+[rebase]
+    autosquash = true
+
+[grep]
+    lineNumber = true
+[color "grep"]
+    filename = magenta
+    linenumber = green
+
+[delta]
+    features = decorations
+    whitespace-error-style = 22 reverse
+    plus-color = "#012800"
+    minus-color = "#340001"
+    theme = 'Monokai Extended'
+[delta "decorations"]
+    commit-decoration-style = bold yellow box ul
+    file-style = bold yellow ul
+    file-decoration-style = none
 
 [diff]
     tool = nvimdiff
@@ -36,8 +72,10 @@
     cmd = nvim -d $LOCAL $REMOTE -c '$wincmd w' -c 'wincmd J'
 
 [merge]
-	tool = nvimdiff
+    tool = nvimdiff
 [mergetool]
-	keepBackup = false
+    keepBackup = false
 [mergetool "nvimdiff"]
-	cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+    # vim-fugitive mergetool
+    cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
+    # cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
