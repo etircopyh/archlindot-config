@@ -60,6 +60,9 @@ window:
   # Window title
   #title: Alacritty
 
+  # Allow terminal applications to change Alacritty's window title.
+  dynamic_title: true
+
   # Window class (Linux/BSD only):
   #class:
     # Application instance name
@@ -91,7 +94,7 @@ font:
     #   - (macOS) Menlo
     #   - (Linux) monospace
     #   - (Windows) Consolas
-    family: Hasklug Nerd Font Mono
+    family: alacritty
 
     # The `style` can be specified to pick a specific face.
     style: Regular
@@ -102,7 +105,7 @@ font:
     #
     # If the bold family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: Hasklug Nerd Font Mono
+    family: alacritty
 
     # The `style` can be specified to pick a specific face.
     style: Bold
@@ -113,7 +116,7 @@ font:
     #
     # If the italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: Hasklug Nerd Font Mono
+    family: alacritty
 
     # The `style` can be specified to pick a specific face.
     style: Italic
@@ -124,7 +127,7 @@ font:
     #
     # If the bold italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: Hasklug Nerd Font Mono
+    family: alacritty
 
     # The `style` can be specified to pick a specific face.
     style: Bold Italic
@@ -311,9 +314,6 @@ selection:
 
   # When set to `true`, selected text will be copied to the primary clipboard.
   save_to_clipboard: true
-
-# Allow terminal applications to change Alacritty's window title.
-window.dynamic_title: true
 
 cursor:
   # Cursor style
