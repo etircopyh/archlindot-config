@@ -1,54 +1,52 @@
 # New line at the start of the prompt
 add_newline = true
 # Override prompt order
-prompt_order = [
-# System info
-    "username",
-    "hostname",
-    "env_var",
-    "directory",
+format = """\
 
-# Git
-    "git_branch",
-    "git_commit",
-    "git_state",
-    "git_status",
-    "package",
+    $username\
+    $hostname\
+    $env_var\
+    $directory\
 
-# Programming languages
-    "crystal",
-    "dotnet",
-    "elixir",
-    "elm",
-    "erlang",
-    "golang",
-    "java",
-    "julia",
-    "nim",
-    "nodejs",
-    "ocaml",
-    "php",
-    "purescript",
-    "python",
-    "ruby",
-    "rust",
-    "zig",
 
-# Services
-    "docker_context",
-    "aws",
-    "terraform",
-    "kubernetes",
-    "nix_shell",
-    "conda",
-    "memory_usage",
-    "cmd_duration",
-    "custom",
-    "line_break",
-    "jobs",
-    "time",
-    "character"
-]
+    $git_branch\
+    $git_commit\
+    $git_state\
+    $git_status\
+    $package\
+
+    $crystal\
+    $dotnet\
+    $elixir\
+    $elm\
+    $erlang\
+    $golang\
+    $java\
+    $julia\
+    $nim\
+    $nodejs\
+    $ocaml\
+    $php\
+    $purescript\
+    $python\
+    $ruby\
+    $rust\
+    $zig\
+
+    $docker_context\
+    $aws\
+    $terraform\
+    $kubernetes\
+    $nix_shell\
+    $conda\
+    $memory_usage\
+    $cmd_duration\
+    $custom\
+    $line_break\
+    $jobs\
+    $time\
+    $character\
+"""
 # Timeout for starship to check files under the current directory.
 # scan_timeout = 10
 
@@ -61,6 +59,7 @@ style = "bold #C50A96"
 disabled = false
 
 [git_commit]
+format = "[\\($hash\\)]($style) "
 commit_hash_length = 7
 disabled = false
 
@@ -70,31 +69,26 @@ cherry_pick = "🍒 PICKING"
 disabled = false
 
 [git_status]
-prefix = ""
-suffix = " "
+format = "$all_status$ahead_behind "
 renamed = "»"
-deleted = "✖"
+deleted = "[✖](red)"
 conflicted = "="
-ahead = "↑"
-behind = "↓"
-diverged = "⇕"
-untracked.value = "●"
-untracked.style = "red"
+ahead = "⇡${count}"
+diverged = "⇕⇡${ahead_count}⇣${behind_count}"
+behind = "⇣${count}"
+untracked = "[●](red)"
 stashed = ""
-modified.value = "●"
-modified.style = "yellow"
-staged.value = "●"
-staged.style = "green"
+modified = "[●](yellow)"
+staged = "[●](green)"
 style = "white"
 staged_count.enabled = false
 staged_count.style = "dimmed green"
-show_sync_count = false
 disabled = false
 
 # Programming languages
 [python]
 symbol = " "
-pyenv_version_name = true
+pyenv_version_name = false
 pyenv_prefix = "pyenv "
 scan_for_pyfiles = true
 style = "bold #FED74C"
@@ -110,8 +104,7 @@ symbol = " "
 disabled = true
 
 [golang]
-symbol = " "
-style = "bold #00ACD7"
+format = "via [ $version](bold #00ACD7) "
 disabled = false
 
 [zig]
@@ -157,10 +150,12 @@ disabled = false
 
 [hostname]
 ssh_only = true
-prefix = "⟪"
-suffix = "⟫"
+format = "[$hostname]($style) in "
 trim_at = "."
 disabled = false
+
+[directory]
+format = "[$path]($style)[$read_only]($read_only_style) "
 
 [jobs]
 symbol = "+ "
@@ -202,18 +197,19 @@ disabled = false
 
 # Misc
 [character]
-symbol = "❯"
-error_symbol = "❯"
+success_symbol = "[❯](bold green)"
+error_symbol = "[❯](bold red)"
+vicmd_symbol = "[❮](bold green)"
 use_symbol_for_status = true
-style_success = "bold green"
-style_failure = "bold red"
 
 [cmd_duration]
+format = "took [$duration]($style) "
 min_time = 5000
 
 [time]
 use_12hr = true
-format = "[ %I:%M%p ]"
+format = "[$time]($style) "
+time_format = "%I:%M%p"
 utc_time_offset = "local"
 #time_range = "10:00:00-14:00:00"
 disabled = true
