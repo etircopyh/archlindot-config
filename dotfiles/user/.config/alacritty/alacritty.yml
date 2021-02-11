@@ -29,9 +29,9 @@ window:
   # Number of lines/columns (not pixels) in the terminal. The number of columns
   # must be at least `2`, while using a value of `0` for columns and lines will
   # fall back to the window manager's recommended size.
-  #dimensions:
-  #  columns: 0
-  #  lines: 0
+  dimensions:
+    columns: 0
+    lines: 0
 
   # Window position (changes require restart)
   #
@@ -45,12 +45,12 @@ window:
   #
   # Blank space added around the window in pixels. This padding is scaled
   # by DPI and the specified value is always added at both opposing sides.
-  #padding:
-  #  x: 0
-  #  y: 0
+  padding:
+    x: 0
+    y: 0
 
   # Spread additional padding evenly around the terminal content.
-  #dynamic_padding: false
+  dynamic_padding: true
 
   # Window decorations
   #
@@ -176,25 +176,44 @@ font:
 draw_bold_text_with_bright_colors: true
 
 schemes:
-  one_light: &light
+  etircopyh_light: &light
     primary:
-      background: '#fafafa'
-      foreground: '#383a42'
-    cursor:
-      text:   CellBackground
-      cursor: '#526eff' # syntax-cursor-color
+      background: '#e4e4e4'
+      foreground: '#1c1c1c'
+    normal:
+      black:   '#1d1f21'
+      red:     '#5f0000'
+      green:   '#005f00'
+      yellow:  '#5f5f00'
+      blue:    '#00005f'
+      magenta: '#5f005f'
+      cyan:    '#005f5f'
+      white:   '#a0a1a7'
+    bright:
+      black:   '#666666'
+      red:     '#D54E53'
+      green:   '#B9CA4A'
+      yellow:  '#E7C547'
+      blue:    '#7AA6DA'
+      magenta: '#C397D8'
+      cyan:    '#70C0B1'
+      white:   '#EAEAEA'
+    dim:
+      black:   '#131415'
+      red:     '#864343'
+      green:   '#777C44'
+      yellow:  '#9E824C'
+      blue:    '#556A7D'
+      magenta: '#75617B'
+      cyan:    '#5B7D78'
+      white:   '#828482'
     selection:
       text:       CellForeground
-      background: '#e5e5e6' # syntax-selection-color
-    normal:
-      black:   '#696c77' # mono-2
-      red:     '#e45649' # red 1
-      green:   '#50a14f'
-      yellow:  '#c18401' # orange 2
-      blue:    '#4078f2'
-      magenta: '#a626a4'
-      cyan:    '#0184bc'
-      white:   '#a0a1a7' # mono-3
+      background: '#bcbcbc'
+    cursor:
+      text:   CellBackground
+      cursor: '#d0d0d0'
+
   etircopyh_dark: &dark
     primary:
       background: '#191919'
@@ -226,9 +245,12 @@ schemes:
       magenta: '#75617B'
       cyan:    '#5B7D78'
       white:   '#828482'
+    selection:
+      text:       CellBackground
+      background: CellForeground
     cursor:
-      text:   '#F1C1C1'
-      cursor: '#B21363'
+      text:    '#F1C1C1'
+      cursor:  '#B21363'
 
 
 # Colors
