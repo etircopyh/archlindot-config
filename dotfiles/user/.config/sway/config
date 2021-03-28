@@ -3,9 +3,10 @@
 # man 5 sway
 
 ### Autostart
-exec systemctl --user start redshift.service
+# exec systemctl --user start redshift.service
 exec dex -e Sway -a -s ~/.config/autostart
 exec find ~/.config/autostart-scripts/*.sh | sh -
+#exec mako >/tmp/mako.log 2>&1
 exec_always makoctl reload
 exec_always {
     gsettings set org.gnome.desktop.interface cursor-theme  Breeze_Contrast
@@ -26,11 +27,11 @@ set $right  l
 # Font
 set $font_family SF Compact Display
 set $font_size 9
-set $bar_font_family SF Compact Display
-set $bar_font_size 9
+set $bar_font_family Roboto 12, Font Awesome 5 Pro
+#set $bar_font_size 9
 
 # Wallpaper
-set $wallpaper ~/.config/sway/wallpapers/futuristic-character.jpeg
+set $wallpaper ~/.config/sway/wallpapers/wh40k-spacemarine.jpg
 
 # Calculator
 set $calc io.elementary.calculator
@@ -46,13 +47,11 @@ set $browser firefox
 # Screen recorder
 set $screencast wf-recorder -a -f ~/Screencasts/$(date +'%Y-%m-%d-%H:%M:%S_screencast').mp4
 set $regioncast wf-recorder -a -g "$(slurp -c '#990000FF' -s '#2F4F4F28' -b '#00000046' -d)"
+
+set $screencastx $SHELL ~/.config/sway/scripts/screencast.sh
+#bindsym --to-code Shift+j $screencastx
 # WebCam
 set $webcam     ffmpeg -i /dev/video0 -frames:v 1 -ss 1 ~/Photos/$(date +'%Y-%m-%d-%H:%M:%S_webcam').png
-
-# Input devices
-set $keyboard   "1:1:AT_Translated_Set_2_keyboard"
-set $mouse      "2522:9219:COMPANY_2.4G_Device_Mouse"
-set $touchpad   "2:7:SynPS/2_Synaptics_TouchPad"
 
 # Application launcher [bemenu]
 #set $menu bemenu-run -p Run: \
@@ -78,7 +77,7 @@ set $shotregion     $SHELL ~/.config/sway/scripts/regionshot.sh
 set $shotwindow     $SHELL ~/.config/sway/scripts/windowshot.sh
 
 # Color picker
-set $colorpick grim -g "$(slurp -p)" -t ppm - | convert - -format '%[pixel:p{0,0}]' txt:- | wl-copy
+set $colorpick grim -g "$(slurp -p)" -t ppm - | convert - -format '%[pixel:p{0,0}]' txt:- | awk '{printf "%s ",$0}' | awk '{print substr($0,index($0,":")+2)}' | awk '{$1=""; print $4,$5}' | wl-copy -n
 
 # Custom Bluetooth device chooser
 set $BTconnect exec alacritty --title='Bluetooth devices' --class='BTconnect' -e $SHELL ~/.config/sway/scripts/bluetooth-prompt.sh
@@ -132,6 +131,8 @@ input type:keyboard {
     xkb_model           asus_laptop
     xkb_options         grp:caps_toggle,grp:switch,altwin:menu_win
     xkb_numlock         enabled
+    # repeat_delay        300
+    # repeat_rate         30
 }
 
 # Mouse configuration
@@ -179,7 +180,7 @@ bindsym --to-code $mod+Shift+b exec $BTconnect
 bindsym $mod+F2 exec bluetoothctl scan on
 
 # Start a terminal
-bindsym {
+bindsym --to-code {
     $mod+Return exec $term
     $mod+t      exec $term
     F9          exec $dropdown
@@ -189,7 +190,8 @@ bindsym {
 bindsym --to-code $mod+Shift+q kill
 
 # Start your launcher
-bindsym --to-code $mod+d exec $launcher
+bindsym --to-code $mod+d exec wofi --show drun --allow-images --term=alacritty --prompt=Run: --no-actions --insensitive --hide-scroll
+#bindsym --to-code $mod+d exec $launcher
 
 # Color pick
 bindsym --to-code $mod+i exec $colorpick
@@ -388,6 +390,8 @@ bar {
     height          20
     tray_output     none
     pango_markup    enabled
+    font            $bar_font_family
+    strip_workspace_numbers yes
     swaybar_command waybar
 #   swaybar_command i3status-rs /usr/share/doc/i3status-rust/examples/example_config.toml
 #   separator_symbol "|"
@@ -411,9 +415,11 @@ bar {
 for_window [app_id="imv"]               floating enable
 for_window [app_id="mpv"]               floating enable
 for_window [app_id="pavucontrol-qt"]    floating enable
-for_window [app_id="firefox"]           move to workspace 2
+for_window [app_id="firefox(?i)"]       move to workspace 2
+for_window [class="firefox(?i)"]        move to workspace 2
 for_window [app_id="code"]              move to workspace 3
 for_window [app_id="(?i)gramdesktop"]   move to workspace 4
+for_window [class="discord"]            move to workspace 5
 for_window [app_id="MellowPlayer"]      move to workspace 5
 # Window types
 for_window [window_role="pop-up"]       floating enable
@@ -428,9 +434,14 @@ for_window [app_id="^BTconnect$"]       focus, floating enable, resize set width
 for_window [app_id="dropdown"]          focus, floating enable, move to scratchpad, scratchpad show, sticky enable, resize set width 700 px height 400 px, move absolute position 350 px 20 px, opacity 0.95, border pixel 3, mark dropdown
 for_window [app_id="^launcher$"]        focus, floating enable, resize set width 400 px height 500 px, border none, opacity 0.9
 for_window [app_id="htop(?i)"]          floating enable
-for_window [app_id="firefox" title="Picture-in-Picture"]    floating enable, sticky enable, mark Firefox Picture-in-Picture
+for_window [app_id="firefox(?i)" title="Picture-in-Picture"]    floating enable, sticky enable, mark Firefox Picture-in-Picture
 
+# Tag xwayland windows as such
+for_window [shell="xwayland"] title_format "<span>[X] %title</span>"
 
 #
 #
 #include ~/.config/sway/config.d/*
+#include ~/.config/sway/"$(uname -n)"/*
+
+exec systemd-notify --ready || true
