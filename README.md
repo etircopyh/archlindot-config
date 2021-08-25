@@ -12,7 +12,7 @@
 - Screenshot: [grim](https://github.com/emersion/grim) + [slurp](https://github.com/emersion/slurp)
 - Screencast: [wf-recorder](https://github.com/ammen99/wf-recorder)
 - Network: [systemd-networkd](https://github.com/systemd/systemd/tree/master/src/network) + [iwd](https://wiki.archlinux.org/index.php/Iwd) + [dnscrypt-proxy](https://github.com/DNSCrypt/dnscrypt-proxy)
-- [Systemd units](https://github.com/etircopyh/arch.conf/tree/master/dotfiles/system/usr/lib/systemd/system) (meant to be placed into /usr/lib/systemd/system/)
+- [Systemd units](./dotfiles/system/usr/lib/systemd/system) (meant to be placed into /usr/lib/systemd/system/)
 - Useful scripts
 
 ### Extra
@@ -20,4 +20,4 @@
 - [Fonts](http://ix.io/22cH "Font list")
 - [Packages](http://ix.io/22d2)
 - [Wallpapers](https://drive.google.com/open?id=1qbPJEeEe5k4p4rwqMqT48-juFqzc-pM1) / [Wallpapers [Archive]](https://drive.google.com/open?id=1_W3DUqlarIlw96iu3r1tqafgNkMdghs8)
-- [My DSDT firmware fix (ASUS X54C)](https://github.com/etircopyh/arch.conf/tree/master/essentials/asus-x54c-fixed-dsdt)
+- [My DSDT firmware fix (ASUS X54C)](./essentials/asus-x54c-fixed-dsdt)
