@@ -6,6 +6,7 @@ bluez_monitor.properties = {
   ["bluez5.enable-sbc-xq"] = true,
   ["bluez5.enable-msbc"] = true,
   ["bluez5.enable-hw-volume"] = true,
+  ["bluez5.enable-faststream"] = true,
 
   -- See bluez-hardware.conf for the hardware database.
 
@@ -86,11 +87,11 @@ bluez_monitor.rules = {
       --["node.nick"] = "My Node",
       --["priority.driver"] = 100,
       --["priority.session"] = 100,
-      ["node.pause-on-idle"] = false,
+      --["node.pause-on-idle"] = false,
       --["resample.quality"] = 4,
       --["channelmix.normalize"] = false,
       --["channelmix.mix-lfe"] = false,
-      ["session.suspend-timeout-seconds"] = 0,  -- 0 disables suspend
+      --["session.suspend-timeout-seconds"] = 0,  -- 0 disables suspend
       --["monitor.channel-volumes"] = false,
 
       -- A2DP source role, "input" or "playback"
