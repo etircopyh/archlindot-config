@@ -1,9 +1,11 @@
 width=420
 height=340
 mode=drun
-term=alacritty
+term=foot
 prompt=Run:
 insensitive=true
 no_actions=true
 allow_images=true
 hide_scroll=true
+
+cache_file=/home/deviarch/.local/state/wofi
