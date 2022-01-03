@@ -10,7 +10,7 @@ if [[ ( "$SHLVL" -eq 1 && ! -o LOGIN ) && -s "$ZHOME/.zprofile" ]]; then
 fi
 
 # Personal bins
-export PATH="${XDG_DATA_HOME:-$HOME/.local}/bin:${CARGO_HOME:-$HOME/.local/lib/cargo}/bin:${GOBIN:-$(go env GOPATH 2>/dev/null)/bin}:${PYTHONUSERBASE:-$HOME/.local/lib/python}/bin:${XDG_DATA_HOME:-$HOME/.local/share}/nvm/current/bin:$PATH"
+export PATH="${XDG_BIN_HOME:-$HOME/.local/bin}:${CARGO_HOME:-$HOME/.local/lib/cargo}/bin:${GOBIN:-$(go env GOPATH 2>/dev/null)/bin}:${PYTHONUSERBASE:-$HOME/.local/lib/python}/bin:${XDG_DATA_HOME:-$HOME/.local/share}/nvm/current/bin:$PATH"
 
 
 # Nix package manager
