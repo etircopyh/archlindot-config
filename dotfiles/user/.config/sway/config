@@ -130,11 +130,11 @@ font pango:$font_family $font_size
 #
 # Laptop screen
 output LVDS-1 {
-    res 1366x768@60.02Hz
+    #resolution 1366x768@60.02Hz
     adaptive_sync on
-    pos 0,0
-    background $wallpaper fill
-    subpixel none
+    position      0,0
+    background    $wallpaper fill
+    subpixel      none
 }
 #
 # man 5 sway-output
@@ -144,7 +144,7 @@ output LVDS-1 {
 #exec swayidle -w \
 #       timeout 1200    'swaylock -f -c 000000' \
 #       timeout 1800    'swaymsg "output * dpms off"' \
-#           resume      'swaymsg "output * dpms on"' \
+#       resume          'swaymsg "output * dpms on"' \
 #       before-sleep    'swaylock -f -c 000000'
 
 ### Input configuration
@@ -155,14 +155,14 @@ input type:keyboard {
     xkb_model           asus_laptop
     xkb_options         grp:caps_toggle,grp:switch,altwin:menu_win
     xkb_numlock         enabled
-    # repeat_delay        300
-    # repeat_rate         30
+    #repeat_delay       300
+    #repeat_rate        30
 }
 
 # Mouse configuration
 input type:pointer {
-    accel_profile       flat
-    pointer_accel       0
+    accel_profile flat
+    pointer_accel 0
 }
 
 # TouchPad configuration
@@ -194,8 +194,6 @@ bindsym --to-code {
     $mod+Shift+s exec systemctl suspend
 }
 
-# Custom launch shortcut
-bindsym XF86Launch1 exec $browser
 
 # Bluetooth device picker
 bindsym --to-code $mod+Shift+b exec $BTconnect
@@ -353,21 +351,44 @@ bindsym $mod+minus          scratchpad show
 # Fn keybindings
 #
 
+
+# Custom launch shortcut
+#bindsym XF86Launch1 exec $browser
+#bindsym XF86Launch6 exec something
+
+
+
+# Sleep
+#bindsym XF86Standby swayidle
+
+# Display
+#bindsym XF86Display
+
+
+# WLAN/Bluetooth
+#bindsym XF86WLAN
+#bindsym XF86Bluetooth
+
 # TouchPad toggle
-bindsym XF86TouchpadToggle input $touchpad events toggle enabled disabled
+bindsym XF86TouchpadToggle input type:touchpad events toggle
 
 # WebCam
-bindsym XF86WebCam exec $webcam
+#bindsym XF86WebCam exec $webcam
 
 # Calculator
 bindsym XF86Calculator exec $calc
 
 # Music Control
 bindsym {
-    XF86AudioPrev exec playerctl previous
-    XF86AudioNext exec playerctl next
-    XF86AudioPlay exec playerctl play-pause
-    XF86AudioStop exec playerctl stop
+    XF86AudioPrev               exec playerctl previous
+    XF86AudioNext               exec playerctl next
+    Shift+XF86AudioPrev         exec playerctl position 5-
+    Shift+XF86AudioNext         exec playerctl position 5+
+    XF86AudioPlay               exec playerctl play-pause
+    XF86AudioPause              exec playerctl play-pause
+    XF86AudioStop               exec playerctl stop
+    Shift+XF86AudioRaiseVolume  exec playerctl volume 0.05+
+    Shift+XF86AudioLowerVolume  exec playerctl volume 0.05-
 }
 
 # PulseAudio Control
