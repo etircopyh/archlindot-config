@@ -19,10 +19,11 @@ HoldPkg      = pacman glibc
 #XferCommand = /usr/bin/curl -L -C - -f -o %o %u
 #XferCommand = /usr/bin/wget --passive-ftp -c -O %o %u
 #CleanMethod = KeepInstalled
+#UseDelta    = 0.7
 Architecture = auto
 
 # Pacman won't upgrade packages listed in IgnorePkg and members of IgnoreGroup
-IgnorePkg    = *pipewire* mpv xdg-desktop-portal
+#IgnorePkg   =
 #IgnoreGroup =
 
 #NoUpgrade   =
@@ -56,12 +57,8 @@ LocalFileSigLevel   = Optional
 #   - URLs will have $repo replaced by the name of the current repo
 #   - URLs will have $arch replaced by the name of the architecture
 
-# The testing repositories are disabled by default. To enable, uncomment the
-# repo name header and Include lines. You can add preferred servers immediately
-# after the header, and they will be used before the default mirrors.
-
-#[testing]
-#Include = /etc/pacman.d/mirrorlist
+[testing]
+Include = /etc/pacman.d/mirrorlist
 
 [core]
 Include = /etc/pacman.d/mirrorlist
@@ -85,15 +82,10 @@ Include = /etc/pacman.d/mirrorlist
 #Include = /etc/pacman.d/mirrorlist
 
 # Unofficial repositories
-
-# chaotic-aur
-[chaotic-aur]
-Include = /etc/pacman.d/chaotic-mirrorlist
-
 # pf-kernel
-#[home_post-factum_kernels_Arch]
-#Server = https://download.opensuse.org/repositories/home:/post-factum:/kernels/Arch/$arch
-#SigLevel = Never
+[home_post-factum_kernels_Arch]
+Server = https://download.opensuse.org/repositories/home:/post-factum:/kernels/Arch/$arch
+SigLevel = Never
 
 #[archzfs]
 #Server = http://archzfs.com/$repo/$arch
@@ -101,10 +93,13 @@ Include = /etc/pacman.d/chaotic-mirrorlist
 #Server = https://mirror.biocrafting.net/archlinux/archzfs/$repo/$arch
 
 # linux-clear
-#[home_metakcahura_kernel_Arch_Extra_standard]
-#Server = http://download.opensuse.org/repositories/home:/metakcahura:/kernel/Arch_Extra_standard/$arch
-#SigLevel = Never
+[home_metakcahura_kernel_Arch_Extra_standard]
+Server = http://download.opensuse.org/repositories/home:/metakcahura:/kernel/Arch_Extra_standard/$arch
+SigLevel = Never
 
 # steam
 #[valveaur]
 #Server = http://repo.steampowered.com/arch/valveaur
+
+[chaotic-aur]
+Server = https://chaotic.dr460nf1r3.me/repos/$repo/$arch
