@@ -1,12 +1,21 @@
 #!/usr/bin/env bash
 
-set -o nounset
 set -o pipefail
 
-devicemac=$(bluetoothctl info | head -1 | awk '{print $2}' | sed 's/:/_/g')
+macfile=/tmp/bt-mac.txt
+
+if [ ! -s "$macfile" ]; then
+    devicemac=$(bluetoothctl info | head -1 | awk '{print $2}' | sed 's/:/_/g')
+else
+    devicemac=$(< $macfile)
+fi
+
+
+if ! grep -q "$devicemac" "$macfile"; then
+    echo "$devicemac" > "$macfile"
+fi
 
 connected=$(dbus-send --print-reply=literal --system --dest=org.bluez "/org/bluez/hci0/dev_$devicemac" org.freedesktop.DBus.Properties.Get string:"org.bluez.Device1" string:"Connected" | grep 'true')
-disconnected=$(bluetoothctl info | grep -e 'Missing device')
 devicetype=$(dbus-send --print-reply=literal --system --dest=org.bluez "/org/bluez/hci0/dev_$devicemac" org.freedesktop.DBus.Properties.Get string:"org.bluez.Device1" string:"Icon" | awk '{print $2}')
 
 batterylevel=$(dbus-send --print-reply=literal --system --dest=org.bluez "/org/bluez/hci0/dev_$devicemac" org.freedesktop.DBus.Properties.Get string:"org.bluez.Battery1" string:"Percentage" | awk '{print $3}' | awk '{print $0"%"}')
@@ -19,6 +28,7 @@ elif [ "$devicetype" = "computer" ] && [ "$connected" ]; then
     echo "{\"text\": \"$btname\", \"class\": \"computer\", \"alt\": \"computer\"}"
 elif [ "$devicetype" = "audio-headset" ] && [ "$connected" ]; then
     echo "{\"text\": \"$btname $codec ${batterylevel}\", \"class\": \"headset\", \"alt\": \"headset\"}"
-elif [ "$disconnected" ]; then
+elif [ ! "$connected" ]; then
     echo "{\"text\": \"OFF\", \"class\": \"bt-off\", \"alt\": \"disconnected\"}"
+    rm $macfile 2> /dev/null
 fi
