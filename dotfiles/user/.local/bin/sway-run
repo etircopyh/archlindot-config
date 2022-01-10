@@ -15,6 +15,8 @@ echosplit () {
     echo "==========================================================================================="
 }
 
+export WLR_DRM_NO_MODIFIERS=1
+
 #WLR_DRM_NO_MODIFIERS=1 systemd-cat --identifier=sway sway
 
 if [ "$SWAY_DEBUG" = true ]; then
