@@ -7,7 +7,7 @@ set -o pipefail
 macfile=/tmp/bt-mac.txt
 
 if [ ! -s "$macfile" ]; then
-    devicemac=$(bluetoothctl info | head -1 | awk '{print $2}' | sed 's/:/_/g')
+    devicemac=$(busctl --json=pretty --no-pager call org.bluez / org.freedesktop.DBus.ObjectManager GetManagedObjects | jq -r '.. | select(.Connected.data == true?) | .Address.data | select( . != null)' | sed 's/:/_/g')
 else
     devicemac=$(< $macfile)
 fi
@@ -18,7 +18,7 @@ if ! grep -q "$devicemac" "$macfile"; then
 fi
 
 
-bt_audio=$(pactl info | grep 'bluez')
+bt_audio=$(pactl list sinks | grep 'bluez_output')
 connected=$(dbus-send --print-reply=literal --system --dest=org.bluez "/org/bluez/hci0/dev_$devicemac" org.freedesktop.DBus.Properties.Get string:"org.bluez.Device1" string:"Connected" | grep 'true')
 devicetype=$(dbus-send --print-reply=literal --system --dest=org.bluez "/org/bluez/hci0/dev_$devicemac" org.freedesktop.DBus.Properties.Get string:"org.bluez.Device1" string:"Icon" | awk '{print $2}')
 
