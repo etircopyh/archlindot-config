@@ -14,6 +14,6 @@ else
 fi
 
 
-DEVICE=$(bluetoothctl devices | $DEVICEPICKER | awk '{print $2}')
+DEVICE=$(bluetoothctl devices | awk '{$1=""; print $0}' | $DEVICEPICKER | awk '{print $1}')
 
 bluetoothctl connect "$DEVICE"
