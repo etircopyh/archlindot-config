@@ -2,32 +2,46 @@
 
 set -o pipefail
 
-#exec 2> /dev/null
+exec 2> /dev/null
+
+command -v jq grep sed busctl pactl pw-dump &> /dev/null || printf "\033[0;31mYour system does not satisfy the script requirements.\033[0m\n"
+
 
 macfile=/tmp/bt-mac.txt
 
 if [ ! -s "$macfile" ]; then
-    devicemac=$(busctl --json=pretty --no-pager call org.bluez / org.freedesktop.DBus.ObjectManager GetManagedObjects | jq -r '.. | select(.Connected.data == true?) | .Address.data | select( . != null)' | sed 's/:/_/g')
+    devicemac=$(busctl --json=short --no-pager call org.bluez / org.freedesktop.DBus.ObjectManager GetManagedObjects | jq -r '.. | select(.Connected.data == true?) | .Address.data | select( . != null)' | sed 's/:/_/g')
+    [ "$devicemac" ] && echo "$devicemac" > "$macfile"
 else
     devicemac=$(< $macfile)
 fi
 
 
-if ! grep -q "$devicemac" "$macfile"; then
-    echo "$devicemac" > "$macfile"
-fi
+function get-prop() {
+    busctl --json=short --no-pager get-property org.bluez "/org/bluez/hci0/dev_$devicemac" "org.bluez.$1" "$2" | jq -r '.data'
+}
+
+pw_audio=$(pgrep -x pipewire)
+pa_audio=$(pgrep -x pulseaudio)
 
 
 bt_audio=$(pactl list sinks | grep 'bluez_output')
-connected=$(dbus-send --print-reply=literal --system --dest=org.bluez "/org/bluez/hci0/dev_$devicemac" org.freedesktop.DBus.Properties.Get string:"org.bluez.Device1" string:"Connected" | grep 'true')
-devicetype=$(dbus-send --print-reply=literal --system --dest=org.bluez "/org/bluez/hci0/dev_$devicemac" org.freedesktop.DBus.Properties.Get string:"org.bluez.Device1" string:"Icon" | awk '{print $2}')
+if [ "$devicemac" ]; then
+    connected=$(get-prop Device1 Connected)
+    devicetype=$(get-prop Device1 Icon)
+    btname=$(get-prop Device1 Alias)
+fi
 
-btname=$(dbus-send --print-reply=literal --system --dest=org.bluez "/org/bluez/hci0/dev_$devicemac" org.freedesktop.DBus.Properties.Get string:"org.bluez.Device1" string:"Alias" | awk '{$1=""; sub(/^[ ]+/, ""); print $0}')
 
 if [ "$bt_audio" ]; then
-    profile=$(pw-dump -N | jq -r '.[].info.props["api.bluez5.profile"] | select( . != null)' | head -1)
-    batterylevel=$(dbus-send --print-reply=literal --system --dest=org.bluez "/org/bluez/hci0/dev_$devicemac" org.freedesktop.DBus.Properties.Get string:"org.bluez.Battery1" string:"Percentage" | awk '{print $3}' | awk '{print $0"%"}')
-    codec=$(pw-dump -N | jq -r '.[].info.props["api.bluez5.codec"] | select( . != null)' | tr '[:lower:]' '[:upper:]' | sed 's/^/[/;s/$/]/' | head -1)
+    batterylevel=$(get-prop Battery1 Percentage | awk '{print $0"%"}')
+    if [ "$pw_audio" ]; then
+        profile=$(pw-dump -N | jq -r '.[].info.props["api.bluez5.profile"] | select( . != null)' | head -1)
+        codec=$(pw-dump -N | jq -r '.[].info.props["api.bluez5.codec"] | select( . != null)' | tr '[:lower:]' '[:upper:]' | sed 's/^/[/;s/$/]/' | head -1)
+    elif [ "$pa_audio" ]; then
+        profile=$(pactl --format=json list sinks | jq -r '.[] | select(.name | contains("bluez_output")) | .properties["api.bluez5.profile"]')
+        codec=$(pactl --format=json list sinks | jq -r '.[] | select(.name | contains("bluez_output")) | .properties["api.bluez5.codec"]' | tr '[:lower:]' '[:upper:]' | sed 's/^/[/;s/$/]/')
+    fi
     if [[ "$devicetype" =~ audio-head ]] && [ "$profile" = "a2dp-sink" ]; then
         devicetype="audio-headphones"
     else
@@ -36,11 +50,13 @@ if [ "$bt_audio" ]; then
 fi
 
 
-if [ ! "$bt_audio" ] && [ "$connected" ]; then
-    echo "{\"text\": \"$btname\", \"class\": \"$devicetype\", \"alt\": \"$devicetype\"}"
-elif [ "$bt_audio" ] && [ "$connected" ]; then
-    echo "{\"text\": \"$btname $codec $batterylevel\", \"class\": \"$devicetype\", \"alt\": \"$devicetype\"}"
-elif [ ! "$connected" ]; then
+if [ "$connected" = "true" ]; then
+    if [ ! "$bt_audio" ]; then
+        echo "{\"text\": \"$btname\", \"class\": \"$devicetype\", \"alt\": \"$devicetype\"}"
+    elif [ "$bt_audio" ]; then
+        echo "{\"text\": \"$btname $codec $batterylevel\", \"class\": \"$devicetype\", \"alt\": \"$devicetype\"}"
+    fi
+elif [ "$connected" = false ] || [ ! "$devicemac" ] && [ ! "$connected" ]; then
+    [ -s "$macfile" ] && rm $macfile
     echo "{\"text\": \"OFF\", \"class\": \"bt-off\", \"alt\": \"disconnected\"}"
-    rm $macfile
 fi
