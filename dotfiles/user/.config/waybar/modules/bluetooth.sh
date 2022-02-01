@@ -21,6 +21,14 @@ function get-prop() {
     busctl --json=short --no-pager get-property org.bluez "/org/bluez/hci0/dev_$devicemac" "org.bluez.$1" "$2" | jq -r '.data'
 }
 
+function get-bluez-prop() {
+    if [ "$pw_audio" ]; then
+        pw-dump -N | jq -r ".[].info.props[\"api.bluez5.$1\"] | select( . != null)" | head -1
+    elif [ "$pa_audio" ]; then
+        pactl --format=json list sinks | jq -r ".[] | select(.name | contains(\"bluez_output\")) | .properties[\"api.bluez5.$1\"]" | head -1
+    fi
+}
+
 pw_audio=$(pgrep -x pipewire)
 pa_audio=$(pgrep -x pulseaudio)
 
@@ -35,13 +43,8 @@ fi
 
 if [ "$bt_audio" ]; then
     batterylevel=$(get-prop Battery1 Percentage | awk '{print $0"%"}')
-    if [ "$pw_audio" ]; then
-        profile=$(pw-dump -N | jq -r '.[].info.props["api.bluez5.profile"] | select( . != null)' | head -1)
-        codec=$(pw-dump -N | jq -r '.[].info.props["api.bluez5.codec"] | select( . != null)' | tr '[:lower:]' '[:upper:]' | sed 's/^/[/;s/$/]/' | head -1)
-    elif [ "$pa_audio" ]; then
-        profile=$(pactl --format=json list sinks | jq -r '.[] | select(.name | contains("bluez_output")) | .properties["api.bluez5.profile"]')
-        codec=$(pactl --format=json list sinks | jq -r '.[] | select(.name | contains("bluez_output")) | .properties["api.bluez5.codec"]' | tr '[:lower:]' '[:upper:]' | sed 's/^/[/;s/$/]/')
-    fi
+    profile=$(get-bluez-prop profile)
+    codec=$(get-bluez-prop codec | tr '[:lower:]' '[:upper:]' | sed 's/^/[/;s/$/]/')
     if [[ "$devicetype" =~ audio-head ]] && [ "$profile" = "a2dp-sink" ]; then
         devicetype="audio-headphones"
     else
@@ -51,11 +54,7 @@ fi
 
 
 if [ "$connected" = "true" ]; then
-    if [ ! "$bt_audio" ]; then
-        echo "{\"text\": \"$btname\", \"class\": \"$devicetype\", \"alt\": \"$devicetype\"}"
-    elif [ "$bt_audio" ]; then
-        echo "{\"text\": \"$btname $codec $batterylevel\", \"class\": \"$devicetype\", \"alt\": \"$devicetype\"}"
-    fi
+    echo "{\"text\": \"$btname $codec $batterylevel\", \"class\": \"$devicetype\", \"alt\": \"$devicetype\"}"
 elif [ "$connected" = false ] || [ ! "$devicemac" ] && [ ! "$connected" ]; then
     [ -s "$macfile" ] && rm $macfile
     echo "{\"text\": \"OFF\", \"class\": \"bt-off\", \"alt\": \"disconnected\"}"
