@@ -53,9 +53,9 @@ if [ "$bt_audio" ]; then
 fi
 
 
-if [ "$connected" = "true" ]; then
+if [ "$connected" = true ]; then
     echo "{\"text\": \"$btname $codec $batterylevel\", \"class\": \"$devicetype\", \"alt\": \"$devicetype\"}"
-elif [ "$connected" = false ] || [ ! "$devicemac" ] && [ ! "$connected" ]; then
+elif [ "$connected" = false ] || [ ! "$devicemac" ]; then
     [ -s "$macfile" ] && rm $macfile
     echo "{\"text\": \"OFF\", \"class\": \"bt-off\", \"alt\": \"disconnected\"}"
 fi
