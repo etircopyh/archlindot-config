@@ -31,6 +31,10 @@ bluez_monitor.properties = {
   -- Properties for the A2DP codec configuration
   --["bluez5.default.rate"] = 48000,
   --["bluez5.default.channels"] = 2,
+
+  --Register dummy AVRCP player, required for AVRCP volume function.
+  --Disable if you are running mpris-proxy or equivalent.
+  ["bluez5.dummy-avrcp-player"] = false,
 }
 
 bluez_monitor.rules = {
@@ -61,7 +65,7 @@ bluez_monitor.rules = {
       --                   hq   (High Quality, 990/909kbps)
       --                   sq   (Standard Quality, 660/606kbps)
       --                   mq   (Mobile use Quality, 330/303kbps)
-      --["bluez5.a2dp.ldac.quality"] = "auto",
+      ["bluez5.a2dp.ldac.quality"] = "mq",
 
       -- AAC variable bitrate mode
       -- Available values: 0 (cbr, default), 1-5 (quality level)
@@ -89,9 +93,9 @@ bluez_monitor.rules = {
       --["priority.session"] = 100,
       --["node.pause-on-idle"] = false,
       --["resample.quality"] = 4,
-      --["channelmix.normalize"] = false,
+      ["channelmix.normalize"] = true,
       --["channelmix.mix-lfe"] = false,
-      --["session.suspend-timeout-seconds"] = 0,  -- 0 disables suspend
+      --["session.suspend-timeout-seconds"] = 5,  -- 0 disables suspend
       --["monitor.channel-volumes"] = false,
 
       -- A2DP source role, "input" or "playback"
