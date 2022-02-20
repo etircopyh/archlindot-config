@@ -1,0 +1,117 @@
+{
+    "suggest.disableKind": true,
+    "suggest.enablePreview": true,
+    "suggest.maxPreviewWidth": 100,
+    "diagnostic.checkCurrentLine": true,
+    "diagnostic.maxWindowHeight": 20,
+    "diagnostic.displayByAle": true,
+    "vimlsp.filetypes": [ "vim" ],
+    "vimlsp.indexes.count": 3,
+    "vimlsp.indexes.gap": 100,
+    "vimlsp.indexes.projectRootPatterns": [ ".git", "autoload", "plugin" ],
+    "coc.preferences.formatOnType": false,
+    "coc.preferences.formatOnSaveFiletypes": [ "typescript", "elm", "markdown" ],
+    "tsserver.formatOnType": false,
+    "eslint.packageManager": "npm",
+    "eslint.autoFixOnSave": true,
+    "json.enable": true,
+    "json.format.enable": true,
+    "yaml.format.enable": true,
+    "yaml.format.singleQuote": true,
+    "yaml.format.bracketSpacing": true,
+    "yaml.hover": true,
+    "html.enable": true,
+    "html.filetypes": [ "html", "handlebars", "vue" ],
+    "html.format.enable": true,
+    "html.format.preserveNewLines": true,
+    "html.suggest.angular1": false,
+    "html.suggest.ionic": false,
+    "html.suggest.html5": true,
+    "html.autoClosingTags": true,
+    "vetur.format.options.tabSize": 4,
+    "vetur.format.defaultFormatter.js": "prettier-eslint",
+    "vetur.format.defaultFormatter.css": "prettier",
+    "vetur.format.defaultFormatter.html": "prettyhtml",
+    "vetur.format.defaultFormatter.scss": "prettier",
+    "vetur.format.defaultFormatter.ts": "vscode-typescript",
+    "vetur.format.options.useTabs": false,
+    "go.enable": true,
+    "go.goplsPath": "~/.local/lib/go/bin/gopls",
+    "go.goplsOptions": {
+        "usePlaceholders": true,
+        "completeUnimported": true
+    },
+    "python.linting.mypyEnabled": true,
+    "rust-analyzer.server.path": "rust-analyzer",
+    "rust-analyzer.checkOnSave.command": "clippy",
+    "rust-analyzer.procMacro.enable": true,
+    "languageserver": {
+        "cmake": {
+            "command": "cmake-language-server",
+            "filetypes": [ "cmake" ],
+            "rootPatterns": [ "build/" ],
+            "initializationOptions": {
+                "buildDirectory": "build"
+            }
+        },
+        "dockerfile": {
+            "command": "docker-langserver",
+            "filetypes": [ "dockerfile" ],
+            "args": [ "--stdio" ]
+        },
+        "terraform": {
+            "command": "terraform-lsp",
+            "filetypes": [ "terraform" ],
+            "initializationOptions": {}
+        },
+        "ccls": {
+            "command": "ccls",
+            "filetypes": [ "c", "cpp", "objc", "objcpp" ],
+            "rootPatterns": [ ".ccls", "compile_commands.json", ".git/" ],
+            "initializationOptions": {
+                "compilationDatabaseDirectory": "build",
+                "highlight": { "lsRanges" : true },
+                "cache": { "directory": "/tmp/LSP/ccls-cache" },
+                "client": { "snippetSupport": true }
+            }
+        },
+        "zig": {
+            "command": "zls",
+            "filetypes": [ "zig" ]
+        },
+        "golang": {
+            "command": "gopls",
+            "rootPatterns": [ "go.mod", ".vim/", ".git/" ],
+            "filetypes": [ "go" ],
+            "initializationOptions": {
+                "usePlaceholders": true
+            }
+        },
+        "nix": {
+            "command": "rnix-lsp",
+            "filetypes": [ "nix" ]
+        },
+        "elmLS": {
+            "command": "elm-language-server",
+            "filetypes": [ "elm" ],
+            "rootPatterns": [ "elm.json" ],
+            "initializationOptions": {
+                "elmPath": "elm",
+                "elmFormatPath": "elm-format",
+                "elmTestPath": "elm-test",
+                "elmAnalyseTrigger": "change"
+            }
+        },
+        "bash": {
+            "command": "bash-language-server",
+            "args": [ "start" ],
+            "filetypes": [ "sh" ],
+            "ignoredRootPaths": [ "~" ]
+        },
+        "sql": {
+            "command": "sql-language-server",
+            "args" : ["up", "--method", "stdio"],
+            "filetypes": ["sql", "mysql"]
+        }
+    }
+}
