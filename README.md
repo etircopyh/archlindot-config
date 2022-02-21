@@ -8,14 +8,14 @@ To clone only neovim configuration use the script from the repo. You can do it l
 ```
 sh <(curl -fsSL https://raw.githubusercontent.com/etircopyh/arch.conf/wip/clone-nvim-config.sh) wip dotfiles/user/.config/nvim && cd /tmp/neovim-config/dotfiles/user/.config/nvim
 ```
-- Terminal: [Alacritty](https://github.com/jwilm/alacritty) / Terminal Font: [Hasklig](https://github.com/i-tu/Hasklig)
+- Terminal: [foot](https://codeberg.org/dnkl/foot) / Terminal Font: [Hasklig](https://github.com/i-tu/Hasklig)
 - Terminal multiplexer: [Tmux](https://github.com/tmux/tmux)
 - Shell: [zsh](https://github.com/zsh-users/zsh) + [grml-zsh-config](https://grml.org/zsh/#grmlzshconfig) (most seamless shell experience ever)
-- Browser: [Firefox](https://www.mozilla.org/en-US/firefox)
+- Sound server: [PipeWire](https://wiki.archlinux.org/title/PipeWire) + [WirePlumber](https://wiki.archlinux.org/title/WirePlumber)
+- Browser: [Firefox](https://www.mozilla.org/en-US/firefox) ([My custom FF configuration](https://github.com/etircopyh/fox-hax))
 - Video player: [mpv](https://github.com/mpv-player/mpv)
 - Image viewer: [imv](https://github.com/eXeC64/imv)
-- Screenshot: [grim](https://github.com/emersion/grim) + [slurp](https://github.com/emersion/slurp)
-- Screencast: [wf-recorder](https://github.com/ammen99/wf-recorder)
+- Screen capture: [Flameshot](https://github.com/flameshot-org/flameshot) + [OBS](https://github.com/obsproject/obs-studio)
 - Network: [systemd-networkd](https://github.com/systemd/systemd/tree/master/src/network) + [iwd](https://wiki.archlinux.org/index.php/Iwd) + [dnscrypt-proxy](https://github.com/DNSCrypt/dnscrypt-proxy)
 - [Systemd units](./dotfiles/system/usr/lib/systemd/system) (meant to be placed into /usr/lib/systemd/system/)
 - Useful scripts
