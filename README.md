@@ -3,6 +3,10 @@
 - WM: [Sway](https://github.com/swaywm/sway)
 - Bar: [Waybar](https://github.com/Alexays/Waybar)
 - Editor: [Neovim](https://github.com/neovim/neovim)
+```
+To clone only neovim configuration use the script from the repo. You can do it like this:
+sh <(curl -fsSL https://raw.githubusercontent.com/etircopyh/arch.conf/wip/clone-nvim-config.sh) && cd /tmp/neovim-config
+```
 - Terminal: [Alacritty](https://github.com/jwilm/alacritty) / Terminal Font: [Hasklig](https://github.com/i-tu/Hasklig)
 - Terminal multiplexer: [Tmux](https://github.com/tmux/tmux)
 - Shell: [zsh](https://github.com/zsh-users/zsh) + [grml-zsh-config](https://grml.org/zsh/#grmlzshconfig) (most seamless shell experience ever)
