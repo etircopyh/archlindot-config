@@ -34,7 +34,7 @@ pw_audio=$(pgrep -x pipewire)
 pa_audio=$(pgrep -x pulseaudio)
 
 
-bt_audio=$(pactl list sinks | grep 'bluez_[output|sink]')
+bt_audio=$(pactl list sinks | grep -q 'bluez_[output|sink]' && echo 'true')
 if [ "$devicemac" ]; then
     connected=$(get-prop Device1 Connected)
     devicetype=$(get-prop Device1 Icon)
