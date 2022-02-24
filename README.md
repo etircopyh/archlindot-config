@@ -6,7 +6,7 @@
 
 To clone only neovim configuration use the script from the repo. You can do it like this:
 ```
-sh <(curl -fsSL https://raw.githubusercontent.com/etircopyh/arch.conf/wip/clone-nvim-config.sh) wip dotfiles/user/.config/nvim && cd /tmp/neovim-config/dotfiles/user/.config/nvim
+sh <(curl -fsSL https://raw.githubusercontent.com/etircopyh/arch.conf/wip/clone-dir.sh) wip dotfiles/user/.config/nvim && cd /tmp/neovim-config/dotfiles/user/.config/nvim
 ```
 - Terminal: [foot](https://codeberg.org/dnkl/foot) / Terminal Font: [Hasklig](https://github.com/i-tu/Hasklig)
 - Terminal multiplexer: [Tmux](https://github.com/tmux/tmux)
