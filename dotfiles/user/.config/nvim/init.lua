@@ -1,11 +1,13 @@
-local expand = vim.fn.expand
-local fn = vim.fn
-local opt = vim.opt
+local fn    = vim.fn
 local utils = require('utils')
 
 require 'os'
 
-vim.cmd [[colorscheme sonokai]]
+vim.cmd [[colorscheme gruvbox-baby]]
+
+vim.g.mapleader = ','
+
+local global_vim_options = {}
 
 local vim_options = {
     background = 'dark',
@@ -24,19 +26,24 @@ local vim_options = {
     undodir   = os.getenv('XDG_STATE_HOME') .. '/nvim/undo//',
     viewdir   = os.getenv('XDG_STATE_HOME') .. '/nvim/view//',
 
-    list = true,
+    list      = true,
     showbreak = '↪ ',
     listchars = {
-        tab = '▸ ',
-        nbsp = '⍽',
-        extends = '⟩',
+        tab      = '▸ ',
+        nbsp     = '⍽',
+        extends  = '⟩',
         precedes = '⟨',
-        trail = '⋅',
-        eol = '↲',
+        trail    = '⋅',
+        eol      = '↲',
     },
 
     splitbelow = true,
     splitright = true,
+
+    foldexpr = 'nvim_treesitter#foldexpr()',
+
+    title       = true,
+    titlestring = '%<%F%= - nvim',
 
     pumheight = 10,
 
@@ -44,54 +51,68 @@ local vim_options = {
 
     -- Search
     ignorecase = true,
-    smartcase = true,
-    incsearch = true,
-    showmatch = true,
-    hlsearch = true,
-    lazyredraw = false,
+    smartcase  = true,
+    incsearch  = true,
+    showmatch  = true,
+    hlsearch   = true,
+
+    lazyredraw = true,
+
+    synmaxcol = 240,
+
+    joinspaces = false,
 
     signcolumn = 'number',
 
-    mouse = 'a',
-    autoread = true,
-    hidden = true,
-    scrolloff = 3,
+    mouse      = 'a',
+    autoread   = true,
+    hidden     = true,
+    scrolloff  = 3,
     sidescroll = 3,
 
-    ruler = true,
+    ruler       = true,
     rulerformat = '%l,%v',
 
     errorbells = false,
     visualbell = false,
 
-    wildmenu = true,
-    wildmode = 'list:full,full',
+    wildmenu   = true,
+    wildmode   = 'list:full,full',
     wildignore = { '*.o', '*.obj', '*~', '*.pyc', '*.so', '*.swp', 'tmp/', '*.pdf', '*.jpg', '*.dmg', '*.zip', '*.png', '*.gif', '*DS_Store*' },
 
-    formatoptions = "croqn2l1",
+    formatoptions = 'croqn2l1',
 
-    number = true,
+    number         = true,
     relativenumber = false,
 
     cursorline = true,
 
     cmdheight = 2,
-    history = 10000,
+    history   = 10000,
 
-    updatetime = 100,
+    spell = false,
+    spelllang = 'en',
+
+    updatetime = 300,
     -- Indentation
-    expandtab = true,
-    smarttab = true,
-    autoindent = true,
+    expandtab   = true,
+    smarttab    = true,
+    autoindent  = true,
     smartindent = true,
-    copyindent = true,
-    tabstop = 4,
+    copyindent  = true,
+    shiftround  = true,
+    tabstop     = 4,
     softtabstop = 4,
-    shiftwidth = 4
+    shiftwidth  = 4,
+
+    diffopt = vim.opt.diffopt + 'vertical',
+
+    shortmess = vim.opt.shortmess + 'c'
 }
 
-vim.opt.diffopt:append('vertical')
-vim.opt.shortmess:append('c')
+for k, v in pairs(global_vim_options) do
+    vim.g[k] = v
+end
 
 for k, v in pairs(vim_options) do
     vim.opt[k] = v
@@ -109,9 +130,33 @@ if fn.has('unix') then
     end
 end
 
+local disabled_built_ins = {
+    'gzip',
+    'zip',
+    'zipPlugin',
+    'tar',
+    'tarPlugin',
+    'getscript',
+    'getscriptPlugin',
+    'vimball',
+    'vimballPlugin',
+    '2html_plugin',
+    'logipat',
+    'rrhelper',
+    'spellfile_plugin',
+    'matchit'
+}
+
+for _, plugin in pairs(disabled_built_ins) do
+    vim.g['loaded_' .. plugin] = 1
+end
+
+
+
+
 require('plugins')
 require('lsp')
 
 require('treesitter')
 
-require('keys')
+require('keymaps')
