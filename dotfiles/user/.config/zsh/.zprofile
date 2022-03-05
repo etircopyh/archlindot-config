@@ -9,7 +9,6 @@ typeset -gU cdpath fpath mailpath path
 #export XDG_STATE_HOME="$HOME/.local/state"
 
 
-
 [[ -x "$(command -v python)" ]] && export PYTHONUSERBASE="${XDG_LIB_HOME:-$HOME/.local/lib}/python"
 [[ -x "$(command -v go)" ]] && export GOPATH="${XDG_LIB_HOME:-$HOME/.local/lib}/go" && \
                                export GOBIN="$GOPATH/bin"
@@ -17,15 +16,13 @@ typeset -gU cdpath fpath mailpath path
     export RUSTUP_HOME="$HOME/.local/lib/rust/rustup" \
            CARGO_HOME="$HOME/.local/lib/rust/cargo" \
            CARGO_NAME="etircopyh" \
-           CARGO_EMAIL="etircopyh@protonmail.com"
+           CARGO_EMAIL="etircopyhdot@gmail.com"
 
 [[ -x "$(command -v docker)" ]] && export DOCKER_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/docker"
 
 [[ -x "$(command -v parallel)" ]] && export PARALLEL_HOME="${XDG_CACHE_HOME:-$HOME/.cache}/parallel"
 
-[[ -x "$(command -v gtk2)" ]] && export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-2.0/gtkrc"
-
-mkdir -p "${XDG_STATE_HOME:-$HOME/.local/state}/less"
+[[ ! -d "${XDG_STATE_HOME:-$HOME/.local/state}/less" ]] && mkdir -p "${XDG_STATE_HOME:-$HOME/.local/state}/less"
 export LESSKEY="${XDG_CONFIG_HOME:-$HOME/.config}/less/lesskey" \
        LESSHISTFILE="${XDG_STATE_HOME:-$HOME/.local/state}/less/history"
 
@@ -53,10 +50,8 @@ export LESSKEY="${XDG_CONFIG_HOME:-$HOME/.config}/less/lesskey" \
 
 export INPUTRC="${XDG_CONFIG_HOME:-$HOME/.config}/readline/inputrc"
 
-export GRADLE_USER_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/gradle"
-
+export NSS_USE_SHARED_DB=1
 export NSS_SHARED_DB_PATH="${XDG_DATA_HOME:-$HOME/.local/share}/pki/nssdb" \
-       NSS_USE_SHARED_DB=1
 
 [[ -x "$(command -v gpg)" ]] && export GNUPGHOME="${XDG_DATA_HOME:-$HOME/.local/share}/gnupg"
 
