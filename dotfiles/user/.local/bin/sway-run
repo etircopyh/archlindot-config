@@ -4,6 +4,8 @@ set -o allexport
 . "${XDG_CONFIG_HOME:-$HOME/.config}/sway/env"
 set +o allexport
 
+echo "sway Starting: $( date )"
+
 SWAYLOGDIR="${XDG_DATA_HOME:-$HOME/.local/share}/logs"
 
 [ ! -d "$SWAYLOGDIR" ] && command mkdir -p "$SWAYLOGDIR"
@@ -15,7 +17,7 @@ echosplit () {
     echo "==========================================================================================="
 }
 
-export WLR_DRM_NO_MODIFIERS=1
+#export WLR_DRM_NO_MODIFIERS=1
 
 #WLR_DRM_NO_MODIFIERS=1 systemd-cat --identifier=sway sway
 
