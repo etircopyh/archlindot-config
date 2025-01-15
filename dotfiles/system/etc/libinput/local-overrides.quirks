@@ -1,5 +1,4 @@
 [disable physical button of touchpad]
 MatchUdevType=touchpad
 MatchBus=ps2
-AttrEventCodeDisable=BTN_LEFT
-
+AttrEventCode=-BTN_LEFT
