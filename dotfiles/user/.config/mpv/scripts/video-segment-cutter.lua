@@ -149,8 +149,13 @@ local function get_outname(shift, endpos)
     return resolved_outpath
 end
 
+-- Subtitles
+local embed_subs = o.encoding.embed_subs
+        and get_property("sub-visibility") == "yes"
+        and get_property_number("sub") > 0
+
 local function sub_location()
-  if get_property("sub-visibility") == "yes" and get_property_number("sub") > 0 then
+  if embed_subs then
       local sub_file = mp.get_property_native("current-tracks/sub/external-filename")
       if not sub_file then
           sub_file = get_property("stream-open-filename")
@@ -162,10 +167,6 @@ local function sub_location()
 end
 
 local function enable_subs(shift)
-    local embed_subs = o.encoding.embed_subs
-        and get_property("sub-visibility") == "yes"
-        and get_property_number("sub") > 0
-
     if embed_subs then
         if is_remote() then
             return { "--write-sub", "--write-auto-sub", "--sub-lang", "en", "--embed-subs" }
