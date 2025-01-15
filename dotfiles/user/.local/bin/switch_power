@@ -253,8 +253,6 @@ need_root() {
             debug "No privilege escalation method available"
             error "Could not escalate privileges. Please run with sudo"
         fi
-        debug "Failed to escalate privileges"
-        error "Failed to escalate privileges"
     fi
     debug "Already running as root"
     return 0
