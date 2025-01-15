@@ -19,7 +19,8 @@ HoldPkg      = pacman glibc
 #XferCommand = /usr/bin/curl -L -C - -f -o %o %u
 #XferCommand = /usr/bin/wget --passive-ftp -c -O %o %u
 #CleanMethod = KeepInstalled
-Architecture = x86_64 x86_64_v3
+#Architecture = x86_64_v3 x86_64
+#Architecture = x86_64_v3
 #Architecture = auto
 
 # Pacman won't upgrade packages listed in IgnorePkg and members of IgnoreGroup
@@ -66,17 +67,34 @@ LocalFileSigLevel   = Optional
 #[core-testing]
 #Include = /etc/pacman.d/mirrorlist
 
+# cachyos repos
+## Only add if your CPU does v3 architecture
+[cachyos-v3]
+Include = /etc/pacman.d/cachyos-v3-mirrorlist
+[cachyos-core-v3]
+Include = /etc/pacman.d/cachyos-v3-mirrorlist
+[cachyos-extra-v3]
+Include = /etc/pacman.d/cachyos-v3-mirrorlist
+#[cachyos-community-v3]
+#Include = /etc/pacman.d/cachyos-v3-mirrorlist
+#[cachyos]
+#Include = /etc/pacman.d/cachyos-mirrorlist
+
+
 [core-x86-64-v3]
 Include = /etc/pacman.d/alhp-mirrorlist
 
 [extra-x86-64-v3]
 Include = /etc/pacman.d/alhp-mirrorlist
 
-[core]
-Include = /etc/pacman.d/mirrorlist
+#[core]
+#Include = /etc/pacman.d/mirrorlist
 
-[extra]
-Include = /etc/pacman.d/mirrorlist
+#[extra-testing]
+#Include = /etc/pacman.d/mirrorlist
+
+#[extra]
+#Include = /etc/pacman.d/mirrorlist
 
 # If you want to run 32 bit applications on your x86_64 system,
 # enable the multilib repositories as required here.
@@ -87,8 +105,8 @@ Include = /etc/pacman.d/mirrorlist
 [multilib-x86-64-v3]
 Include = /etc/pacman.d/alhp-mirrorlist
 
-[multilib]
-Include = /etc/pacman.d/mirrorlist
+#[multilib]
+#Include = /etc/pacman.d/mirrorlist
 
 # Unofficial repositories
 
@@ -100,13 +118,5 @@ Include = /etc/pacman.d/mirrorlist
 [chaotic-aur]
 Include = /etc/pacman.d/chaotic-mirrorlist
 
-# cachyos repos
-## Only add if your CPU does v3 architecture
-[cachyos-v3]
-Include = /etc/pacman.d/cachyos-v3-mirrorlist
-[cachyos-core-v3]
-Include = /etc/pacman.d/cachyos-v3-mirrorlist
-[cachyos-extra-v3]
-Include = /etc/pacman.d/cachyos-v3-mirrorlist
-[cachyos]
-Include = /etc/pacman.d/cachyos-mirrorlist
+#[chaotic-aur]
+#Include = /etc/pacman.d/chaotic-mirrorlist

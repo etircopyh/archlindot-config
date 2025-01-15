@@ -19,7 +19,6 @@ HoldPkg      = pacman glibc
 #XferCommand = /usr/bin/curl -L -C - -f -o %o %u
 #XferCommand = /usr/bin/wget --passive-ftp -c -O %o %u
 #CleanMethod = KeepInstalled
-#UseDelta    = 0.7
 Architecture = auto
 
 # Pacman won't upgrade packages listed in IgnorePkg and members of IgnoreGroup
@@ -36,6 +35,8 @@ Color
 CheckSpace
 #VerbosePkgLists
 ParallelDownloads = 5
+DownloadUser = alpm
+#DisableSandbox
 
 # By default, pacman accepts packages signed by keys that its local keyring
 # trusts (see pacman-key and its man page), as well as unsigned packages.
@@ -82,24 +83,11 @@ Include = /etc/pacman.d/mirrorlist
 #Include = /etc/pacman.d/mirrorlist
 
 # Unofficial repositories
-# pf-kernel
-[home_post-factum_kernels_Arch]
-Server = https://download.opensuse.org/repositories/home:/post-factum:/kernels/Arch/$arch
-SigLevel = Never
 
 #[archzfs]
 #Server = http://archzfs.com/$repo/$arch
 #Server = http://mirror.sum7.eu/archlinux/archzfs/$repo/$arch
 #Server = https://mirror.biocrafting.net/archlinux/archzfs/$repo/$arch
 
-# linux-clear
-[home_metakcahura_kernel_Arch_Extra_standard]
-Server = http://download.opensuse.org/repositories/home:/metakcahura:/kernel/Arch_Extra_standard/$arch
-SigLevel = Never
-
-# steam
-#[valveaur]
-#Server = http://repo.steampowered.com/arch/valveaur
-
 [chaotic-aur]
-Server = https://chaotic.dr460nf1r3.me/repos/$repo/$arch
+Include = /etc/pacman.d/chaotic-mirrorlist
