@@ -10,8 +10,5 @@ elif [ -x "$(command -v pulseaudio)" ]; then
     AUDIOSERVER='pulseaudio.service'
 fi
 
-# if [ "$(systemctl --user status $AUDIOSERVER | command grep -q 'changed on disk')" ]; then
-    # systemctl --user daemon-reload
-# fi
 systemctl --user daemon-reload
-systemctl --user restart $AUDIOSERVER 2> /dev/null || printf "\033[0;31mCouldn't restart audio server.\033[0m"
+systemctl --user restart "$AUDIOSERVER" 2> /dev/null || printf "\033[0;31mCouldn't restart audio server.\033[0m"
