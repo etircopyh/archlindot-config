@@ -2,14 +2,6 @@
 # Global Environment Variables
 #
 
-# Qt
-#QT_NO_GLIB=1
-QT_QPA_PLATFORMTHEME=qt5ct
-QT_XFT=true
+LD_BIND_NOW=1
 
-#FREETYPE_PROPERTIES=truetype:interpreter-version=35
-
-# VA-API
-#LIBVA_DRIVER_NAME=i965
-
-NO_AT_BRIDGE=1
+GLIBC_TUNABLES=glibc.malloc.hugetlb=1:glibc.elision.enable=1
